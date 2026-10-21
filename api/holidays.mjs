@@ -2,6 +2,7 @@
  * No API keys, cookies, location permissions, or user identifiers.
  * Errors fail closed: the meeting planner will not display unverified slots.
  */
+import { INDIA_CENTRAL_GAZETTED_2026 } from '../lib/india-2026.mjs';
 const ORIGINS = [
   (country, year) => `https://nagerholidays.com/api/v4/Holidays/${country}/${year}`,
   (country, year) => `https://date.nager.at/api/v3/PublicHolidays/${year}/${country}`
@@ -29,6 +30,11 @@ export default async function handler(req, res) {
     return res.status(400).json({error: 'Invalid country or year'});
   }
   res.setHeader('Cache-Control', 'public, max-age=0, s-maxage=3600, stale-while-revalidate=3600');
+  // DoPT / central-government gazetted dates. State/regional coverage is not complete.
+  if (country === 'IN' && year === 2026) {
+    res.setHeader('X-Holiday-Coverage', 'India central government gazetted holidays 2026');
+    return res.status(200).json(INDIA_CENTRAL_GAZETTED_2026);
+  }
   for (const buildUrl of ORIGINS) {
     try {
       const response = await fetch(buildUrl(country, year), {

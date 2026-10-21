@@ -99,7 +99,7 @@ async function renderHolidayYear(){
   if(!visitorCountry){$('holiday-status').textContent='Choose a visitor country to complete the holiday calendar.';return;}
   try{await retrieveHolidayData(countries,[year]);if(myRevision!==calendarRevision)return;
     for(const [country,name] of countries)grid.append(addCalendarPanel(country,name,holidayStore.get(`${country}-${year}`),year));
-    $('holiday-status').textContent=`${year}: ${countries.length} holiday calendars ready. All recorded public holiday dates are excluded from meeting recommendations.`;
+    $('holiday-status').textContent=`${year}: ${countries.length} holiday calendars ready. All recorded public holiday dates are excluded from meeting recommendations.${year===2026?' India coverage: central-government gazetted holidays; state and regional holidays may differ.':''}`;
   }catch(e){if(myRevision!==calendarRevision)return;$('holiday-status').textContent='Holiday data unavailable: '+e.message+'. Recommendations are blocked until verification succeeds.';}
 }
 function initializeHolidays(){
