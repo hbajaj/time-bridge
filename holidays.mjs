@@ -1,6 +1,6 @@
 /* Country-public-holiday scheduling safeguard. Network failures never produce an unverified recommendation. */
 import { localDay } from './time-core.mjs';
-export const HOLIDAY_API = 'https://nagerholidays.com/api/v4/Holidays';
+export const HOLIDAY_API = '/api/holidays';
 const CACHE_HOURS = 8;
 const inflight = new Map();
 const isoDay = d => /^\d{4}-\d{2}-\d{2}$/.test(d);
@@ -22,7 +22,7 @@ export function normalizeHolidays(payload, country){
 }
 export async function holidaysFor(country,year,fetcher=fetch){
   if(!/^[A-Z]{2}$/.test(country) || !Number.isInteger(year) || year<2020 || year>2100)throw Error('Country/year is not supported');
-  const key=`tb-holidays-v4-${country}-${year}`,existing=inflight.get(key);
+  const key=`tb-holidays-v4-proxy-${country}-${year}`,existing=inflight.get(key);
   if(existing)return existing;
   const task=(async()=>{
     try{
@@ -30,9 +30,18 @@ export async function holidaysFor(country,year,fetcher=fetch){
       if(raw){const cached=JSON.parse(raw);if(Date.now()-cached.saved<CACHE_HOURS*3600000 && Array.isArray(cached.data))return normalizeHolidays(cached.data,country)}
     }catch{}
     let result;
-    const response=await fetcher(`${HOLIDAY_API}/${country}/${year}`,{headers:{Accept:'application/json'}});
-    if(!response.ok)throw Error(`Holiday service unavailable (${country}, HTTP ${response.status})`);
-    result=await response.json();
+    let response;
+    try {
+      response=await fetcher(`${HOLIDAY_API}?country=${country}&year=${year}`,{headers:{Accept:'application/json'}});
+    } catch {
+      throw Error(`Unable to contact the holiday service for ${country} ${year}. Check your connection and retry`);
+    }
+    if(!response.ok){
+      let detail='';
+      try{const body=await response.json();if(typeof body?.error==='string')detail=`: ${body.error.slice(0,120)}`}catch{}
+      throw Error(`Holiday service unavailable for ${country} ${year} (HTTP ${response.status}${detail})`);
+    }
+    try{result=await response.json()}catch{throw Error(`Invalid holiday response for ${country} ${year}`)}
     const normalized=normalizeHolidays(result,country);
     try{localStorage.setItem(key,JSON.stringify({saved:Date.now(),data:result}))}catch{}
     return normalized;
