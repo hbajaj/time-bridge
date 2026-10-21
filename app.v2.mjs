@@ -1,21 +1,30 @@
 /* TimeBridge UI controller — DOM and optional browser capabilities only. */
-import { ZONE_KEYS, NAMES, localDay, localClock, formatTime, formatDate, formatRange, shortOffset, identifyDeviceZone, resolveWall, suggestions, parts, toICS, shareText, validDay } from './time-core.mjs';
+import { ZONE_KEYS, NAMES, localDay, localClock, formatTime, formatDate, formatRange, shortOffset, identifyDeviceZone, resolveWall, rankDay, addDay, parts, toICS, shareText, validDay } from './time-core.mjs';
+import { COUNTRY_NAMES, inferCountry } from './country-map.mjs';
+import { holidaysFor, holidayConflicts, requiredHolidayYears } from './holidays.mjs';
 import { createVisitorClock } from './visitor-time.mjs';
 const $ = id => document.getElementById(id);
 const labels = { et:'🇺🇸 Eastern',ng:'🇳🇬 Nigeria',in:'🇮🇳 India' };
 function el(tag,cls,txt){let node=document.createElement(tag);if(cls)node.className=cls;if(txt!==undefined)node.textContent=txt;return node}
 function zoneFromDevice(){try{return Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch{return ''}}
-const deviceZone=zoneFromDevice(),home=identifyDeviceZone(deviceZone);
-const visitorClock=home?null:createVisitorClock(deviceZone);
-$('base').value=home||'et';
-for(const k of ZONE_KEYS){$('card-'+k).classList.toggle('is-home',home===k);$('you-'+k).hidden=home!==k}
-$('card-local').hidden=!visitorClock;
-$('clocks').classList.toggle('has-local',Boolean(visitorClock));
-if(visitorClock)$('card-local').setAttribute('aria-label',`Your local time in ${deviceZone}`);
-const liveContext=visitorClock?`Live times · Your device time zone: ${deviceZone}`:home?'Live times · updates automatically':'Live times · Eastern reference (device time zone unavailable)';
-$('clock-context').textContent=liveContext;
+const deviceZone=zoneFromDevice(),timeHome=identifyDeviceZone(deviceZone);
+let visitorCountry=inferCountry(deviceZone);let home=null,visitorClock=null,liveContext='';
+const regionCountry={et:'US',ng:'NG',in:'IN'};
+function updateVisitor(){
+  home=timeHome && visitorCountry===regionCountry[timeHome]?timeHome:null;
+  visitorClock=home?null:createVisitorClock(deviceZone);
+  $('base').value=home||$('base').value||'et';
+  for(const k of ZONE_KEYS){$('card-'+k).classList.toggle('is-home',home===k);$('you-'+k).hidden=home!==k}
+  $('card-local').hidden=!visitorClock;
+  $('clocks').classList.toggle('has-local',Boolean(visitorClock));
+  if(visitorClock)$('card-local').setAttribute('aria-label',`Your local time in ${deviceZone}`);
+  liveContext=visitorClock?`Live times · Your device time zone: ${deviceZone}`:home?'Live times · updates automatically':'Live times · Eastern reference (device time zone unavailable)';
+  $('clock-context').textContent=liveContext;
+}
+$('base').value=timeHome||'et';
+updateVisitor();
 let theme='light';try{theme=localStorage.getItem('timebridge-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch{theme=window.matchMedia?.('(prefers-color-scheme: dark)').matches?'dark':'light'}
-function showTheme(){document.documentElement.dataset.theme=theme;$('theme').textContent=theme==='dark'?'☀ Light':'☾ Dark';$('theme').setAttribute('aria-label',`Switch to ${theme==='dark'?'light':'dark'} mode`);document.querySelector('meta[name="theme-color"]').content=theme==='dark'?'#0d1524':'#f7f9fc'}
+function showTheme(){document.documentElement.dataset.theme=theme;$('theme').textContent=theme==='dark'?'☀ Light':'☾ Dark';$('theme').setAttribute('aria-label',`Switch to ${theme==='dark'?'light':'dark'} mode`);document.querySelector('meta[name="theme-color"]').content=theme==='dark'?'#111315':'#f8f7f4'}
 showTheme();$('theme').addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';try{localStorage.setItem('timebridge-theme',theme)}catch{}showTheme()});
 let selected=null,selectedChoice=0,displayedSlots=[];
 function pickerFrom(ms){let p=parts(ms,$('base').value);$('day').value=`${p.year}-${p.month}-${p.day}`;$('time').value=`${p.hour}:${p.minute}`;updateRepeat()}
@@ -31,9 +40,79 @@ async function copyLink(slot){if(!/^https?:$/.test(location.protocol)){feedback(
 function addCalendar(slot){let file=new Blob([toICS(slot)],{type:'text/calendar;charset=utf-8'}),url=URL.createObjectURL(file),a=el('a');a.href=url;a.download='TimeBridge-meeting.ics';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);feedback('Calendar file downloaded. Import it and confirm attendees before sending.')}
 function actionButton(txt,fn,primary=false){let b=el('button','button button-small'+(primary?' button-primary':''),txt);b.type='button';b.addEventListener('click',fn);return b}
 function card(slot,best,index){let c=el('article',best?'best-card':'other-card');let head=el('div','best-head');head.append(el('strong','',best?($('priority').value==='fair'?'Best compromise':'Best matching time'):`Option ${index+1}`));if(best)head.append(el('span','badge','Recommended'));c.append(head,rangeCells(slot));if(visitorClock)c.append(el('p','visitor-conversion',`Local in ${visitorClock.name}: ${visitorClock.rangeText(slot.ms,slot.duration)}`));c.append(el('p','explanation',explanation(slot)));const actions=el('div','actions');actions.append(actionButton('Copy times',()=>copyTimes(slot),best),actionButton('Add to calendar',()=>addCalendar(slot)));if(/^https?:$/.test(location.protocol))actions.append(actionButton('Copy link',()=>copyLink(slot)));c.append(actions);return c}
-function paintRecommendations(){const after=Date.now();const z=$('base').value,duration=Number($('length').value),preference=$('priority').value;const result=suggestions({zone:z,day:selected===null?null:localDay(selected,z),duration,preference,after});const a=$('best'),others=$('more');a.replaceChildren();others.replaceChildren();feedback('');displayedSlots=result.slots;$('recommend-date').textContent=(selected===null?'Next suitable weekday: ':'Selected date: ')+new Intl.DateTimeFormat('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(result.day+'T12:00:00Z'))+` · ${NAMES[z]} calendar`;
-if(!result.slots.length){a.append(el('p','empty',selected!==null?'No future weekday meeting times are available on this date. Select a later weekday, or press Now.':'No suitable meeting time found in the next eight days.'));$('alternatives').hidden=true;return}
-a.append(card(result.slots[0],true,0));for(let i=1;i<result.slots.length;i++)others.append(card(result.slots[i],false,i));$('alternatives').hidden=result.slots.length<2;$('alternatives').querySelector('summary').textContent=`See ${result.slots.length-1} other meeting time${result.slots.length===2?'':'s'}`}
+const holidayStore=new Map();
+let plannerRevision=0,calendarRevision=0;
+function plannerPlaces(){return [['US','United States'],['NG','Nigeria'],['IN','India'],...(visitorCountry&&!['US','NG','IN'].includes(visitorCountry)?[[visitorCountry,COUNTRY_NAMES[visitorCountry]||visitorCountry]]:[])];}
+function neededPlannerYears(){
+  const start=selected===null?Date.now():selected;
+  return requiredHolidayYears(start-3*86400000,selected===null?50:5);
+}
+async function retrieveHolidayData(countries,years){
+  const items=await Promise.all(countries.flatMap(([code])=>years.map(async year=>({code,year,data:await holidaysFor(code,year)}))));
+  for(const {code,year,data} of items)holidayStore.set(`${code}-${year}`,data);
+}
+function allConflict(slot){return holidayConflicts(slot,holidayStore,visitorClock?deviceZone:null,visitorCountry)}
+function chosenMeeting(){
+  const zone=$('base').value,duration=Number($('length').value),preference=$('priority').value,after=Date.now();
+  const start=selected===null?localDay(after,zone):localDay(selected,zone),days=selected===null?45:1;
+  let result={day:start,slots:[]},lastConflict=[];
+  for(let i=0;i<days;i++){
+    const day=addDay(start,i),candidate=rankDay(day,{zone,duration,preference,after});
+    const slots=candidate.filter(slot=>{const conflicts=allConflict(slot);if(conflicts.length)lastConflict.push(...conflicts);return conflicts.length===0});
+    if(slots.length){result={day,slots};break;}
+  }
+  return {...result,conflicts:lastConflict};
+}
+function showNoRecommendations(reason){$('best').replaceChildren(el('p','empty',reason));$('more').replaceChildren();$('alternatives').hidden=true;displayedSlots=[];}
+async function paintRecommendations(){
+  const revision=++plannerRevision;
+  $('recommend-date').textContent='Checking public holidays across all meeting locations…';
+  showNoRecommendations('Validating holiday calendars before recommending a time.');
+  feedback('');
+  if(!visitorCountry){$('recommend-date').textContent='Country confirmation needed';showNoRecommendations('Select your country in the Public holiday calendar section to verify holiday-safe meetings.');return;}
+  try{
+    await retrieveHolidayData(plannerPlaces(),neededPlannerYears());
+    if(revision!==plannerRevision)return;
+    const result=chosenMeeting();
+    const z=$('base').value,a=$('best'),others=$('more');a.replaceChildren();others.replaceChildren();displayedSlots=result.slots;
+    $('recommend-date').textContent=(selected===null?'Next holiday-free weekday: ':'Selected date: ')+new Intl.DateTimeFormat('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(result.day+'T12:00:00Z'))+` · ${NAMES[z]} calendar`;
+    if(!result.slots.length){
+      const unique=[...new Map(result.conflicts.map(c=>[c.country+'-'+c.day,c])).values()].slice(0,4);
+      showNoRecommendations(unique.length?'No recommendation: public holiday conflict ('+unique.map(c=>`${COUNTRY_NAMES[c.country]||c.country}, ${c.day} — ${c.name}`).join('; ')+'). Choose another date or press Now.':'No future weekday meeting time available within the next 45 days under working-hour constraints.');return;
+    }
+    a.append(card(result.slots[0],true,0));for(let i=1;i<result.slots.length;i++)others.append(card(result.slots[i],false,i));
+    $('alternatives').hidden=result.slots.length<2;$('alternatives').querySelector('summary').textContent=`See ${result.slots.length-1} other meeting time${result.slots.length===2?'':'s'}`;
+  }catch(e){if(revision!==plannerRevision)return;$('recommend-date').textContent='Holiday verification unavailable';showNoRecommendations('No recommendation shown because public holidays could not be checked. '+String(e.message)+'. Please retry when data is available.');}
+}
+function addCalendarPanel(country,name,data,year){
+  const card=el('details','holiday-group');card.open=false;
+  const summary=el('summary');summary.append(document.createTextNode(name));
+  summary.append(el('span','holiday-count',`${data.length} listed`));card.append(summary);
+  const list=el('ul','holiday-list');
+  for(const h of data){const li=el('li');const date=el('time','',new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',timeZone:'UTC'}).format(new Date(h.date+'T12:00:00Z')));date.dateTime=h.date;
+    const span=el('span','',h.name);if(h.regional)span.append(el('span','holiday-note','· Regional'));li.append(date,span);list.append(li)}
+  card.append(list);return card;
+}
+async function renderHolidayYear(){
+  const myRevision=++calendarRevision,year=Number($('holiday-year').value),countries=plannerPlaces(),grid=$('holiday-grid');
+  $('holiday-status').textContent=`Retrieving ${year} public holidays…`;grid.replaceChildren();
+  if(!visitorCountry){$('holiday-status').textContent='Choose a visitor country to complete the holiday calendar.';return;}
+  try{await retrieveHolidayData(countries,[year]);if(myRevision!==calendarRevision)return;
+    for(const [country,name] of countries)grid.append(addCalendarPanel(country,name,holidayStore.get(`${country}-${year}`),year));
+    $('holiday-status').textContent=`${year}: ${countries.length} holiday calendars ready. All recorded public holiday dates are excluded from meeting recommendations.`;
+  }catch(e){if(myRevision!==calendarRevision)return;$('holiday-status').textContent='Holiday data unavailable: '+e.message+'. Recommendations are blocked until verification succeeds.';}
+}
+function initializeHolidays(){
+  const year=new Date().getUTCFullYear();for(let i=-1;i<=2;i++){const opt=el('option','',String(year+i));opt.value=year+i;$('holiday-year').append(opt)}$('holiday-year').value=String(year);
+  const initial=el('option','', 'Select country…');initial.value='';$('visitor-country').append(initial);
+  for(const [code,name] of Object.entries(COUNTRY_NAMES).sort((a,b)=>a[1].localeCompare(b[1]))){const opt=el('option','',name);opt.value=code;$('visitor-country').append(opt)}
+  $('visitor-country').value=visitorCountry;
+  $('holiday-year').addEventListener('change',renderHolidayYear);
+  $('visitor-country').addEventListener('change',()=>{visitorCountry=$('visitor-country').value;updateVisitor();paintClocks(selected===null?Date.now():selected);renderHolidayYear();paintRecommendations()});
+  renderHolidayYear();
+}
+initializeHolidays();
+
 function showCurrent(){selected=null;selectedChoice=0;const now=Date.now();paintClocks(now);pickerFrom(now);$('clock-context').textContent=liveContext;$('status').textContent='';paintRecommendations()}
 function renderSelection(){const ms=selected===null?Date.now():selected;paintClocks(ms);if(selected===null)pickerFrom(ms);paintRecommendations()}
 function apply(){let day=$('day').value,time=$('time').value,zone=$('base').value;let options=updateRepeat();if(!validDay(day)||!/^([01]\d|2[0-3]):[0-5]\d$/.test(time)){$('status').textContent='Select a valid date and time.';return}if(options.length===0){$('status').textContent='This local time does not exist because the clocks jump forward. Choose another time.';return}let index=options.length===2?Number($('repeat').value):0;selected=options[index];selectedChoice=index;paintClocks(selected);$('clock-context').textContent='Selected date and time · not live';$('status').textContent=options.length===2?`Showing the ${index===0?'first (daylight time)':'second (standard time)'} occurrence of this repeated hour.`:'Converted successfully.';paintRecommendations()}
