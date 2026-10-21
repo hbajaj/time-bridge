@@ -35,3 +35,53 @@
 .personal-note{margin-top:10px}
 @media(max-width:700px){.clock-results{grid-template-columns:1fr}.personal-clock-head{align-items:flex-start}.extra-clock-card .extra-clock-head{align-items:center}.extra-clock-card .clock-meta{grid-area:meta}.extra-clock-zone{grid-column:1/-1;margin-top:3px}.extra-clock-card{min-height:110px}}
 @media(max-width:350px){.personal-clock-head .button{width:100%}.extra-clock-count{display:block;margin:3px 0}}
+
+/* v2.4: One focused workspace per view; one document scroller, no nested lists. */
+.app-intro{display:flex;align-items:end;justify-content:space-between;gap:24px;padding:26px 0 18px}
+.app-intro h1{font-size:clamp(27px,3.6vw,39px);line-height:1.1;letter-spacing:-1.2px;font-weight:680;margin:8px 0 0}
+.app-intro .eyebrow{font-size:10px;margin:0;color:var(--muted);letter-spacing:1.8px}
+.app-intro>p{color:var(--muted);font-size:13px;line-height:1.6;max-width:265px;margin:0}
+.tab-bar{position:sticky;top:0;z-index:20;background:var(--bg);padding:8px 0 11px;margin-bottom:23px;border-bottom:1px solid var(--border)}
+.tab-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;padding:5px;background:var(--surface-soft);border:1px solid var(--border);border-radius:7px}
+.tab-button{display:flex;align-items:center;justify-content:center;gap:8px;min-height:45px;padding:10px 8px;background:transparent;color:var(--muted);border:1px solid transparent;border-radius:4px;font:inherit;font-size:13px;font-weight:670;cursor:pointer;transition:background-color .12s ease,color .12s ease}
+.tab-button:hover{color:var(--text);background:var(--surface)}
+.tab-button[aria-selected="true"]{color:var(--text);background:var(--surface);border-color:var(--border);box-shadow:var(--shadow)}
+.tab-icon{font-size:17px;font-weight:600;opacity:.8}
+.tab-panel{padding-bottom:8px;min-height:280px;scroll-margin-top:90px}
+.tab-panel[hidden]{display:none!important}
+.tab-panel .section-head h2{font-size:clamp(21px,3vw,29px);margin:0}
+.tab-panel .section-head .hint{font-size:13px;margin-top:7px}
+.tab-panel .section-head{margin-bottom:12px}
+.tab-panel .clocks-section{margin:0}
+.clocks-section{margin-top:0}
+.meeting-section{margin-top:0}
+.holiday-section{margin-top:0;padding-top:0;border-top:0}
+.holiday-section h2{margin:0}
+.holiday-toolbar{margin-top:18px}
+.holiday-list{max-height:none;overflow:visible}
+.clock-results{max-height:none;overflow:visible}
+footer{margin-top:15px}
+@media(max-width:700px){
+  .app-intro{padding:16px 0 15px;display:block}
+  .app-intro h1{font-size:26px;letter-spacing:-.9px;margin-top:5px}
+  .app-intro>p{font-size:12px;max-width:none;margin-top:6px}
+  .tab-bar{margin-bottom:16px;padding:6px 0 8px}
+  .tab-button{font-size:12px;gap:4px;padding:8px 3px;min-height:45px}
+  .tab-icon{font-size:14px}
+  .tab-panel{min-height:230px;scroll-margin-top:75px}
+  .tab-panel .section-head h2{font-size:22px}
+  .personal-clocks{margin-top:15px;padding-top:14px}
+  .personal-note{font-size:11px}
+  .clock-card{padding:13px}
+  .holiday-toolbar{margin-top:12px}
+}
+@media(max-width:350px){
+  .tab-button{font-size:11px;letter-spacing:-.2px;gap:2px}
+  .tab-icon{font-size:12px}
+  .app-intro h1{font-size:23px}
+}
+@media(prefers-reduced-motion:reduce){.tab-button{transition:none}}
+/* Header titles must not inherit the old tiny over-tracked clock label. */
+.clocks-section>.section-head h2,.tab-panel .section-head h2{letter-spacing:-.65px;color:var(--text);font-size:clamp(21px,3vw,29px)}
+
+.app-footer{display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap;padding-top:14px}.app-footer summary{cursor:pointer;padding:7px 0;font-size:12px;font-weight:620;min-height:34px}.app-footer details{max-width:750px}.app-footer details p{margin:9px 0 0;line-height:1.6}.app-footer #version{font-size:11px;white-space:nowrap;color:var(--muted)}

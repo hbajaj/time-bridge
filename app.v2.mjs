@@ -3,6 +3,7 @@ import { ZONE_KEYS, NAMES, localDay, localClock, formatTime, formatDate, formatR
 import { COUNTRY_NAMES, inferCountry } from './country-map.mjs';
 import { holidaysFor, holidayConflicts, requiredHolidayYears } from './holidays.mjs';
 import { createVisitorClock } from './visitor-time.mjs';
+import { initTabs } from './tabs.mjs';
 import { mountCustomClocks } from './custom-clocks.mjs';
 const $ = id => document.getElementById(id);
 const labels = { et:'🇺🇸 Eastern',ng:'🇳🇬 Nigeria',in:'🇮🇳 India' };
@@ -87,7 +88,7 @@ async function paintRecommendations(){
   }catch(e){if(revision!==plannerRevision)return;$('recommend-date').textContent='Holiday verification unavailable';showNoRecommendations('No recommendation shown because public holidays could not be checked. '+String(e.message)+'. Please retry when data is available.');}
 }
 function addCalendarPanel(country,name,data,year){
-  const card=el('details','holiday-group');card.open=false;
+  const card=el('details','holiday-group');card.open=false;card.name='holiday-location';card.addEventListener('toggle',()=>{if(card.open){for(const peer of card.parentElement?.querySelectorAll('details.holiday-group[open]')||[]){if(peer!==card)peer.open=false}}});
   const summary=el('summary');summary.append(document.createTextNode(name));
   summary.append(el('span','holiday-count',`${data.length} listed`));card.append(summary);
   const list=el('ul','holiday-list');
@@ -118,10 +119,13 @@ initializeHolidays();
 function showCurrent(){selected=null;selectedChoice=0;const now=Date.now();paintClocks(now);pickerFrom(now);$('clock-context').textContent=liveContext;$('status').textContent='';paintRecommendations()}
 function renderSelection(){const ms=selected===null?Date.now():selected;paintClocks(ms);if(selected===null)pickerFrom(ms);paintRecommendations()}
 function apply(){let day=$('day').value,time=$('time').value,zone=$('base').value;let options=updateRepeat();if(!validDay(day)||!/^([01]\d|2[0-3]):[0-5]\d$/.test(time)){$('status').textContent='Select a valid date and time.';return}if(options.length===0){$('status').textContent='This local time does not exist because the clocks jump forward. Choose another time.';return}let index=options.length===2?Number($('repeat').value):0;selected=options[index];selectedChoice=index;paintClocks(selected);$('clock-context').textContent='Selected date and time · not live';$('status').textContent=options.length===2?`Showing the ${index===0?'first (daylight time)':'second (standard time)'} occurrence of this repeated hour.`:'Converted successfully.';paintRecommendations()}
-$('now').addEventListener('click',showCurrent);$('length').addEventListener('change',paintRecommendations);$('priority').addEventListener('change',paintRecommendations);$('base').addEventListener('change',()=>{pickerFrom(selected===null?Date.now():selected);paintRecommendations()});for(const id of ['day','time'])$(id).addEventListener('change',()=>{selectedChoice=0;updateRepeat()});$('repeat').addEventListener('change',e=>{selectedChoice=Number(e.target.value)});$('apply').addEventListener('click',apply);
+$('now').addEventListener('click',showCurrent);$('meeting-now').addEventListener('click',showCurrent);$('length').addEventListener('change',paintRecommendations);$('priority').addEventListener('change',paintRecommendations);$('base').addEventListener('change',()=>{pickerFrom(selected===null?Date.now():selected);paintRecommendations()});for(const id of ['day','time'])$(id).addEventListener('change',()=>{selectedChoice=0;updateRepeat()});$('repeat').addEventListener('change',e=>{selectedChoice=Number(e.target.value)});$('apply').addEventListener('click',apply);
 /* A link carries one unambiguous UTC timestamp; no personal data or credentials. */
 try{const params=new URLSearchParams(location.search),param=params.get('at');if(param!==null&&/^\d{13}$/.test(param)){const ms=Number(param);if(Number.isFinite(ms)&&ms>=0&&ms<=4102444800000){selected=ms;$('clock-context').textContent='Shared date and time · not live'}}}catch{}
 if(selected!==null){pickerFrom(selected);paintClocks(selected);paintRecommendations()}else showCurrent();
 /* Live clocks are cheap; avoid expensive planner reranking on each tick. */
 setInterval(()=>{if(selected===null){paintClocks(Date.now());/* New day or elapsed suggestions: update without user input */ if(displayedSlots[0]&&displayedSlots[0].ms<Date.now()+15*60000)paintRecommendations()}},30000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden&&selected===null){paintClocks(Date.now());paintRecommendations()}});
+
+/* Switch one logical workspace at a time; legacy time/holiday behavior stays intact. */
+initTabs();
