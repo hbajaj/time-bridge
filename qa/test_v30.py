@@ -58,4 +58,29 @@ class TestV30(unittest.TestCase):
   self.assertTrue(p.locator('#team-name').is_visible())
   self.assertEqual(p.locator('#saved-team-status').get_attribute('aria-live'),'polite')
   self.assertLessEqual(p.evaluate('document.documentElement.scrollWidth'),320)
+
+ def test_holiday_panels_expand_independently(self):
+  p=self.start(width=900)
+  p.locator('#tab-holidays').click()
+  cards=p.locator('#holiday-grid details.holiday-group')
+  self.assertEqual(cards.count(),3)
+  for n in [0,2,1]:
+   cards.nth(n).locator('summary').click()
+   self.assertTrue(cards.nth(n).evaluate('(panel)=>panel.open'))
+  self.assertTrue(all(cards.nth(n).evaluate('(panel)=>panel.open') for n in range(3)))
+  cards.nth(2).locator('summary').click()
+  self.assertTrue(cards.nth(0).evaluate('(panel)=>panel.open'))
+  self.assertFalse(cards.nth(2).evaluate('(panel)=>panel.open'))
+ def test_scannable_meeting_comparison_and_responsive_grid(self):
+  for width in [320,390,1080]:
+   p=self.start(width=width)
+   p.locator('#best .time-compare-table tbody tr').first.wait_for(timeout=10000)
+   self.assertEqual(p.locator('#best .meeting-tile').count(),3)
+   self.assertEqual(p.locator('#best .time-compare-table thead th').count(),4)
+   self.assertGreaterEqual(p.locator('#best .time-compare-table tbody tr').count(),23)
+   self.assertEqual(p.locator('#best .time-compare-table tbody tr.time-recommended').count(),1)
+   self.assertEqual(p.locator('#best .time-legend-item').count(),3)
+   self.assertIn('Within hours',p.locator('#best').inner_text())
+   self.assertTrue(p.get_by_role('button',name='Add to calendar').first.is_visible())
+   self.assertLessEqual(p.evaluate('document.documentElement.scrollWidth'),width)
 if __name__=='__main__':unittest.main()
