@@ -31,7 +31,7 @@ jobs:
         with:
           python-version: '3.12'
       - run: pip install playwright==1.56.0
-      - run: python -m playwright install --with-deps chromium
+      - run: python -m playwright install chromium
       - name: Isolated browser regression with mocked holiday responses
         run: npm run test:browser
   # v3.0 regression additions: saved teams, accessibility and scheduling modes.

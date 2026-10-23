@@ -1,5 +1,5 @@
 {
-  ".github/workflows/quality.yml": "c0c2cb28a46855559b9fa7f53adeb442372a10b1a3cbce04b941c8aea24cbc41",
+  ".github/workflows/quality.yml": "6fd71373f5aec35ad19caa2fe85c4ee5729b5e164af63f15f0e1fbec49d3d590",
   "README.md": "07a7809e1305a4effb855bd9192c4b1af682655bbef43dc47cd545a70ed8f5ab",
   "api/holidays.mjs": "f869bf11377e1b8e67afe8e32a87bfbeac4926e370290aae560da7b067d1724e",
   "app.v2.mjs": "1b5fa987320540ceb6666b1ce8c4e2b454648ae032d7df305b8d841b9fe5b283",
@@ -33,6 +33,7 @@
   "qa/test_served.py": "1482dfbd40d6bcdde4dbb5a4167275302c111726b9bf569bf08bca4b59ff7137",
   "qa/test_v252.py": "10917ea3632401f05dcf81cd80d3d8b7272bbcac741aaf5bb73955a3992e0f01",
   "qa/test_v30.py": "34a81a7898e8bdf0cb74710eddd99e616efc4a5ad197c3e3f8f27f03f409b480",
+  "qa/visual_smoke.py": "cc401d2d2b836678fecc743ad3561ccb9ff417c96df569d02fdefa208f116c14",
   "scripts/local-benchmark.mjs": "937f6d976f3e2bc749956d6d55358cc640d69e819b1d0e46a6145ffb139e2b25",
   "scripts/smoke.mjs": "97d14e87aa0ea88ac8246c62a8209df81f53cdf706042a643012a936ee1fe4c7",
   "scripts/verify-release.mjs": "487dc86156db1e3a0d81dce94e1fd8041d3a656c5bd82dbb0222da87d9fb8be2",

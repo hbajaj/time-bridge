@@ -1,8 +1,8 @@
 {
   ".github/workflows/quality.yml": {
-    "blob": "49322c4e1f450dcdd1aeeefa4a4ed7d30c7bb2fa",
-    "sha256": "c0c2cb28a46855559b9fa7f53adeb442372a10b1a3cbce04b941c8aea24cbc41",
-    "bytes": 1272
+    "blob": "71ce319d932c60d95756e79bb0e9138d81b2ba46",
+    "sha256": "6fd71373f5aec35ad19caa2fe85c4ee5729b5e164af63f15f0e1fbec49d3d590",
+    "bytes": 1260
   },
   "README.md": {
     "blob": "7abdebc33fc1cd7e6425a66b7d93a4e9b0b11217",
@@ -168,6 +168,11 @@
     "blob": "3304f778e1d14cc005862d21b9f168c66bf965a7",
     "sha256": "34a81a7898e8bdf0cb74710eddd99e616efc4a5ad197c3e3f8f27f03f409b480",
     "bytes": 3492
+  },
+  "qa/visual_smoke.py": {
+    "blob": "fd86ac733998df3343da6314c7d37274c55b55f0",
+    "sha256": "cc401d2d2b836678fecc743ad3561ccb9ff417c96df569d02fdefa208f116c14",
+    "bytes": 918
   },
   "scripts/local-benchmark.mjs": {
     "blob": "d9a99c0bc98df65dc6703ea2c4043ee45afe9906",
