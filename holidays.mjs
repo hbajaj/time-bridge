@@ -1,7 +1,7 @@
 /* Country-public-holiday scheduling safeguard. Network failures never produce an unverified recommendation. */
 import { localDay } from './time-core.mjs';
 export const HOLIDAY_API = '/api/holidays';
-const CACHE_HOURS = 8;
+const CACHE_HOURS = 12;
 const inflight = new Map();
 const isoDay = d => /^\d{4}-\d{2}-\d{2}$/.test(d);
 export function normalizeHolidays(payload, country){

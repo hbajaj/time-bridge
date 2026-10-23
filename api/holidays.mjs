@@ -3,6 +3,8 @@
  * Errors fail closed: the meeting planner will not display unverified slots.
  */
 import { INDIA_CENTRAL_GAZETTED_2026 } from '../lib/india-2026.mjs';
+import { SA_2026_OFFICIAL_CLOSURES } from '../lib/saudi-2026.mjs';
+import { SA_2027_OFFICIAL_CLOSURES } from '../lib/saudi-2027.mjs';
 const ORIGINS = [
   (country, year) => `https://nagerholidays.com/api/v4/Holidays/${country}/${year}`,
   (country, year) => `https://date.nager.at/api/v3/PublicHolidays/${year}/${country}`
@@ -35,11 +37,21 @@ export default async function handler(req, res) {
     res.setHeader('X-Holiday-Coverage', 'India central government gazetted holidays 2026');
     return res.status(200).json(INDIA_CENTRAL_GAZETTED_2026);
   }
+  // Official year-specific fallback prevents unsupported-country outages.
+  // Saudi aviation closures are a conservative superset for many employers.
+  if (country === 'SA' && year === 2026) {
+    res.setHeader('X-Holiday-Coverage', 'Saudi official 2026 aviation-sector closures; conservative');
+    return res.status(200).json(SA_2026_OFFICIAL_CLOSURES);
+  }
+  if (country === 'SA' && year === 2027) {
+    res.setHeader('X-Holiday-Coverage', 'Saudi official 2027 financial-sector closures; conservative');
+    return res.status(200).json(SA_2027_OFFICIAL_CLOSURES);
+  }
   for (const buildUrl of ORIGINS) {
     try {
       const response = await fetch(buildUrl(country, year), {
         headers: {Accept: 'application/json'},
-        signal: AbortSignal.timeout(7000)
+        signal: AbortSignal.timeout(5000)
       });
       if (!response.ok) continue;
       const payload = await response.json();

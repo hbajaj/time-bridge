@@ -10,7 +10,7 @@ const sharedName=(zone)=>zone.split('/').at(-1).replaceAll('_',' ');
 export function mountLinkedClocks({getInstant,deviceZone,getParticipants,addLocation,removeLocation,maxLocations=8}){
   const $=id=>document.getElementById(id),toggle=$('clock-add-toggle'),panel=$('clock-add-panel'),
     query=$('clock-search'),results=$('clock-results'),grid=$('extra-clocks'),
-    count=$('extra-clock-count'),status=$('clock-add-status');
+    count=$('extra-clock-count'),status=$('clock-add-status'),limitNote=$('clock-add-limit');
   let cards=[];const formatterCache=new Map();
   function paint(ms){for(const {fmt,time,date,abbr} of cards){const v=fmt(ms);time.textContent=v.time;date.textContent=v.date;abbr.textContent=v.abbreviation}}
   function render(){
@@ -18,6 +18,11 @@ export function mountLinkedClocks({getInstant,deviceZone,getParticipants,addLoca
     const extras=getParticipants().filter(p=>!Object.values(ZONES).some(z=>canonicalZone(z)===canonicalZone(p.zone)) && canonicalZone(p.zone)!==canonicalZone(deviceZone));
     const total=getParticipants().length;
     count.textContent=`${total} meeting location${total===1?'':'s'}`;
+    const isFull=total>=maxLocations;
+    toggle.disabled=isFull;
+    limitNote.hidden=!isFull;
+    if(isFull){panel.hidden=true;toggle.setAttribute('aria-expanded','false')}
+    if(!isFull && status.textContent.startsWith('Maximum '))status.textContent='';
     grid.hidden=extras.length===0;
     for(const p of extras){
       const article=document.createElement('article');article.className='clock-card extra-clock-card';
@@ -67,7 +72,7 @@ export function mountLinkedClocks({getInstant,deviceZone,getParticipants,addLoca
     }
     if(!results.children.length){const li=document.createElement('li');li.className='clock-no-results';li.textContent='No matching available time zones.';results.append(li)}
   }
-  function setOpen(open){panel.hidden=!open;toggle.setAttribute('aria-expanded',String(open));if(open){renderResults();query.focus()}else toggle.focus()}
+  function setOpen(open){if(toggle.disabled)open=false;panel.hidden=!open;toggle.setAttribute('aria-expanded',String(open));if(open){renderResults();query.focus()}else if(!toggle.disabled)toggle.focus()}
   toggle.addEventListener('click',()=>setOpen(panel.hidden));
   query.addEventListener('input',renderResults);
   query.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();setOpen(false)}});

@@ -70,7 +70,58 @@ for(const k of ZONE_KEYS){
 }
 $('clock-restore').addEventListener('click',restoreDefaults);
 $('participant-reset').addEventListener('click',restoreDefaults);
-function renderParticipants(){const list=$('participant-list');list.replaceChildren();for(const p of participants){const row=el('div','participant-item'),label=el('strong','',p.name),hours=el('div','participant-hours');for(const field of ['start','end']){const input=el('input');input.type='time';input.value=p[field];input.setAttribute('aria-label',`${p.name} working ${field}`);input.addEventListener('change',()=>{const previous=p[field];p[field]=input.value;if(!cleanParticipants([p]).length){p[field]=previous;input.value=previous;$('participant-status').textContent='Working hours must have at least a 30-minute same-day window.';return}saveParticipants();refreshPlanning()});hours.append(input)}const remove=el('button','participant-remove','Remove');remove.type='button';remove.setAttribute('aria-label',`Remove ${p.name} participant`);remove.addEventListener('click',()=>removeLocation(p.zone));row.append(label,hours,remove);list.append(row)}$('participant-status').textContent=participants.length?`${participants.length} participating location${participants.length===1?'':'s'}; only these affect recommendations.`:'Add at least one participant to get meeting recommendations.'}
+function formatHours(clock){
+  const [h,m]=clock.split(':').map(Number);
+  return `${h%12||12}${m?':'+String(m).padStart(2,'0'):''} ${h>=12?'PM':'AM'}`;
+}
+function refreshParticipantLimit(){
+  const full=participants.length>=MAX_PARTICIPANTS;
+  $('participant-add').disabled=full;
+  $('participant-limit').hidden=!full;
+}
+function renderParticipants(){
+  const list=$('participant-list');list.replaceChildren();
+  for(const p of participants){
+    const row=el('div','participant-item'),label=el('strong','participant-name',p.name);
+    const disclosure=el('details','participant-hours-disclosure');
+    const summary=el('summary','participant-hours-summary');
+    summary.setAttribute('aria-label',`${p.name}: ${formatHours(p.start)} to ${formatHours(p.end)}. Click to change working hours`);
+    const timeLabel=el('span','participant-time-summary',`${formatHours(p.start)}–${formatHours(p.end)}`);
+    const hint=el('span','participant-change','Change');summary.append(timeLabel,hint);disclosure.append(summary);
+    const editor=el('div','participant-hours-editor');
+    for(const field of ['start','end']){
+      const wrap=el('label','participant-hour-field');
+      wrap.append(el('span','',field==='start'?'From':'To'));
+      const input=el('input');input.type='time';input.value=p[field];
+      input.setAttribute('aria-label',`${p.name} working ${field}`);
+      input.addEventListener('change',()=>{
+        const previous=p[field];p[field]=input.value;
+        if(!cleanParticipants([p]).length){
+          p[field]=previous;input.value=previous;
+          $('participant-status').textContent='Working hours need at least a 30-minute same-day window.';
+          return;
+        }
+        timeLabel.textContent=`${formatHours(p.start)}–${formatHours(p.end)}`;
+        summary.setAttribute('aria-label',`${p.name}: ${formatHours(p.start)} to ${formatHours(p.end)}. Click to change working hours`);
+        saveParticipants();refreshPlanning();
+      });wrap.append(input);editor.append(wrap);
+    }
+    const done=el('button','button participant-done','Done');done.type='button';
+    done.addEventListener('click',()=>{disclosure.open=false;summary.focus()});
+    editor.append(done);disclosure.append(editor);
+    const remove=el('button','participant-remove','Remove');remove.type='button';
+    remove.setAttribute('aria-label',`Remove ${p.name} participant`);
+    remove.addEventListener('click',()=>removeLocation(p.zone));
+    row.append(label,disclosure,remove);list.append(row);
+  }
+  // Only one inline editor expands at once, leaving the rest of the list compact.
+  list.querySelectorAll('details.participant-hours-disclosure').forEach(details=>details.addEventListener('toggle',()=>{
+    if(!details.open)return;
+    for(const peer of list.querySelectorAll('details.participant-hours-disclosure[open]'))if(peer!==details)peer.open=false;
+  }));
+  $('participant-status').textContent=participants.length?`${participants.length} participating location${participants.length===1?'':'s'}; only these affect recommendations.`:'Add at least one participant to get meeting recommendations.';
+  refreshParticipantLimit();
+}
 const zoneSelect=$('participant-zone'),countrySelect=$('participant-country');
 const featured=[['Eastern US','America/New_York'],['Nigeria','Africa/Lagos'],['India','Asia/Kolkata'],['California','America/Los_Angeles'],['London','Europe/London'],['Singapore','Asia/Singapore'],['Dubai','Asia/Dubai'],['Tokyo','Asia/Tokyo'],['Sydney','Australia/Sydney'],['Toronto','America/Toronto'],['Paris','Europe/Paris'],['Berlin','Europe/Berlin'],['Kathmandu','Asia/Kathmandu'],['Auckland','Pacific/Auckland']];
 for(const [name,zone] of featured){const option=el('option','',name+' · '+zone);option.value=zone;zoneSelect.append(option)}for(const zone of (Intl.supportedValuesOf?.('timeZone')||[])){if(featured.some(x=>x[1]===zone))continue;const option=el('option','',zone.replaceAll('_',' '));option.value=zone;zoneSelect.append(option)}
@@ -78,15 +129,41 @@ for(const [code,name] of Object.entries(COUNTRY_NAMES).sort((a,b)=>a[1].localeCo
 function selectCountry(){countrySelect.value=inferCountry(zoneSelect.value)||'US'}zoneSelect.addEventListener('change',selectCountry);selectCountry();
 $('participant-add').addEventListener('click',()=>{const zone=zoneSelect.value;const result=addLocation(zone,featured.find(x=>x[1]===zone)?.[0]||zone,countrySelect.value);if(result)$('participant-status').textContent=result;});
 renderParticipants();
+function deviceClockLabel(zone){
+  const canonicalZone=canonical(zone);
+  const defaults={
+    'America/New_York':'Eastern Time · Eastern US',
+    'America/Detroit':'Eastern Time · Eastern US',
+    'America/Toronto':'Eastern Time · Toronto',
+    'Africa/Lagos':'West Africa Time · Nigeria',
+    'Asia/Kolkata':'India Standard Time · India',
+    'Asia/Calcutta':'India Standard Time · India',
+    'America/Los_Angeles':'Pacific Time · California',
+    'Europe/London':'UK Time · London'
+  };
+  if(defaults[canonicalZone])return defaults[canonicalZone];
+  if(!canonicalZone)return 'Your device time';
+  let generic='';
+  try{generic=new Intl.DateTimeFormat('en-US',{timeZone:zone,timeZoneName:'longGeneric'}).formatToParts(new Date()).find(p=>p.type==='timeZoneName')?.value||''}catch{}
+  const city=zone.split('/').at(-1).replaceAll('_',' ');
+  return generic && generic!==city?`${generic} · ${city}`:city;
+}
 function updateVisitor(){
-  home=timeHome && visitorCountry===regionCountry[timeHome] && participants.some(p=>sameZone(p.zone,ZONES[timeHome]))?timeHome:null;
-  visitorClock=home?null:createVisitorClock(deviceZone);
+  // The local reference never disappears—even after its location is removed.
+  // It replaces, rather than duplicates, a matching participant clock card.
+  home=timeHome||null;
+  visitorClock=createVisitorClock(deviceZone||Intl.DateTimeFormat().resolvedOptions().timeZone||'Etc/UTC');
   $('base').value=home||$('base').value||'et';
-  for(const k of ZONE_KEYS){$('card-'+k).classList.toggle('is-home',home===k);$('you-'+k).hidden=home!==k}
-  $('card-local').hidden=!visitorClock;
-  $('clocks').classList.toggle('has-local',Boolean(visitorClock));
-  if(visitorClock)$('card-local').setAttribute('aria-label',`Your local time in ${deviceZone}`);
-  liveContext=visitorClock?`Live times · Your device time zone: ${deviceZone}`:home?'Live times · updates automatically':'Live times · Eastern reference (device time zone unavailable)';
+  $('card-local').hidden=false;
+  $('local-clock-name').textContent=deviceClockLabel(deviceZone);
+  $('card-local').setAttribute('aria-label',`Your time: ${deviceClockLabel(deviceZone)}`);
+  $('clocks').classList.add('has-local');
+  for(const k of ZONE_KEYS){
+    $('card-'+k).hidden=home===k||!participants.some(p=>sameZone(p.zone,ZONES[k]));
+    $('card-'+k).classList.remove('is-home');
+    $('you-'+k).hidden=true;
+  }
+  liveContext=`Live times · Your time zone: ${deviceZone||'UTC'}`;
   $('clock-context').textContent=liveContext;
 }
 $('base').value=timeHome||'et';
@@ -172,7 +249,7 @@ async function renderHolidayYear(){
   if(!participants.length){$('holiday-status').textContent='Add a meeting participant to see relevant public holidays.';return;}
   try{await retrieveHolidayData(countries,[year]);if(myRevision!==calendarRevision)return;
     for(const [country,name] of countries)grid.append(addCalendarPanel(country,name,holidayStore.get(`${country}-${year}`),year));
-    $('holiday-status').textContent=`${year}: ${countries.length} participating holiday calendars ready. Listed public holidays are excluded.${year===2026&&countries.some(([code])=>code==='IN')?' India coverage: central-government gazetted holidays; state and regional holidays may differ.':''}`;
+    $('holiday-status').textContent=`${year}: ${countries.length} participating holiday calendars ready. Listed public holidays are excluded.${year===2026&&countries.some(([code])=>code==='IN')?' India coverage: central-government gazetted holidays; state and regional holidays may differ.':''}${([2026,2027].includes(year))&&countries.some(([code])=>code==='SA')?' Saudi Arabia coverage: conservative official sector closure dates; employers may differ.':''}`;
   }catch(e){if(myRevision!==calendarRevision)return;$('holiday-status').textContent='Holiday data unavailable: '+e.message+'. Recommendations are blocked until verification succeeds.';}
 }
 function initializeHolidays(){
