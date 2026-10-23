@@ -25,9 +25,9 @@
     "bytes": 14892
   },
   "custom-clocks.mjs": {
-    "blob": "b8474d1bcd644151adb67e0c9d1322775d6b4242",
-    "sha256": "d34536ad78d0b12cea32648383eb11057ad3e63a38963103a04d00f0144e1494",
-    "bytes": 11131
+    "blob": "15f46c050e2f8659eebcb4a03ed619aa6b8d30f6",
+    "sha256": "04223d5e78f95f694c02310712fdb2fa933f4c331c551b2243ba710f122c216a",
+    "bytes": 11303
   },
   "docs/ACCESSIBILITY.md": {
     "blob": "c3bfccf2fa2bb02c7af5a08453b0bd1fcf26e83a",
@@ -210,8 +210,8 @@
     "bytes": 813
   },
   "visitor-time.mjs": {
-    "blob": "92220d8d7d8e4454b5faffac258cde4ec6da09fa",
-    "sha256": "59e4e91b0d2093c0e3db7d8c612c79e517cda38166073f99d4160cc1624e2ab4",
-    "bytes": 1860
+    "blob": "618723af40a0b310cf56b123591424d7143400cb",
+    "sha256": "1926033ac06ad52b94598c3c8c961bf7b0512c726d9e2c3560a58e7b75540335",
+    "bytes": 1896
   }
 }

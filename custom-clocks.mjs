@@ -112,7 +112,10 @@ export function makeClockFormatter(zone) {
   const tz = new Intl.DateTimeFormat('en-GB',{timeZone:zone,timeZoneName:'short',hour:'numeric'});
   return ms => {
     const instant=new Date(ms);
-    return {time:time.format(instant),date:date.format(instant),abbreviation:tz.formatToParts(instant).find(x=>x.type==='timeZoneName')?.value || zone};
+    const observed=tz.formatToParts(instant).find(x=>x.type==='timeZoneName')?.value || zone;
+    // ICU releases differ: GMT+0 and GMT are the same United Kingdom standard time.
+    const abbreviation=observed.replace(/^GMT\+0(?::00)?$/,'GMT');
+    return {time:time.format(instant),date:date.format(instant),abbreviation};
   };
 }
 

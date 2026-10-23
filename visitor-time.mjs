@@ -11,7 +11,7 @@ export function createVisitorClock(timeZone) {
   } catch { return null; }
   const name = timeZone === 'Etc/UTC' || timeZone === 'UTC' ? 'UTC' : timeZone.split('/').at(-1).replace(/_/g, ' ').replace(/^Katmandu$/, 'Kathmandu');
   const asDate = ms => new Date(ms);
-  const abbreviation = ms => shortZone.formatToParts(asDate(ms)).find(part => part.type === 'timeZoneName')?.value || timeZone;
+  const abbreviation = ms => (shortZone.formatToParts(asDate(ms)).find(part => part.type === 'timeZoneName')?.value || timeZone).replace(/^GMT\+0(?::00)?$/,'GMT');
   const localDateId = ms => {
     const values = Object.fromEntries(dayId.formatToParts(asDate(ms)).filter(p => p.type !== 'literal').map(p => [p.type, p.value]));
     return `${values.year}-${values.month}-${values.day}`;
