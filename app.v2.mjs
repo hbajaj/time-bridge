@@ -5,7 +5,7 @@ import { holidaysFor, holidayInfo, holidayConflicts, requiredHolidayYears, forma
 import { createVisitorClock } from './visitor-time.mjs';
 import { initTabs } from './tabs.mjs';
 import { mountLinkedClocks } from './linked-clocks.mjs';
-import { DEFAULT_PARTICIPANTS, PARTICIPANT_KEY, MAX_PARTICIPANTS, cleanParticipants, rankMeetingDay, participantHolidayConflicts, meetingText, encodeParticipantGroup, decodeParticipantGroup } from './planner-v25.mjs';
+import { DEFAULT_PARTICIPANTS, PARTICIPANT_KEY, MAX_PARTICIPANTS, cleanParticipants, rankMeetingDay, localParts, mins, participantHolidayConflicts, meetingText, encodeParticipantGroup, decodeParticipantGroup } from './planner-v25.mjs';
 import {SAVED_TEAMS_KEY, parseSavedTeams, upsertSavedTeam, removeSavedTeam, findSavedTeam} from './teams-v3.mjs';
 const $ = id => document.getElementById(id);
 const labels = { et:'🇺🇸 Eastern',ng:'🇳🇬 Nigeria',in:'🇮🇳 India' };
@@ -215,7 +215,88 @@ renderClockVisibility();
 function pickerFrom(ms){let p=parts(ms,$('base').value);$('day').value=`${p.year}-${p.month}-${p.day}`;$('time').value=`${p.hour}:${p.minute}`;updateRepeat()}
 function updateRepeat(){const day=$('day').value,time=$('time').value,zone=$('base').value;let options=resolveWall(day,time,zone);$('repeat-wrap').hidden=options.length!==2;if(options.length===2){$('repeat').value=String(Math.min(selectedChoice,1))}else{selectedChoice=0;$('repeat').value='0'}return options}
 function paintClocks(ms){for(const z of ZONE_KEYS){$('clock-'+z).textContent=formatTime(ms,z);$('date-'+z).textContent=formatDate(ms,z)}$('zone-et').textContent=shortOffset(ms,'et');if(visitorClock){const local=visitorClock.at(ms);$('clock-local').textContent=local.time;$('date-local').textContent=local.date;$('zone-local').textContent=local.zoneLabel}customClocks.paint(ms)}
-function rangeCells(slot){let grid=el('div','times');for(const p of participants){const clock=createVisitorClock(p.zone),cell=el('div'),range=clock.rangeText(slot.ms,slot.duration);cell.append(el('div','meeting-location',p.name),el('div','meeting-time',range));grid.append(cell)}return grid}
+function meetingWindowState(ms,duration,p){
+  const start=localParts(ms,p.zone),end=localParts(ms+duration*60000,p.zone);
+  const morning=Number(start.hour)*60+Number(start.minute);
+  const evening=Number(end.hour)*60+Number(end.minute);
+  const windowStart=mins(p.start),windowEnd=mins(p.end);
+  const sameDay=start.year===end.year&&start.month===end.month&&start.day===end.day;
+  const weekend=p.country==='SA'?['Fri','Sat']:['Sat','Sun'];
+  if(!sameDay||weekend.includes(start.weekday)||weekend.includes(end.weekday))return 'outside';
+  if(morning>=windowStart&&evening<=windowEnd)return 'preferred';
+  if(evening>windowStart&&morning<windowEnd)return 'edge';
+  return 'outside';
+}
+function rangeCells(slot){
+  const grid=el('div','times meeting-overview');
+  grid.setAttribute('aria-label','Local meeting times');
+  for(const p of participants){
+    const status=meetingWindowState(slot.ms,slot.duration,p);
+    const cell=el('div','meeting-tile time-'+status);
+    const clock=new Intl.DateTimeFormat('en-US',{timeZone:p.zone,hour:'numeric',minute:'2-digit'});
+    const date=new Intl.DateTimeFormat('en-US',{timeZone:p.zone,weekday:'short',month:'short',day:'numeric'});
+    const end=slot.ms+slot.duration*60000;
+    const startDate=date.format(new Date(slot.ms)),endDate=date.format(new Date(end));
+    const dateText=startDate===endDate?startDate:`${startDate} → ${endDate}`;
+    const statusText=status==='preferred'?'Within hours':status==='edge'?'Partly within hours':'Outside hours';
+    cell.append(el('div','meeting-location',p.name),el('div','meeting-time',`${clock.format(new Date(slot.ms))} – ${clock.format(new Date(end))}`),el('div','meeting-date',dateText),el('div','meeting-window-label',statusText));
+    grid.append(cell);
+  }
+  return grid;
+}
+function timeMatrix(slot){
+  const details=el('details','time-compare');details.open=true;
+  details.append(el('summary','','Compare hours across time zones'));
+  const note=el('p','time-compare-note',`Hourly reference for ${participants[0].name}'s meeting date. ★ marks the recommended start. Colors reflect the configured ${slot.duration}-minute meeting duration, not holiday clearance.`);
+  details.append(note);
+  const legend=el('div','time-legend');
+  for(const [klass,label] of [['preferred','Within preferred hours'],['edge','Partly within hours'],['outside','Outside hours']]){
+    const item=el('span','time-legend-item');
+    item.append(el('i','time-swatch time-'+klass),document.createTextNode(label));
+    legend.append(item);
+  }
+  details.append(legend);
+  const viewport=el('div','time-compare-scroll');
+  viewport.tabIndex=0;viewport.setAttribute('role','region');viewport.setAttribute('aria-label','Scrollable hourly time-zone comparison');
+  const table=el('table','time-compare-table');
+  table.append(el('caption','sr-only','Hourly UTC time alongside each participant local time and working-hours status.'));
+  const head=el('thead'),headers=el('tr');
+  for(const label of ['UTC',...participants.map(p=>p.name)]){
+    const th=el('th','',label);th.scope='col';headers.append(th);
+  }
+  head.append(headers);table.append(head);
+  const body=el('tbody');
+  const day=formatZoneDay(slot.ms,participants[0].zone);
+  const midnightUTC=Date.parse(day+'T00:00:00Z');
+  let first=null;
+  for(let t=midnightUTC-15*3600000;t<=midnightUTC+15*3600000;t+=15*60000){
+    if(formatZoneDay(t,participants[0].zone)===day){first=t;break}
+  }
+  const instants=[];
+  if(first!==null){
+    for(let t=first;t<first+26*3600000&&formatZoneDay(t,participants[0].zone)===day;t+=3600000)instants.push(t);
+  }
+  if(!instants.includes(slot.ms))instants.push(slot.ms);
+  instants.sort((a,b)=>a-b);
+  const utcClock=new Intl.DateTimeFormat('en-US',{timeZone:'UTC',weekday:'short',hour:'numeric',minute:'2-digit',hour12:true});
+  const localClocks=participants.map(p=>new Intl.DateTimeFormat('en-US',{timeZone:p.zone,weekday:'short',hour:'numeric',minute:'2-digit',hour12:true}));
+  for(const instant of instants){
+    const chosen=instant===slot.ms,row=el('tr',chosen?'time-recommended':'');
+    const label=el('th','time-utc',`${chosen?'★ ':''}${utcClock.format(new Date(instant))}`);label.scope='row';
+    if(chosen)label.setAttribute('aria-label',`Recommended start: ${utcClock.format(new Date(instant))} UTC`);
+    row.append(label);
+    participants.forEach((p,i)=>{
+      const state=meetingWindowState(instant,slot.duration,p),clock=localClocks[i].format(new Date(instant));
+      const cell=el('td','time-'+state,clock);
+      const description=state==='preferred'?'within preferred hours':state==='edge'?'partly within hours':'outside preferred hours';
+      cell.setAttribute('aria-label',`${p.name}: ${clock}, ${description}${chosen?', recommended start':''}`);
+      row.append(cell);
+    });
+    body.append(row);
+  }
+  table.append(body);viewport.append(table);details.append(viewport);
+  return details;
+}
 function explanation(slot){const compromises=[];participants.forEach((p,i)=>{const q=slot.values[i];if(q.early)compromises.push(`${p.name} joins before preferred hours`);if(q.late)compromises.push(`${p.name} joins after preferred hours`)});return compromises.length?compromises.join(' · ')+'.':'All participants are within their preferred working hours.'}
 function feedback(text){$('feedback').textContent=text}
 async function writeClipboard(text){if(navigator.clipboard?.writeText){try{await navigator.clipboard.writeText(text);return true}catch{}}let field=el('textarea');field.value=text;field.setAttribute('aria-label','Text to copy');field.style.cssText='position:fixed;left:-9999px;top:0';document.body.append(field);field.select();let worked=false;try{worked=document.execCommand('copy')}catch{}field.remove();return worked}
@@ -224,7 +305,23 @@ async function copyTimes(slot){let text=meetingText(slot,participants);if(visito
 async function copyLink(slot){if(!/^https?:$/.test(location.protocol)){feedback('A shareable web link becomes available after deployment. Use Copy times for now.');return}let ok=await writeClipboard(meetingURL(slot));feedback(ok?'Shareable link copied.':'Copy failed. Please use your browser address bar.')}
 function addCalendar(slot){let file=new Blob([toICS(slot)],{type:'text/calendar;charset=utf-8'}),url=URL.createObjectURL(file),a=el('a');a.href=url;a.download='TimeBridge-meeting.ics';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);feedback('Calendar file downloaded. Import it and confirm attendees before sending.')}
 function actionButton(txt,fn,primary=false){let b=el('button','button button-small'+(primary?' button-primary':''),txt);b.type='button';b.addEventListener('click',fn);return b}
-function card(slot,best,index){let c=el('article',best?'best-card':'other-card');let head=el('div','best-head');head.append(el('strong','',best?($('priority').value==='fair'?'Best compromise':$('priority').value==='earliest'?'Earliest available':'Within working hours'):`Option ${index+1}`));if(best)head.append(el('span','badge','Recommended'));c.append(head,rangeCells(slot));const fit=el('p','fit-summary',`Working-hours fit: ${slot.fit}/100 · ${slot.normalCount}/${participants.length} within preferred hours`);fit.setAttribute('aria-label',`Estimated working-hours fit ${slot.fit} out of 100; ${slot.normalCount} of ${participants.length} participants within preferred hours. Illustrative scheduling heuristic, not a statistical probability.`);c.append(fit);if(visitorClock)c.append(el('p','visitor-conversion',`Local in ${visitorClock.name}: ${visitorClock.rangeText(slot.ms,slot.duration)}`));c.append(el('p','explanation',explanation(slot)));const actions=el('div','actions');actions.append(actionButton('Copy times',()=>copyTimes(slot),best),actionButton('Add to calendar',()=>addCalendar(slot)));if(/^https?:$/.test(location.protocol))actions.append(actionButton('Copy link',()=>copyLink(slot)));c.append(actions);return c}
+function card(slot,best,index){
+  const c=el('article',best?'best-card':'other-card'),head=el('div','best-head');
+  head.append(el('strong','',best?($('priority').value==='fair'?'Best compromise':$('priority').value==='earliest'?'Earliest available':'Within working hours'):`Option ${index+1}`));
+  if(best)head.append(el('span','badge','Recommended'));
+  c.append(head,rangeCells(slot));
+  const fit=el('p','fit-summary',`Working-hours fit: ${slot.fit}/100 · ${slot.normalCount}/${participants.length} within preferred hours`);
+  fit.setAttribute('aria-label',`Estimated working-hours fit ${slot.fit} out of 100; ${slot.normalCount} of ${participants.length} participants within preferred hours. Illustrative scheduling heuristic, not a statistical probability.`);
+  c.append(fit);
+  if(visitorClock&&!participants.some(p=>sameZone(p.zone,visitorClock.timeZone)))c.append(el('p','visitor-conversion',`Local in ${visitorClock.name}: ${visitorClock.rangeText(slot.ms,slot.duration)}`));
+  c.append(el('p','explanation',explanation(slot)));
+  const actions=el('div','actions');
+  actions.append(actionButton('Copy times',()=>copyTimes(slot),best),actionButton('Add to calendar',()=>addCalendar(slot)));
+  if(/^https?:$/.test(location.protocol))actions.append(actionButton('Copy link',()=>copyLink(slot)));
+  c.append(actions);
+  if(best)c.append(timeMatrix(slot));
+  return c;
+}
 const holidayStore=new Map();
 let plannerRevision=0,calendarRevision=0;
 function plannerPlaces(){return [...new Set(participants.map(p=>p.country))].map(code=>[code,COUNTRY_NAMES[code]||code]);}
@@ -271,7 +368,7 @@ async function paintRecommendations(){
   }catch(e){if(revision!==plannerRevision)return;$('recommend-date').textContent='Holiday verification unavailable';showNoRecommendations('A required holiday calendar could not be verified. No unverified recommendation will be shown. Try Now again, or check the Holidays tab for provider coverage.');}
 }
 function addCalendarPanel(country,name,data,year){
-  const card=el('details','holiday-group');card.open=false;card.name='holiday-location';card.addEventListener('toggle',()=>{if(card.open){for(const peer of card.parentElement?.querySelectorAll('details.holiday-group[open]')||[]){if(peer!==card)peer.open=false}}});
+  const card=el('details','holiday-group');card.open=false;
   const summary=el('summary');summary.append(document.createTextNode(name));
   summary.append(el('span','holiday-count',`${data.length} listed`));card.append(summary);
   const info=holidayInfo(country,year);if(info){const note=el('p','fineprint holiday-provenance',`Source: ${info.source} · ${info.coverage}`);card.append(note)}
