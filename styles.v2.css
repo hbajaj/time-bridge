@@ -89,3 +89,46 @@ footer{margin-top:15px}
 .holiday-sources{margin-top:12px}.holiday-sources summary{color:var(--muted);font-size:12px;cursor:pointer;min-height:36px;padding:7px 0}.holiday-sources p{margin-top:8px}.holiday-sources summary:hover,.app-footer summary:hover{color:var(--text)}
 /* v2.5 — compact independently managed clocks and participants */
 .clock-controls{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:12px 0}.fixed-clock-head{display:flex;justify-content:space-between;align-items:center;gap:6px}.fixed-clock-remove{font-size:12px;border:1px solid var(--line,#ddd);background:transparent;color:var(--muted,#666);border-radius:8px;padding:6px 8px;cursor:pointer}.participant-panel{padding:16px 0;border-bottom:1px solid var(--line,#ddd);margin-bottom:14px}.participant-list{display:grid;gap:8px;margin:12px 0}.participant-item{border:1px solid var(--line,#ddd);border-radius:12px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}.participant-item .participant-hours{display:flex;gap:6px;align-items:center;flex-wrap:wrap}.participant-hours input{max-width:110px;min-height:36px}.participant-add{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.participant-add select{min-width:125px;max-width:200px;min-height:40px}.participant-add label{font-size:12px;color:var(--muted,#666)}.participant-remove{border:0;background:transparent;color:var(--muted,#666);cursor:pointer;text-decoration:underline}.meeting-location{overflow-wrap:anywhere}@media(max-width:550px){.participant-item{align-items:flex-start;flex-direction:column}.participant-add{align-items:stretch;flex-direction:column}.participant-add select{max-width:100%;width:100%}}
+
+/* v2.5.1 — Precision layout & brand-independent contemporary design. */
+:root {--bg:#f4f5f6;--surface:#ffffff;--surface-soft:#ebedf0;--text:#151719;--muted:#596069;--border:#d7dce2;--accent:#181b20;--accent-text:#ffffff;--focus:#376bb8;--tint:#eef2f8;--shadow:none}
+:root[data-theme="dark"] {--bg:#101215;--surface:#1c1f23;--surface-soft:#252a30;--text:#f5f7f8;--muted:#b6c0cb;--border:#454c54;--accent:#e7ebee;--accent-text:#12151a;--focus:#94bbff;--tint:#323b48;--shadow:none}
+body{font-family:Inter,'Segoe UI',system-ui,-apple-system,sans-serif;font-weight:400;letter-spacing:-.12px}
+.wrap{width:min(calc(100% - 56px),1200px)}
+.header{padding-bottom:18px}
+.logo{border-radius:8px;font-size:23px}
+.brand{letter-spacing:2px;font-size:15px;font-weight:760}
+.app-intro h1{font-weight:750;letter-spacing:-1.55px}
+.tab-list{border:0;border-radius:9px;background:var(--surface-soft);gap:5px;padding:4px}
+.tab-button{border-radius:7px;font-weight:700;letter-spacing:0}
+.button{border-radius:8px;font-weight:650;box-shadow:none}
+.clock-card,.clock-card.is-home{border-radius:10px;min-height:196px;border:1px solid var(--border);padding:22px;background:var(--surface);box-shadow:none;display:flex;flex-direction:column;justify-content:space-between;gap:8px}
+.clock-card.is-home{border-color:var(--focus);box-shadow:inset 0 0 0 1px var(--focus)}
+/* Neither the visitor's clock nor an orphaned card may span available columns. */
+.clocks,.clocks.has-local{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));align-items:stretch;gap:14px}
+.clocks.has-local .local-clock,.clocks .local-clock{grid-column:auto;display:flex;grid-template-columns:none;grid-template-areas:none;min-height:196px;align-items:stretch;text-align:left}
+.clocks.has-local .local-clock .clock-meta,.clocks.has-local .local-clock .clock-value,.clocks.has-local .local-clock .zone-label{grid-area:auto;text-align:left;margin-left:0}
+.clocks .clock-card[hidden],.clocks .extra-clocks[hidden]{display:none!important}
+/* Custom participant clocks become direct items in the SAME clock grid. */
+.clocks .extra-clocks:not([hidden]){display:contents}
+.clock-card .clock-value{font-weight:720;font-size:clamp(25px,3vw,37px);line-height:1.12;letter-spacing:-1.3px;margin:0}
+.clock-card .clock-meta{gap:7px}
+.clock-card .location{display:flex;flex-wrap:wrap;align-items:center;column-gap:6px;row-gap:4px;font-weight:670;font-size:13px}
+.fixed-clock-remove,.clock-remove{display:inline-flex;min-height:30px;align-items:center;border:1px solid var(--border);border-radius:6px;background:transparent;color:var(--muted);font-size:11px;padding:4px 8px;font-weight:650;text-decoration:none;cursor:pointer}
+.fixed-clock-remove:hover,.clock-remove:hover{color:var(--text);background:var(--surface-soft)}
+.extra-clock-card .extra-clock-head{display:flex;align-items:center;justify-content:flex-start;gap:8px;flex-wrap:wrap}
+.extra-clock-card .location{overflow-wrap:anywhere}
+.extra-clock-zone{font-size:11px;margin-top:0;color:var(--muted)}
+.clock-controls{margin:15px 0 5px;gap:12px}
+.personal-clocks{margin-top:12px;padding-top:16px}
+.personal-clock-head h3{letter-spacing:.8px}
+.participant-item{border-radius:9px;background:var(--surface);align-items:center}
+.meeting-box,.best-card,.other-card,.clock-add-panel{border-radius:10px}
+.home-pill{background:var(--tint);color:var(--text);border-radius:5px}
+@media(max-width:960px){.clocks,.clocks.has-local{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.wrap{width:min(calc(100% - 28px),600px)}.clocks,.clocks.has-local{grid-template-columns:1fr;gap:10px}.clock-card,.clock-card.is-home,.clocks.has-local .local-clock{min-height:128px;display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-areas:'meta value' 'meta zone';align-items:center;padding:17px;gap:3px 12px}.clock-card .clock-meta,.clocks.has-local .local-clock .clock-meta{grid-area:meta}.clock-card .clock-value,.clocks.has-local .local-clock .clock-value{grid-area:value;text-align:right;margin:0;font-size:clamp(23px,6vw,31px)}.clock-card .zone-label,.clocks.has-local .local-clock .zone-label{grid-area:zone;text-align:right;margin:0}.extra-clock-zone{grid-column:1/-1;font-size:10px;margin:0}.clock-card .location{font-size:12px}.clock-card .local-date{font-size:11px}.fixed-clock-remove,.clock-remove{min-height:27px}}
+@media(max-width:350px){.clock-card,.clock-card.is-home,.clocks.has-local .local-clock{padding:13px}.clock-card .clock-value{font-size:23px}}
+/* Keep visual tiles equal-height across rows, including single-card cases. */
+.clocks,.clocks.has-local{grid-auto-rows:210px}
+.clocks .clock-card,.clocks .clock-card.is-home,.clocks.has-local .local-clock{height:100%;min-height:0}
+@media(max-width:640px){.clocks,.clocks.has-local{grid-auto-rows:150px}.clocks .clock-card,.clocks .clock-card.is-home,.clocks.has-local .local-clock{min-height:0}}
