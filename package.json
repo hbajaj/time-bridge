@@ -5,7 +5,7 @@
   "type": "module",
   "description": "TimeBridge v3.0 release candidate: reliability, accessibility, saved teams, explainable recommendations",
   "scripts": {
-    "test": "node --test qa/test_logic.mjs qa/test-v252.mjs qa/test-providers.mjs qa/test-v30.mjs",
+    "test": "node --test qa/test_logic.mjs qa/test-v252.mjs qa/test-providers.mjs qa/test-v30.mjs qa/test-default-calendars.mjs",
     "test:security": "node qa/security-check.mjs",
     "test:budget": "node qa/performance-budget.mjs",
     "test:browser": "python -m unittest discover -s qa -p 'test_*.py' -v",

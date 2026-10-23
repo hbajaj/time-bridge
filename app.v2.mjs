@@ -258,9 +258,10 @@ async function paintRecommendations(){
   try{
     await retrieveHolidayData(plannerPlaces(),neededPlannerYears());
     if(revision!==plannerRevision)return;
+    const provisional=plannerPlaces().filter(([code])=>neededPlannerYears().some(year=>holidayInfo(code,year)?.completeness==='partial')).map(([,name])=>name);
     const result=chosenMeeting();
     const z=$('base').value,a=$('best'),others=$('more');a.replaceChildren();others.replaceChildren();displayedSlots=result.slots;
-    $('recommend-date').textContent=(selected===null?'Next holiday-free weekday: ':'Selected date: ')+new Intl.DateTimeFormat('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(result.day+'T12:00:00Z'))+` · ${participants[0].name} calendar`;
+    $('recommend-date').textContent=(selected===null?'Next published-holiday-checked weekday: ':'Selected date: ')+new Intl.DateTimeFormat('en-US',{weekday:'short',month:'short',day:'numeric',year:'numeric',timeZone:'UTC'}).format(new Date(result.day+'T12:00:00Z'))+` · ${participants[0].name} calendar`+(provisional.length?` · Provisional calendar: ${provisional.join(', ')} has unannounced holidays. Confirm before booking.`:'');
     if(!result.slots.length){
       const unique=[...new Map(result.conflicts.map(c=>[c.country+'-'+c.day,c])).values()].slice(0,4);
       showNoRecommendations(unique.length?'No recommendation: public holiday conflict ('+unique.map(c=>`${COUNTRY_NAMES[c.country]||c.country}, ${c.day} — ${c.name}`).join('; ')+'). Choose another date or press Now.':'No future weekday meeting time available within the next 45 days under working-hour constraints.');return;
@@ -285,7 +286,8 @@ async function renderHolidayYear(){
   if(!participants.length){$('holiday-status').textContent='Add a meeting participant to see relevant public holidays.';return;}
   try{await retrieveHolidayData(countries,[year]);if(myRevision!==calendarRevision)return;
     for(const [country,name] of countries)grid.append(addCalendarPanel(country,name,holidayStore.get(`${country}-${year}`),year));
-    $('holiday-status').textContent=`${year}: ${countries.length} participating holiday calendars ready. Listed public holidays are excluded.${year===2026&&countries.some(([code])=>code==='IN')?' India coverage: central-government gazetted holidays; state and regional holidays may differ.':''}${([2026,2027].includes(year))&&countries.some(([code])=>code==='SA')?' Saudi Arabia coverage: conservative official sector closure dates; employers may differ.':''}`;
+    const partial=countries.filter(([code])=>holidayInfo(code,year)?.completeness==='partial').map(([,name])=>name);
+    $('holiday-status').textContent=`${year}: ${countries.length} participating holiday calendars available. Published holidays are excluded.${partial.length?' Provisional: '+partial.join(', ')+' does not yet include unannounced Eid/Maulud closures.':''}${year===2026&&countries.some(([code])=>code==='IN')?' India coverage: central-government gazetted holidays; state and regional holidays may differ.':''}${([2026,2027].includes(year))&&countries.some(([code])=>code==='SA')?' Saudi Arabia coverage: conservative official sector closure dates; employers may differ.':''}`;
   }catch(e){if(myRevision!==calendarRevision)return;$('holiday-status').textContent='Holiday calendar unavailable. The app will not recommend a date until the selected locations can be verified. Try again later or remove an unavailable participant.';}
 }
 function initializeHolidays(){

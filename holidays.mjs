@@ -24,7 +24,7 @@ export function normalizeHolidays(payload, country){
 }
 export async function holidaysFor(country,year,fetcher=fetch){
   if(!/^[A-Z]{2}$/.test(country) || !Number.isInteger(year) || year<2020 || year>2100)throw Error('Country/year is not supported');
-  const key=`tb-holidays-v26-${country}-${year}`,existing=inflight.get(key);
+  const key=`tb-holidays-v31-${country}-${year}`,existing=inflight.get(key);
   if(existing)return existing;
   const task=(async()=>{
     try{
@@ -46,7 +46,7 @@ export async function holidaysFor(country,year,fetcher=fetch){
     try{result=await response.json()}catch{throw Error(`Invalid holiday response for ${country} ${year}`)}
     const normalized=normalizeHolidays(result,country);
     const headers=response.headers;
-    const meta={source:headers?.get?.('X-Holiday-Source')||'provider',coverage:headers?.get?.('X-Holiday-Coverage')||'Public holidays as reported by calendar service',verifiedAt:headers?.get?.('X-Holiday-Verified-At')||null};
+    const meta={source:headers?.get?.('X-Holiday-Source')||'provider',coverage:headers?.get?.('X-Holiday-Coverage')||'Public holidays as reported by calendar service',verifiedAt:headers?.get?.('X-Holiday-Verified-At')||null,completeness:headers?.get?.('X-Holiday-Completeness')||'provider'};
     metadata.set(`${country}-${year}`,meta);
     try{localStorage.setItem(key,JSON.stringify({saved:Date.now(),data:result,meta}))}catch{}
     return normalized;

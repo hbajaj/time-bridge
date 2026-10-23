@@ -21,3 +21,6 @@ v3.0 combines reliability hardening (v2.6), minimalist three-tab user experience
 - Real worldwide independent calendar fallback is unavailable in some countries without a configured provider key.
 - Some observed/lunar holidays are declared late and are not always predictable.
 - This release has not passed independent WCAG, security penetration test, real Core Web Vitals, or 30-day SLO observation.
+
+## Published default country calendars, 2026 and 2027
+Offline US federal (OPM), India central gazetted (DoPT), and Nigeria nationwide baselines cover all six default country-year combinations. Nigeria 2027 is explicitly partial: unannounced lunar holidays are not represented as verified. Frontend displays provisional coverage. State/regional, company, and future announced dates may differ. Additional countries still use validated provider fallbacks.

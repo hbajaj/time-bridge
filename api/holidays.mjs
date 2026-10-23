@@ -5,9 +5,12 @@ import { INDIA_CENTRAL_GAZETTED_2026 } from '../lib/india-2026.mjs';
 import { SA_2026_OFFICIAL_CLOSURES } from '../lib/saudi-2026.mjs';
 import { SA_2027_OFFICIAL_CLOSURES } from '../lib/saudi-2027.mjs';
 import { fetchVerifiedHolidays } from '../lib/holiday-providers.mjs';
+import { publishedDefaultCalendar } from '../lib/default-calendars.mjs';
 const CACHE_MS=6*60*60*1000;
 const memo=new Map();
 const official=(country,year)=>{
+  const stable=publishedDefaultCalendar(country,year);
+  if(stable)return stable;
   if(country==='IN'&&year===2026)return {data:INDIA_CENTRAL_GAZETTED_2026,source:'india-gazetted-2026',coverage:'India central-government gazetted dates only; state and regional holidays not complete'};
   if(country==='SA'&&year===2026)return {data:SA_2026_OFFICIAL_CLOSURES,source:'sa-aviation-2026',coverage:'Saudi official aviation-sector closures, conservative; not all employers'};
   if(country==='SA'&&year===2027)return {data:SA_2027_OFFICIAL_CLOSURES,source:'sa-financial-2027',coverage:'Saudi official financial-sector closures, conservative; not all employers'};
@@ -16,6 +19,7 @@ const official=(country,year)=>{
 const annotate=(res,record)=>{
   res.setHeader('X-Holiday-Source',record.source);
   res.setHeader('X-Holiday-Coverage',record.coverage);
+  res.setHeader('X-Holiday-Completeness',record.completeness||'provider');
   res.setHeader('X-Holiday-Verified-At',record.verifiedAt||'published-government-snapshot');
 };
 export default async function handler(req,res){

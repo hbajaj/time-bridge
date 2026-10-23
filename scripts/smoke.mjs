@@ -1,7 +1,7 @@
 /* Manual post-deploy smoke test. Run only against an owner-approved preview/staging URL. */
 const base=process.argv[2];
 if(!base||!/^https:\/\//.test(base)){console.error('Usage: node scripts/smoke.mjs https://timebridge-PREVIEW.vercel.app');process.exit(2)}
-const root=new URL(base);const required=[['US',2026],['IN',2026],['NG',2026],['GB',2026],['SA',2026],['ZA',2026]];
+const root=new URL(base);const required=[['US',2026],['IN',2026],['NG',2026],['US',2027],['IN',2027],['NG',2027]];
 let issues=0;
 const valid=rec=>typeof rec?.date==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(rec.date)&&typeof rec.name==='string'&&Array.isArray(rec.holidayTypes)&&rec.holidayTypes.includes('Public');
 const fail=(label,message)=>{console.error('FAIL',label,message);issues++};

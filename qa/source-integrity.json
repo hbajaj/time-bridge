@@ -4,20 +4,15 @@
     "sha256": "6fd71373f5aec35ad19caa2fe85c4ee5729b5e164af63f15f0e1fbec49d3d590",
     "bytes": 1260
   },
-  "README.md": {
-    "blob": "7abdebc33fc1cd7e6425a66b7d93a4e9b0b11217",
-    "sha256": "07a7809e1305a4effb855bd9192c4b1af682655bbef43dc47cd545a70ed8f5ab",
-    "bytes": 2424
-  },
   "api/holidays.mjs": {
-    "blob": "62c77b5f792a2cb6968bb01725b73c8324bd841e",
-    "sha256": "f869bf11377e1b8e67afe8e32a87bfbeac4926e370290aae560da7b067d1724e",
-    "bytes": 3157
+    "blob": "b85c364aea32c79d4e296c272c72eb4129f05f95",
+    "sha256": "6fbc0353e5ff03e5b6d166d254869cc1a91c6af09d23ba864e1c94c48fbfc5b5",
+    "bytes": 3387
   },
   "app.v2.mjs": {
-    "blob": "2c564ece2ab42e52b5f730bfc43266223ab8df05",
-    "sha256": "1b5fa987320540ceb6666b1ce8c4e2b454648ae032d7df305b8d841b9fe5b283",
-    "bytes": 28694
+    "blob": "462437643717373f976fe4ce530f510cef32ac12",
+    "sha256": "d2cd657a37f83c45d623cf9991244da71a748d5343e51dcc3a2a7127ddfcc1c3",
+    "bytes": 29225
   },
   "country-map.mjs": {
     "blob": "7e95ca0e7fb802e18a2e187e4470f22c7d5e8959",
@@ -50,14 +45,14 @@
     "bytes": 2893
   },
   "docs/V3-RELEASE.md": {
-    "blob": "6e029f1bf0713d993ff44d742b3b63ff86f254b6",
-    "sha256": "46378bf0fec9daf658c8e310aa4777bb15f42c24234e847c9e9ae69d76f16f04",
-    "bytes": 2102
+    "blob": "4dac88c6557efb60d2de43d1333337deba126c0e",
+    "sha256": "7b20dc483df82557859e0a5d3304a8a4d81f128bc7a1181cf88aaf3f26af551d",
+    "bytes": 2557
   },
   "holidays.mjs": {
-    "blob": "bc387e0c180f01d368c469f8eed56cf094f0e802",
-    "sha256": "0ea0d5e9e11060ff8e3be8b2f4e1d7028101f89f9c29b3c3b666c0fa8a37fd6b",
-    "bytes": 4738
+    "blob": "0a96ec1ffd9bf254b0a43b2a76c077fb15649903",
+    "sha256": "2e0a3e630e97ae7e778312b58a45a349270e4c711de38dd9402e3c9c596f68fd",
+    "bytes": 4804
   },
   "icon.svg": {
     "blob": "e1b2481eb527b790da97e8285fb3fd4b679c320a",
@@ -68,6 +63,11 @@
     "blob": "7ce26adf3e58b9b62354f95240fa0cfc20dc0516",
     "sha256": "20c31db8dc5d5ea90146203b0e0aa1efd7cd402ebc17e949ed93697b6f6369ce",
     "bytes": 13930
+  },
+  "lib/default-calendars.mjs": {
+    "blob": "ea9c3bf76a478297451ce213c3f75efab13c2afa",
+    "sha256": "9daa83129028926baf00e09beebfbae25a50b42436c27bfbc6727234d912367e",
+    "bytes": 5666
   },
   "lib/holiday-providers.mjs": {
     "blob": "3053dd174727972dddd2d7d936597f587c2c2d7d",
@@ -100,9 +100,9 @@
     "bytes": 343
   },
   "package.json": {
-    "blob": "e7c9208447301b0d13c36c9914e75556938b6d11",
-    "sha256": "8bc7af1314129d4b374a9e0e90b27f17d646c7f5adbbb7e5c33b15e3349ba6f1",
-    "bytes": 705
+    "blob": "be165685d18efc9bc882ea5dc1544c281e4dd228",
+    "sha256": "5267e73fcbba72a0bed7fee408881c06926c4ddd40750f890cd26f1230e200b0",
+    "bytes": 735
   },
   "planner-v25.mjs": {
     "blob": "cf9d3f6aab067f319802c7527ca04bda3d7e0462",
@@ -123,21 +123,6 @@
     "blob": "e861f66df23b3803532e2d59cdbbed799212ae91",
     "sha256": "2c77262ba802e816914714b4bef8b003ad29c24e6e2b14db79f79c3cd81261b0",
     "bytes": 1351
-  },
-  "qa/test-providers.mjs": {
-    "blob": "6a97f274e3d57110add87256d15b52723ba0589f",
-    "sha256": "c3756e19c4c650f12cdae9c369f1d3e7767ec8c920b8b21ce99fa4913f6b7466",
-    "bytes": 5056
-  },
-  "qa/test-v252.mjs": {
-    "blob": "e0d6d4b8a1e7fb039d63ae6d86351714ad094973",
-    "sha256": "01c617b3b27a4e25a00d0a147204ac38fca8a0ca790b3e9ba5b9bbce9246ae93",
-    "bytes": 3669
-  },
-  "qa/test-v30.mjs": {
-    "blob": "452327ed41df41d4c8261caadf0c50c8c34f9cf0",
-    "sha256": "495b882473a903aba7a9d86069f9bc430882347c929fdf3fe7d866a1b8863421",
-    "bytes": 3412
   },
   "qa/test_a11y_v30.py": {
     "blob": "36ad2f8a13930b5c54e9465f5a8240a1fb0347ec",
@@ -169,10 +154,35 @@
     "sha256": "34a81a7898e8bdf0cb74710eddd99e616efc4a5ad197c3e3f8f27f03f409b480",
     "bytes": 3492
   },
+  "qa/test-default-calendars.mjs": {
+    "blob": "8f7aee56a092e4912169c904cc8bbdbc2df8f4ba",
+    "sha256": "f8092b3090fb563a6d5c601a30a8e79a2a4bb33553ef772d20b02bc36f7a31b9",
+    "bytes": 2128
+  },
+  "qa/test-providers.mjs": {
+    "blob": "6a97f274e3d57110add87256d15b52723ba0589f",
+    "sha256": "c3756e19c4c650f12cdae9c369f1d3e7767ec8c920b8b21ce99fa4913f6b7466",
+    "bytes": 5056
+  },
+  "qa/test-v252.mjs": {
+    "blob": "e0d6d4b8a1e7fb039d63ae6d86351714ad094973",
+    "sha256": "01c617b3b27a4e25a00d0a147204ac38fca8a0ca790b3e9ba5b9bbce9246ae93",
+    "bytes": 3669
+  },
+  "qa/test-v30.mjs": {
+    "blob": "452327ed41df41d4c8261caadf0c50c8c34f9cf0",
+    "sha256": "495b882473a903aba7a9d86069f9bc430882347c929fdf3fe7d866a1b8863421",
+    "bytes": 3412
+  },
   "qa/visual_smoke.py": {
     "blob": "fd86ac733998df3343da6314c7d37274c55b55f0",
     "sha256": "cc401d2d2b836678fecc743ad3561ccb9ff417c96df569d02fdefa208f116c14",
     "bytes": 918
+  },
+  "README.md": {
+    "blob": "7abdebc33fc1cd7e6425a66b7d93a4e9b0b11217",
+    "sha256": "07a7809e1305a4effb855bd9192c4b1af682655bbef43dc47cd545a70ed8f5ab",
+    "bytes": 2424
   },
   "scripts/local-benchmark.mjs": {
     "blob": "d9a99c0bc98df65dc6703ea2c4043ee45afe9906",
@@ -180,8 +190,8 @@
     "bytes": 774
   },
   "scripts/smoke.mjs": {
-    "blob": "9b3c98251ecbbd92cf952476bad80a2544d7a961",
-    "sha256": "648be1423bc737a04963936b49edfda93f0147a2125d0c97430eb13c4d7c89db",
+    "blob": "a26ef4b974a5ed4b5c08fd2fc43aad833e3dfd27",
+    "sha256": "067683c478c327aa32a8dfea21da7f9c1c6e0ff8ae628a4da3ca31cf1c9be24c",
     "bytes": 1759
   },
   "scripts/verify-release.mjs": {
