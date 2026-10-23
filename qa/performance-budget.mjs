@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {statSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {join,dirname} from 'node:path';
+const root=dirname(dirname(fileURLToPath(import.meta.url)));
+const js=['app.v2.mjs','time-core.mjs','planner-v25.mjs','holidays.mjs','tabs.mjs','visitor-time.mjs','custom-clocks.mjs','linked-clocks.mjs','country-map.mjs','teams-v3.mjs'];
+const jsBytes=js.reduce((n,f)=>n+statSync(join(root,f)).size,0);
+const cssBytes=statSync(join(root,'styles.v2.css')).size;
+const htmlBytes=statSync(join(root,'index.html')).size;
+console.log({jsBytes,cssBytes,htmlBytes});
+assert(jsBytes<=140_000,'JS source budget exceeded (140 KB)');
+assert(cssBytes<=35_000,'CSS budget exceeded (35 KB)');
+assert(htmlBytes<=20_000,'HTML budget exceeded (20 KB)');
+console.log('Source-size budgets passed. These are NOT live Core Web Vitals.');

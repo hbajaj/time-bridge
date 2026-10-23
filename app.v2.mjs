@@ -1,11 +1,12 @@
 /* TimeBridge UI controller — DOM and optional browser capabilities only. */
 import { ZONES, ZONE_KEYS, NAMES, localDay, localClock, formatTime, formatDate, formatRange, shortOffset, identifyDeviceZone, resolveWall, rankDay, addDay, parts, toICS, shareText, validDay } from './time-core.mjs';
 import { COUNTRY_NAMES, inferCountry } from './country-map.mjs';
-import { holidaysFor, holidayConflicts, requiredHolidayYears, formatZoneDay } from './holidays.mjs';
+import { holidaysFor, holidayInfo, holidayConflicts, requiredHolidayYears, formatZoneDay } from './holidays.mjs';
 import { createVisitorClock } from './visitor-time.mjs';
 import { initTabs } from './tabs.mjs';
 import { mountLinkedClocks } from './linked-clocks.mjs';
 import { DEFAULT_PARTICIPANTS, PARTICIPANT_KEY, MAX_PARTICIPANTS, cleanParticipants, rankMeetingDay, participantHolidayConflicts, meetingText, encodeParticipantGroup, decodeParticipantGroup } from './planner-v25.mjs';
+import {SAVED_TEAMS_KEY, parseSavedTeams, upsertSavedTeam, removeSavedTeam, findSavedTeam} from './teams-v3.mjs';
 const $ = id => document.getElementById(id);
 const labels = { et:'🇺🇸 Eastern',ng:'🇳🇬 Nigeria',in:'🇮🇳 India' };
 function el(tag,cls,txt){let node=document.createElement(tag);if(cls)node.className=cls;if(txt!==undefined)node.textContent=txt;return node}
@@ -70,6 +71,39 @@ for(const k of ZONE_KEYS){
 }
 $('clock-restore').addEventListener('click',restoreDefaults);
 $('participant-reset').addEventListener('click',restoreDefaults);
+
+/* Saved teams are opt-in, local-only and never overwrite saved teams when a link is opened. */
+function storedTeams(){try{return parseSavedTeams(localStorage.getItem(SAVED_TEAMS_KEY))}catch{return []}}
+function renderSavedTeams(selection=''){
+  const select=$('saved-team-select');select.replaceChildren();
+  const intro=el('option','','Select a saved team…');intro.value='';select.append(intro);
+  for(const item of storedTeams()){const opt=el('option','',item.name);opt.value=item.name;select.append(opt)}
+  select.value=selection;
+  const hasSelection=Boolean(select.value);$('team-load').disabled=!hasSelection;$('team-delete').disabled=!hasSelection;
+}
+function savedStatus(message){$('saved-team-status').textContent=message}
+$('saved-team-select').addEventListener('change',()=>renderSavedTeams($('saved-team-select').value));
+$('team-save').addEventListener('click',()=>{
+  try{
+    const next=upsertSavedTeam(storedTeams(),$('team-name').value,participants);
+    localStorage.setItem(SAVED_TEAMS_KEY,JSON.stringify(next));
+    renderSavedTeams(next[0].name);savedStatus(`Team “${next[0].name}” saved on this device.`);
+    $('team-name').value='';
+  }catch(error){savedStatus(error.message||'Unable to save this team. Check browser storage.');}
+});
+$('team-load').addEventListener('click',()=>{
+  const name=$('saved-team-select').value,selectedTeam=findSavedTeam(storedTeams(),name);
+  if(!selectedTeam){savedStatus('Choose a saved team first.');return}
+  participants=selectedTeam;syncLocations();savedStatus(`Loaded “${name}” in World Clocks and Meetings.`);
+});
+$('team-delete').addEventListener('click',()=>{
+  const name=$('saved-team-select').value;if(!name)return;
+  try{localStorage.setItem(SAVED_TEAMS_KEY,JSON.stringify(removeSavedTeam(storedTeams(),name)));
+    renderSavedTeams();savedStatus(`Deleted saved team “${name}”. Current meeting locations were not changed.`);
+  }catch{savedStatus('Unable to delete saved team in this browser.');}
+});
+renderSavedTeams();
+
 function formatHours(clock){
   const [h,m]=clock.split(':').map(Number);
   return `${h%12||12}${m?':'+String(m).padStart(2,'0'):''} ${h>=12?'PM':'AM'}`;
@@ -125,8 +159,9 @@ function renderParticipants(){
 const zoneSelect=$('participant-zone'),countrySelect=$('participant-country');
 const featured=[['Eastern US','America/New_York'],['Nigeria','Africa/Lagos'],['India','Asia/Kolkata'],['California','America/Los_Angeles'],['London','Europe/London'],['Singapore','Asia/Singapore'],['Dubai','Asia/Dubai'],['Tokyo','Asia/Tokyo'],['Sydney','Australia/Sydney'],['Toronto','America/Toronto'],['Paris','Europe/Paris'],['Berlin','Europe/Berlin'],['Kathmandu','Asia/Kathmandu'],['Auckland','Pacific/Auckland']];
 for(const [name,zone] of featured){const option=el('option','',name+' · '+zone);option.value=zone;zoneSelect.append(option)}for(const zone of (Intl.supportedValuesOf?.('timeZone')||[])){if(featured.some(x=>x[1]===zone))continue;const option=el('option','',zone.replaceAll('_',' '));option.value=zone;zoneSelect.append(option)}
+const chooseHolidayCountry=el('option','','Select holiday country…');chooseHolidayCountry.value='';countrySelect.append(chooseHolidayCountry);
 for(const [code,name] of Object.entries(COUNTRY_NAMES).sort((a,b)=>a[1].localeCompare(b[1]))){const option=el('option','',name);option.value=code;countrySelect.append(option)}
-function selectCountry(){countrySelect.value=inferCountry(zoneSelect.value)||'US'}zoneSelect.addEventListener('change',selectCountry);selectCountry();
+function selectCountry(){countrySelect.value=inferCountry(zoneSelect.value)||''}zoneSelect.addEventListener('change',selectCountry);selectCountry();
 $('participant-add').addEventListener('click',()=>{const zone=zoneSelect.value;const result=addLocation(zone,featured.find(x=>x[1]===zone)?.[0]||zone,countrySelect.value);if(result)$('participant-status').textContent=result;});
 renderParticipants();
 function deviceClockLabel(zone){
@@ -189,7 +224,7 @@ async function copyTimes(slot){let text=meetingText(slot,participants);if(visito
 async function copyLink(slot){if(!/^https?:$/.test(location.protocol)){feedback('A shareable web link becomes available after deployment. Use Copy times for now.');return}let ok=await writeClipboard(meetingURL(slot));feedback(ok?'Shareable link copied.':'Copy failed. Please use your browser address bar.')}
 function addCalendar(slot){let file=new Blob([toICS(slot)],{type:'text/calendar;charset=utf-8'}),url=URL.createObjectURL(file),a=el('a');a.href=url;a.download='TimeBridge-meeting.ics';document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);feedback('Calendar file downloaded. Import it and confirm attendees before sending.')}
 function actionButton(txt,fn,primary=false){let b=el('button','button button-small'+(primary?' button-primary':''),txt);b.type='button';b.addEventListener('click',fn);return b}
-function card(slot,best,index){let c=el('article',best?'best-card':'other-card');let head=el('div','best-head');head.append(el('strong','',best?($('priority').value==='fair'?'Best compromise':'Best matching time'):`Option ${index+1}`));if(best)head.append(el('span','badge','Recommended'));c.append(head,rangeCells(slot));if(visitorClock)c.append(el('p','visitor-conversion',`Local in ${visitorClock.name}: ${visitorClock.rangeText(slot.ms,slot.duration)}`));c.append(el('p','explanation',explanation(slot)));const actions=el('div','actions');actions.append(actionButton('Copy times',()=>copyTimes(slot),best),actionButton('Add to calendar',()=>addCalendar(slot)));if(/^https?:$/.test(location.protocol))actions.append(actionButton('Copy link',()=>copyLink(slot)));c.append(actions);return c}
+function card(slot,best,index){let c=el('article',best?'best-card':'other-card');let head=el('div','best-head');head.append(el('strong','',best?($('priority').value==='fair'?'Best compromise':$('priority').value==='earliest'?'Earliest available':'Within working hours'):`Option ${index+1}`));if(best)head.append(el('span','badge','Recommended'));c.append(head,rangeCells(slot));const fit=el('p','fit-summary',`Working-hours fit: ${slot.fit}/100 · ${slot.normalCount}/${participants.length} within preferred hours`);fit.setAttribute('aria-label',`Estimated working-hours fit ${slot.fit} out of 100; ${slot.normalCount} of ${participants.length} participants within preferred hours. Illustrative scheduling heuristic, not a statistical probability.`);c.append(fit);if(visitorClock)c.append(el('p','visitor-conversion',`Local in ${visitorClock.name}: ${visitorClock.rangeText(slot.ms,slot.duration)}`));c.append(el('p','explanation',explanation(slot)));const actions=el('div','actions');actions.append(actionButton('Copy times',()=>copyTimes(slot),best),actionButton('Add to calendar',()=>addCalendar(slot)));if(/^https?:$/.test(location.protocol))actions.append(actionButton('Copy link',()=>copyLink(slot)));c.append(actions);return c}
 const holidayStore=new Map();
 let plannerRevision=0,calendarRevision=0;
 function plannerPlaces(){return [...new Set(participants.map(p=>p.country))].map(code=>[code,COUNTRY_NAMES[code]||code]);}
@@ -207,7 +242,7 @@ function chosenMeeting(){
   const primary=participants[0]?.zone;if(!primary)return {day:'',slots:[],conflicts:[]};const start=selected===null?formatZoneDay(after,primary):formatZoneDay(selected,primary),days=selected===null?45:1;
   let result={day:start,slots:[]},lastConflict=[];
   for(let i=0;i<days;i++){
-    const day=addDay(start,i),candidate=rankMeetingDay(day,{participants,duration,after});
+    const day=addDay(start,i),candidate=rankMeetingDay(day,{participants,duration,after,preference});
     const slots=candidate.filter(slot=>{const conflicts=allConflict(slot);if(conflicts.length)lastConflict.push(...conflicts);return conflicts.length===0});
     if(slots.length){result={day,slots};break;}
   }
@@ -232,12 +267,13 @@ async function paintRecommendations(){
     }
     a.append(card(result.slots[0],true,0));for(let i=1;i<result.slots.length;i++)others.append(card(result.slots[i],false,i));
     $('alternatives').hidden=result.slots.length<2;$('alternatives').querySelector('summary').textContent=`See ${result.slots.length-1} other meeting time${result.slots.length===2?'':'s'}`;
-  }catch(e){if(revision!==plannerRevision)return;$('recommend-date').textContent='Holiday verification unavailable';showNoRecommendations('No recommendation shown because public holidays could not be checked. '+String(e.message)+'. Please retry when data is available.');}
+  }catch(e){if(revision!==plannerRevision)return;$('recommend-date').textContent='Holiday verification unavailable';showNoRecommendations('A required holiday calendar could not be verified. No unverified recommendation will be shown. Try Now again, or check the Holidays tab for provider coverage.');}
 }
 function addCalendarPanel(country,name,data,year){
   const card=el('details','holiday-group');card.open=false;card.name='holiday-location';card.addEventListener('toggle',()=>{if(card.open){for(const peer of card.parentElement?.querySelectorAll('details.holiday-group[open]')||[]){if(peer!==card)peer.open=false}}});
   const summary=el('summary');summary.append(document.createTextNode(name));
   summary.append(el('span','holiday-count',`${data.length} listed`));card.append(summary);
+  const info=holidayInfo(country,year);if(info){const note=el('p','fineprint holiday-provenance',`Source: ${info.source} · ${info.coverage}`);card.append(note)}
   const list=el('ul','holiday-list');
   for(const h of data){const li=el('li');const date=el('time','',new Intl.DateTimeFormat('en-US',{month:'short',day:'numeric',timeZone:'UTC'}).format(new Date(h.date+'T12:00:00Z')));date.dateTime=h.date;
     const span=el('span','',h.name);if(h.regional)span.append(el('span','holiday-note','· Regional'));li.append(date,span);list.append(li)}
@@ -250,7 +286,7 @@ async function renderHolidayYear(){
   try{await retrieveHolidayData(countries,[year]);if(myRevision!==calendarRevision)return;
     for(const [country,name] of countries)grid.append(addCalendarPanel(country,name,holidayStore.get(`${country}-${year}`),year));
     $('holiday-status').textContent=`${year}: ${countries.length} participating holiday calendars ready. Listed public holidays are excluded.${year===2026&&countries.some(([code])=>code==='IN')?' India coverage: central-government gazetted holidays; state and regional holidays may differ.':''}${([2026,2027].includes(year))&&countries.some(([code])=>code==='SA')?' Saudi Arabia coverage: conservative official sector closure dates; employers may differ.':''}`;
-  }catch(e){if(myRevision!==calendarRevision)return;$('holiday-status').textContent='Holiday data unavailable: '+e.message+'. Recommendations are blocked until verification succeeds.';}
+  }catch(e){if(myRevision!==calendarRevision)return;$('holiday-status').textContent='Holiday calendar unavailable. The app will not recommend a date until the selected locations can be verified. Try again later or remove an unavailable participant.';}
 }
 function initializeHolidays(){
   const year=new Date().getUTCFullYear();for(let i=-1;i<=2;i++){const opt=el('option','',String(year+i));opt.value=year+i;$('holiday-year').append(opt)}$('holiday-year').value=String(year);

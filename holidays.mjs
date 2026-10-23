@@ -3,6 +3,8 @@ import { localDay } from './time-core.mjs';
 export const HOLIDAY_API = '/api/holidays';
 const CACHE_HOURS = 12;
 const inflight = new Map();
+const metadata = new Map();
+export const holidayInfo = (country,year) => metadata.get(`${country}-${year}`) || null;
 const isoDay = d => /^\d{4}-\d{2}-\d{2}$/.test(d);
 export function normalizeHolidays(payload, country){
   if (!Array.isArray(payload) || !payload.length) throw Error(`No reliable public-holiday calendar for ${country}`);
@@ -22,12 +24,12 @@ export function normalizeHolidays(payload, country){
 }
 export async function holidaysFor(country,year,fetcher=fetch){
   if(!/^[A-Z]{2}$/.test(country) || !Number.isInteger(year) || year<2020 || year>2100)throw Error('Country/year is not supported');
-  const key=`tb-holidays-v4-proxy-${country}-${year}`,existing=inflight.get(key);
+  const key=`tb-holidays-v26-${country}-${year}`,existing=inflight.get(key);
   if(existing)return existing;
   const task=(async()=>{
     try{
       const raw=localStorage.getItem(key);
-      if(raw){const cached=JSON.parse(raw);if(Date.now()-cached.saved<CACHE_HOURS*3600000 && Array.isArray(cached.data))return normalizeHolidays(cached.data,country)}
+      if(raw){const cached=JSON.parse(raw);if(Date.now()-cached.saved<CACHE_HOURS*3600000 && Array.isArray(cached.data)){metadata.set(`${country}-${year}`,cached.meta||null);return normalizeHolidays(cached.data,country)}}
     }catch{}
     let result;
     let response;
@@ -43,7 +45,10 @@ export async function holidaysFor(country,year,fetcher=fetch){
     }
     try{result=await response.json()}catch{throw Error(`Invalid holiday response for ${country} ${year}`)}
     const normalized=normalizeHolidays(result,country);
-    try{localStorage.setItem(key,JSON.stringify({saved:Date.now(),data:result}))}catch{}
+    const headers=response.headers;
+    const meta={source:headers?.get?.('X-Holiday-Source')||'provider',coverage:headers?.get?.('X-Holiday-Coverage')||'Public holidays as reported by calendar service',verifiedAt:headers?.get?.('X-Holiday-Verified-At')||null};
+    metadata.set(`${country}-${year}`,meta);
+    try{localStorage.setItem(key,JSON.stringify({saved:Date.now(),data:result,meta}))}catch{}
     return normalized;
   })();
   inflight.set(key,task);

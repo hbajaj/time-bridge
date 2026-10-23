@@ -162,3 +162,17 @@ body{font-family:Inter,'Segoe UI',system-ui,-apple-system,sans-serif;font-weight
   .clock-add-action{align-items:stretch;max-width:240px}
   .clock-limit-note{text-align:left}
 }
+
+/* v2.6 — compact holiday-source provenance inside each expanded calendar. */
+.holiday-provenance{margin:4px 10px 10px;line-height:1.45;font-size:12px;color:var(--muted);overflow-wrap:anywhere}
+
+/* TimeBridge v3.0 saved teams and explainable recommendations. */
+.team-quick-actions{margin-top:10px;margin-bottom:12px}
+.team-quick-actions>details{border:1px solid var(--border);background:var(--surface);border-radius:8px;padding:9px 12px}
+.team-quick-actions summary{font-size:13px;font-weight:700;min-height:34px;display:flex;align-items:center;gap:6px}
+.team-tools{display:flex;align-items:center;flex-wrap:wrap;gap:8px;margin-top:10px}
+.team-tools label{font-size:12px;color:var(--muted);flex:0 0 100%}
+.team-tools select,.team-tools input{min-height:40px;min-width:0;flex:1 1 180px;border:1px solid var(--border);border-radius:7px;padding:7px 9px;background:var(--surface);color:var(--text)}
+.team-tools .button{min-height:40px}
+.fit-summary{color:var(--muted);font-size:12px;font-weight:650;margin:8px 0 0;line-height:1.4}
+@media(max-width:420px){.team-tools{gap:6px}.team-tools .button{flex:1 1 auto}.team-tools select,.team-tools input{flex-basis:100%}}

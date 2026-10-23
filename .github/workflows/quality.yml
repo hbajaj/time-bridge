@@ -1,0 +1,39 @@
+name: TimeBridge quality gates
+on:
+  push:
+    branches: ["feature/**", "staging/**", "main"]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: timebridge-quality-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  static-and-unit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate syntax, security, budgets and unit suites
+        run: |
+          for f in *.mjs api/*.mjs lib/*.mjs; do node --check "$f"; done
+          npm run check
+  chromium-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install playwright==1.56.0
+      - run: python -m playwright install --with-deps chromium
+      - name: Isolated browser regression with mocked holiday responses
+        run: npm run test:browser
+  # v3.0 regression additions: saved teams, accessibility and scheduling modes.
+  # This workflow is intentionally verification-only. Neither staging nor
+  # production deploys automatically: a passing commit still needs approval.
