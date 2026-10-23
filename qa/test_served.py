@@ -69,7 +69,8 @@ class TestServed(unittest.TestCase):
  def test_holiday_provenance_and_navigation(self):
   page=self.start_page('America/Los_Angeles',1280)
   page.locator('#tab-holidays').click()
-  page.wait_for_function('document.querySelector("#holiday-status").textContent.includes("ready")',timeout=10000)
+  page.locator('details.holiday-group').first.wait_for(timeout=10000)
+  self.assertIn('available',page.locator('#holiday-status').inner_text())
   first=page.locator('details.holiday-group').first
   first.locator('summary').click()
   self.assertIn('synthetic-ci',first.locator('.holiday-provenance').inner_text())
