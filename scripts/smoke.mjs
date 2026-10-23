@@ -8,7 +8,7 @@ const fail=(label,message)=>{console.error('FAIL',label,message);issues++};
 try{
  const page=await fetch(root,{signal:AbortSignal.timeout(12000)});
  const html=await page.text();
- if(!page.ok||!html.includes('TimeBridge v2.6.0'))fail('home','wrong version or HTTP');else console.log('PASS home page 2.6.0');
+ if(!page.ok||!html.includes('TimeBridge v3.0.0'))fail('home','wrong version or HTTP');else console.log('PASS home page v3.0.0');
 }catch(e){fail('home',e.message)}
 for(const [country,year] of required){
  try{

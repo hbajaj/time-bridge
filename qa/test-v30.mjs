@@ -1,3 +1,4 @@
+import {readFileSync} from 'node:fs';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cleanParticipants,rankMeetingDay,scoreMeeting,DEFAULT_PARTICIPANTS} from '../planner-v25.mjs';
@@ -46,4 +47,10 @@ test('earliest selection is chronological and balanced selection is bounded',()=
  assert.ok(slots.length>0);assert.equal(slots[0].ms,Math.min(...slots.map(s=>s.ms)));
  const balanced=rankMeetingDay('2026-10-22',{participants:p,duration:60,after,preference:'fair'});
  assert.ok(balanced.length>0);assert.ok(balanced.every(x=>x.fit>=0&&x.fit<=100));
+});
+
+test('release smoke checks v3 version rather than a previous version',()=>{
+ const source=readFileSync(new URL('../scripts/smoke.mjs',import.meta.url),'utf8');
+ assert.match(source,/TimeBridge v3\.0\.0/);
+ assert.doesNotMatch(source,/TimeBridge v2\.6\.0/);
 });

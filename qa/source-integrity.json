@@ -135,9 +135,9 @@
     "bytes": 3669
   },
   "qa/test-v30.mjs": {
-    "blob": "14f7dc75bcc20acd7f21a24de7c12ca23acd7601",
-    "sha256": "a43e7420c5753a698003c521492e9e78523e1a4d9fa9df4ae29fee09c1ddf5bc",
-    "bytes": 3112
+    "blob": "452327ed41df41d4c8261caadf0c50c8c34f9cf0",
+    "sha256": "495b882473a903aba7a9d86069f9bc430882347c929fdf3fe7d866a1b8863421",
+    "bytes": 3412
   },
   "qa/test_a11y_v30.py": {
     "blob": "36ad2f8a13930b5c54e9465f5a8240a1fb0347ec",
@@ -180,9 +180,9 @@
     "bytes": 774
   },
   "scripts/smoke.mjs": {
-    "blob": "0311e1c4f84cdd345941a33127b89a34ef1d57fb",
-    "sha256": "97d14e87aa0ea88ac8246c62a8209df81f53cdf706042a643012a936ee1fe4c7",
-    "bytes": 1758
+    "blob": "9b3c98251ecbbd92cf952476bad80a2544d7a961",
+    "sha256": "648be1423bc737a04963936b49edfda93f0147a2125d0c97430eb13c4d7c89db",
+    "bytes": 1759
   },
   "scripts/verify-release.mjs": {
     "blob": "c5fc96f1eb6c0bd8e2a48ed80f8ee119b8dd6281",
