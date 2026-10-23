@@ -12,7 +12,7 @@
   "holidays.mjs": "2e0a3e630e97ae7e778312b58a45a349270e4c711de38dd9402e3c9c596f68fd",
   "icon.svg": "8e07b01b7297dfe93cb6af2d7cc6e38837da08963a78f36dd7e9e4f68592d507",
   "index.html": "20c31db8dc5d5ea90146203b0e0aa1efd7cd402ebc17e949ed93697b6f6369ce",
-  "lib/default-calendars.mjs": "9daa83129028926baf00e09beebfbae25a50b42436c27bfbc6727234d912367e",
+  "lib/default-calendars.mjs": "4ffd7c4f9e5f826de0ef0628a3e6b0d13e6e53e13f99c97f0f31c4cdb4b7150c",
   "lib/holiday-providers.mjs": "2cf439ff94c793d764a0b0391505d1a6e22ff9482e5df0ca8b3fd62e52526e2b",
   "lib/india-2026.mjs": "5d60b496e6e1534b05599bea270864caa364fa5a0711d4cdc19b19b20f53dc4a",
   "lib/saudi-2026.mjs": "4bb5e221352cfb87ab146f9c2a4440522b4861fc8be9a6d664624cd592e243c2",

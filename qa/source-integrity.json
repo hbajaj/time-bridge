@@ -65,9 +65,9 @@
     "bytes": 13930
   },
   "lib/default-calendars.mjs": {
-    "blob": "ea9c3bf76a478297451ce213c3f75efab13c2afa",
-    "sha256": "9daa83129028926baf00e09beebfbae25a50b42436c27bfbc6727234d912367e",
-    "bytes": 5666
+    "blob": "7da82bfddec4bc55edad0f41607da7aabad9592e",
+    "sha256": "4ffd7c4f9e5f826de0ef0628a3e6b0d13e6e53e13f99c97f0f31c4cdb4b7150c",
+    "bytes": 5647
   },
   "lib/holiday-providers.mjs": {
     "blob": "3053dd174727972dddd2d7d936597f587c2c2d7d",
