@@ -52,6 +52,14 @@ window.__qaFailureCode='';
 window.__qaDates={US:[['2026-11-26','Thanksgiving'],['2026-12-25','Christmas'],['2027-01-01','New Year']],NG:[['2026-12-25','Christmas']],IN:[['2026-10-20','Dussehra'],['2026-11-08','Diwali']],GB:[['2026-12-25','Christmas']],JP:[['2026-11-03','Culture Day']]};
 window.fetch=async (url)=>{
   const u=new URL(url,'https://fake.test');const country=u.searchParams.get('country'),year=u.searchParams.get('year');
+  if(u.pathname==='/api/cities'){
+    const name=(u.searchParams.get('name')||'').toLowerCase();
+    const city=name.startsWith('bandung')?{id:1650357,name:'Bandung',admin1:'West Java',country:'Indonesia',country_code:'ID',timezone:'Asia/Jakarta',feature_code:'PPLA',population:2400000}:
+      name.startsWith('cedar rapids')?{id:4850751,name:'Cedar Rapids',admin1:'Iowa',country:'United States',country_code:'US',timezone:'America/Chicago',feature_code:'PPL',population:130000}:
+      name.startsWith('tunis')?{id:2464470,name:'Tunis',admin1:'Tunis Governorate',country:'Tunisia',country_code:'TN',timezone:'Africa/Tunis',feature_code:'PPLC',population:600000}:null;
+    window.__qaCalls.push('city:'+name);
+    return {ok:true,status:200,json:async()=>({results:city?[{name:city.name,region:city.admin1,country:city.country_code,countryName:city.country,zone:city.timezone,population:city.population,id:city.id}]:[]})};
+  }
   window.__qaCalls.push(country+'-'+year);
   if(country===window.__qaFailureCode)return {ok:false,status:502,json:async()=>({error:'Simulated gateway outage'})};
   if(window.__qaSlow)return new Promise(resolve=>setTimeout(()=>resolve({ok:true,status:200,json:async()=>[]} ),400));
