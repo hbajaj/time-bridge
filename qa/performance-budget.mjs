@@ -3,7 +3,7 @@ import {statSync} from 'node:fs';
 import {fileURLToPath} from 'node:url';
 import {join,dirname} from 'node:path';
 const root=dirname(dirname(fileURLToPath(import.meta.url)));
-const js=['app.v2.mjs','time-core.mjs','planner-v25.mjs','holidays.mjs','tabs.mjs','visitor-time.mjs','custom-clocks.mjs','linked-clocks.mjs','country-map.mjs','teams-v3.mjs'];
+const js=['app.v2.mjs','time-core.mjs','planner-v25.mjs','holidays.mjs','tabs.mjs','visitor-time.mjs','custom-clocks.mjs','linked-clocks.mjs','clock-order.mjs','country-map.mjs','teams-v3.mjs'];
 const jsBytes=js.reduce((n,f)=>n+statSync(join(root,f)).size,0);
 const cssBytes=statSync(join(root,'styles.v2.css')).size;
 const htmlBytes=statSync(join(root,'index.html')).size;
