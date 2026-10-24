@@ -80,6 +80,8 @@ window.fetch=async (url)=>{
       TN:[{code:'11',name:'Tunis Governorate',cities:[{name:'Tunis',latitude:36.8065,longitude:10.1815}]}]
     };
     const countryCode=u.searchParams.get('country')||u.pathname.split('/').at(-1).replace('.json',''),regions=sets[countryCode]||[];
+    if(countryCode==='US')regions[1].cities.push(...Array.from({length:125},(_,i)=>({name:'Town '+String(i+1).padStart(3,'0'),latitude:33+i/10000,longitude:-118})));
+
     return {ok:true,status:200,json:async()=>({country:countryCode,name:{US:'United States',ID:'Indonesia',IN:'India',NG:'Nigeria',TN:'Tunisia'}[countryCode],regions,regionCount:regions.length,cityCount:regions.reduce((sum,r)=>sum+r.cities.length,0)})};
   }
   if(u.pathname==='/api/resolve-timezone'){
