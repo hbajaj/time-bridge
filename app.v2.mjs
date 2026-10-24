@@ -4,6 +4,7 @@ import { COUNTRY_NAMES, inferCountry } from './country-map.mjs';
 import { holidaysFor, holidayInfo, holidayConflicts, requiredHolidayYears, formatZoneDay } from './holidays.mjs';
 import { createVisitorClock } from './visitor-time.mjs';
 import { initTabs } from './tabs.mjs';
+import { mountHelpTour } from './help-tour.mjs';
 import { mountLinkedClocks } from './linked-clocks.mjs';
 import { mountClockOrder } from './clock-order.mjs';
 import { DEFAULT_PARTICIPANTS, PARTICIPANT_KEY, MAX_PARTICIPANTS, cleanParticipants, rankMeetingDay, localParts, mins, participantHolidayConflicts, meetingText, encodeParticipantGroup, decodeParticipantGroup } from './planner-v25.mjs';
@@ -421,5 +422,6 @@ window.addEventListener('storage',event=>{
   renderClockVisibility();renderParticipants();customClocks.render();refreshPlanning();
 });
 
-/* Switch one logical workspace at a time; legacy time/holiday behavior stays intact. */
-initTabs();
+/* Switch one logical workspace at a time; embedded help never alters meeting data. */
+const workspaceTabs=initTabs();
+mountHelpTour({tabs:workspaceTabs,storage:localStorage});
