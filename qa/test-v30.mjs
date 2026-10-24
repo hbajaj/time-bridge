@@ -1,4 +1,7 @@
 import {readFileSync} from 'node:fs';
+import {MAJOR_CITIES} from '../city-directory.mjs';
+import {searchClockZones} from '../custom-clocks.mjs';
+
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {cleanParticipants,rankMeetingDay,scoreMeeting,DEFAULT_PARTICIPANTS} from '../planner-v25.mjs';
@@ -53,4 +56,19 @@ test('release smoke checks v3 version rather than a previous version',()=>{
  const source=readFileSync(new URL('../scripts/smoke.mjs',import.meta.url),'utf8');
  assert.match(source,/TimeBridge v3\.0\.0/);
  assert.doesNotMatch(source,/TimeBridge v2\.6\.0/);
+});
+
+test('major city coverage includes US states, Indian states and union territories, Nigerian states, Canadian provinces, and Australian regions',()=>{
+ const sizes={US:51,IN:36,NG:37,CA:13,AU:8};
+ for(const [country,expected] of Object.entries(sizes)){
+  assert.equal(new Set(MAJOR_CITIES.filter(city=>city.country===country).map(city=>city.region)).size,expected);
+ }
+ for(const city of MAJOR_CITIES)assert.doesNotThrow(()=>new Intl.DateTimeFormat('en-US',{timeZone:city.zone}));
+});
+test('Cedar Rapids, Iowa resolves to Central Time and United States holidays',()=>{
+ const matches=searchClockZones('Cedar Rapids',[], 'America/New_York',20);
+ const cedar=matches.find(city=>city.name==='Cedar Rapids'&&city.region==='Iowa');
+ assert.ok(cedar);
+ assert.equal(cedar.zone,'America/Chicago');assert.equal(cedar.country,'US');
+ assert.ok(searchClockZones('Iowa',[], 'America/New_York',20).some(city=>city.name==='Cedar Rapids'));
 });
