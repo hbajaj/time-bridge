@@ -15,6 +15,57 @@ class T(unittest.TestCase):
   self.assertEqual(page.evaluate('window.__qaErrors'),[])
   return page
  def locs(self,p):return p.locator('.participant-item strong').all_text_contents()
+ def clock_order(self,p):
+  return p.evaluate("Array.from(document.querySelectorAll('#clocks > .clock-card')).filter(el=>!el.hidden).map(el=>el.dataset.clockZone || 'local')")
+
+ def test_reorder_fixed_clocks_local_first_and_saved_after_reload(self):
+  p=self.open('America/New_York')
+  self.assertEqual(self.clock_order(p),['local','Africa/Lagos','Asia/Kolkata'])
+  self.assertEqual(p.locator('#card-local .clock-order-controls').count(),0)
+  self.assertFalse(p.locator('#card-local').evaluate('(node)=>node.draggable'))
+  p.get_by_role('button',name='Move India up').click()
+  self.assertEqual(self.clock_order(p),['local','Asia/Kolkata','Africa/Lagos'])
+  self.assertTrue(p.get_by_role('button',name='Move India up').is_disabled())
+  self.assertTrue(p.get_by_role('button',name='Move Nigeria down').is_disabled())
+  saved=p.evaluate('window.__qaSaved')
+  q=self.open('America/New_York',saved=saved)
+  self.assertEqual(self.clock_order(q),['local','Asia/Kolkata','Africa/Lagos'])
+  self.assertEqual(self.locs(q),['Eastern US','Nigeria','India'])
+  self.assertEqual(q.evaluate('window.__qaErrors'),[])
+
+ def test_reorder_added_clocks_above_defaults_and_remove_persists(self):
+  p=self.open('America/New_York',390)
+  p.get_by_role('button',name='Move India up').click()
+  p.locator('#clock-add-toggle').click()
+  p.locator('#clock-search').fill('London')
+  p.get_by_role('button',name='Add London clock and meeting location').first.click()
+  self.assertEqual(self.clock_order(p),['local','Asia/Kolkata','Africa/Lagos','Europe/London'])
+  p.get_by_role('button',name='Move London up').click()
+  p.get_by_role('button',name='Move London up').click()
+  self.assertEqual(self.clock_order(p),['local','Europe/London','Asia/Kolkata','Africa/Lagos'])
+  self.assertLessEqual(p.evaluate('document.documentElement.scrollWidth'),390)
+  self.assertIn('London',self.locs(p))
+  p.get_by_role('button',name='Remove India clock and meeting location').click()
+  self.assertEqual(self.clock_order(p),['local','Europe/London','Africa/Lagos'])
+  saved=p.evaluate('window.__qaSaved')
+  q=self.open('America/New_York',saved=saved)
+  self.assertEqual(self.clock_order(q),['local','Europe/London','Africa/Lagos'])
+  self.assertEqual(q.evaluate('window.__qaErrors'),[])
+
+ def test_reorder_restore_defaults_and_detects_new_device_time_zone(self):
+  p=self.open('America/New_York')
+  p.get_by_role('button',name='Move India up').click()
+  p.locator('#clock-restore').click()
+  self.assertEqual(self.clock_order(p),['local','Africa/Lagos','Asia/Kolkata'])
+  self.assertIsNone(p.evaluate("localStorage.getItem('timebridge-clock-order-v1')"))
+  p.get_by_role('button',name='Move India up').click()
+  saved=p.evaluate('window.__qaSaved')
+  q=self.open('America/Los_Angeles',saved=saved)
+  self.assertEqual(self.clock_order(q)[0],'local')
+  self.assertEqual(self.clock_order(q)[1:3],['Asia/Kolkata','Africa/Lagos'])
+  self.assertIn('America/New_York',self.clock_order(q))
+  self.assertEqual(q.evaluate('window.__qaErrors'),[])
+
  def test_sync_default_removal_world_to_meetings(self):
   p=self.open()
   self.assertEqual(self.locs(p),['Eastern US','Nigeria','India'])
