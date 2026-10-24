@@ -214,3 +214,16 @@ body{font-family:Inter,'Segoe UI',system-ui,-apple-system,sans-serif;font-weight
 @media(forced-colors:active){.meeting-tile,.time-compare-table .time-recommended td{border:2px solid Highlight}.time-swatch{border:1px solid CanvasText}}
 
 @media(max-width:380px){.times.meeting-overview>div{display:block}.times.meeting-overview .meeting-location{grid-row:auto}.times.meeting-overview .meeting-date{grid-column:auto}}
+
+/* Worldwide location directory: controls remain readable on mobile and the list is paginated. */
+.geo-directory{border:1px solid var(--border);background:var(--surface-soft);border-radius:6px;padding:16px;margin-bottom:18px}
+.geo-directory h4{font-size:16px;margin:0 0 5px}
+.geo-directory .fineprint{margin:5px 0 13px}
+.geo-directory-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.geo-directory-fields .field:last-child{grid-column:1/-1}
+.geo-directory .field select,.geo-directory .field input{min-width:0;width:100%;background:var(--surface);border:1px solid var(--border);padding:9px 12px;border-radius:4px;min-height:44px}
+.geo-directory .field select:disabled,.geo-directory .field input:disabled{opacity:.65;cursor:not-allowed}
+.geo-city-results{max-height:350px;overflow-y:auto!important;grid-template-columns:repeat(2,minmax(0,1fr))}
+.geo-directory-divider{font-size:12px;font-weight:700;color:var(--muted);margin:17px 0 12px;letter-spacing:.4px}
+.geo-directory #geo-city-more{margin-top:11px;white-space:normal}
+@media(max-width:640px){.geo-directory-fields,.geo-city-results{grid-template-columns:1fr}.geo-directory{padding:12px}}
