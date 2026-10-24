@@ -5,6 +5,7 @@ import { holidaysFor, holidayInfo, holidayConflicts, requiredHolidayYears, forma
 import { createVisitorClock } from './visitor-time.mjs';
 import { initTabs } from './tabs.mjs';
 import { mountLinkedClocks } from './linked-clocks.mjs';
+import { mountClockOrder } from './clock-order.mjs';
 import { DEFAULT_PARTICIPANTS, PARTICIPANT_KEY, MAX_PARTICIPANTS, cleanParticipants, rankMeetingDay, localParts, mins, participantHolidayConflicts, meetingText, encodeParticipantGroup, decodeParticipantGroup } from './planner-v25.mjs';
 import {SAVED_TEAMS_KEY, parseSavedTeams, upsertSavedTeam, removeSavedTeam, findSavedTeam} from './teams-v3.mjs';
 const $ = id => document.getElementById(id);
@@ -49,6 +50,7 @@ function removeLocation(zone){
 }
 function restoreDefaults(){
   participants=DEFAULT_PARTICIPANTS.map(p=>({...p}));
+  clockOrder?.reset();
   syncLocations();
 }
 function renderClockVisibility(){
@@ -207,11 +209,15 @@ let theme='light';try{theme=localStorage.getItem('timebridge-theme')||(window.ma
 function showTheme(){document.documentElement.dataset.theme=theme;$('theme').textContent=theme==='dark'?'☀ Light':'☾ Dark';$('theme').setAttribute('aria-label',`Switch to ${theme==='dark'?'light':'dark'} mode`);document.querySelector('meta[name="theme-color"]').content=theme==='dark'?'#111315':'#f8f7f4'}
 showTheme();$('theme').addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';try{localStorage.setItem('timebridge-theme',theme)}catch{}showTheme()});
 let selected=null,selectedChoice=0,displayedSlots=[];
+let clockOrder=null;
 const customClocks=mountLinkedClocks({
   getInstant:()=>selected===null?Date.now():selected,deviceZone,
-  getParticipants:()=>participants, addLocation, removeLocation, maxLocations:MAX_PARTICIPANTS
+  getParticipants:()=>participants, addLocation, removeLocation, maxLocations:MAX_PARTICIPANTS,
+  onRendered:()=>clockOrder?.render()
 });
 renderClockVisibility();
+clockOrder=mountClockOrder({getParticipants:()=>participants,deviceZone,ZONES,canonicalZone:zone=>new Intl.DateTimeFormat('en-US',{timeZone:zone}).resolvedOptions().timeZone});
+clockOrder.render();
 function pickerFrom(ms){let p=parts(ms,$('base').value);$('day').value=`${p.year}-${p.month}-${p.day}`;$('time').value=`${p.hour}:${p.minute}`;updateRepeat()}
 function updateRepeat(){const day=$('day').value,time=$('time').value,zone=$('base').value;let options=resolveWall(day,time,zone);$('repeat-wrap').hidden=options.length!==2;if(options.length===2){$('repeat').value=String(Math.min(selectedChoice,1))}else{selectedChoice=0;$('repeat').value='0'}return options}
 function paintClocks(ms){for(const z of ZONE_KEYS){$('clock-'+z).textContent=formatTime(ms,z);$('date-'+z).textContent=formatDate(ms,z)}$('zone-et').textContent=shortOffset(ms,'et');if(visitorClock){const local=visitorClock.at(ms);$('clock-local').textContent=local.time;$('date-local').textContent=local.date;$('zone-local').textContent=local.zoneLabel}customClocks.paint(ms)}
