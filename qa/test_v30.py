@@ -97,4 +97,17 @@ class TestV30(unittest.TestCase):
   self.assertIn('America/Chicago',p.evaluate("localStorage.getItem('timebridge-participants-v25')") or '')
   self.assertEqual(p.evaluate('window.__qaErrors'),[])
 
+ def test_worldwide_city_lookup_outside_bundled_five_countries(self):
+  p=self.start('America/New_York',390)
+  p.locator('#tab-clocks').click()
+  p.locator('#clock-add-toggle').click()
+  p.locator('#clock-search').fill('Tunis')
+  p.get_by_role('button',name='Add Tunis, Tunis Governorate, Tunisia clock and meeting location').wait_for(timeout=5000)
+  p.get_by_role('button',name='Add Tunis, Tunis Governorate, Tunisia clock and meeting location').click()
+  p.locator('#tab-meetings').click()
+  self.assertIn('Tunis, Tunis Governorate',p.locator('#participant-list').inner_text())
+  locations=p.evaluate("JSON.parse(localStorage.getItem('timebridge-participants-v25'))")
+  self.assertTrue(any(x['country']=='TN' and x['zone']=='Africa/Tunis' for x in locations))
+  self.assertEqual(p.evaluate('window.__qaErrors'),[])
+
 if __name__=='__main__':unittest.main()
