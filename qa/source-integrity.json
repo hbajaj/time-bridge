@@ -110,9 +110,9 @@
     "bytes": 6099
   },
   "qa/browser_harness.py": {
-    "blob": "2bbe3b075433226c0b89f483fc588bab0add1560",
-    "sha256": "6e6636da7a0561532e594be964dcee948d8eee6eb6efad3f6a466cb7278cf5a6",
-    "bytes": 7412
+    "sha256": "a1ac134ff3c0099a3a016f3de1c6c43f4e014d72480a7e7e3fd3a1c4e818eb27",
+    "bytes": 7669,
+    "blob": "a42ebda7f05e084bf051b03a7b3067bdabaceddc"
   },
   "qa/performance-budget.mjs": {
     "blob": "0242fa200eb291c9fe458fa8c119e5f045920bf6",
@@ -150,9 +150,9 @@
     "bytes": 5701
   },
   "qa/test_v30.py": {
-    "blob": "983178b4c0c2128084561de06468249fe7416f81",
-    "sha256": "dd8e9016802b212c6004106793d76448b3e1022d40e6fa384a000b2aa0b307ce",
-    "bytes": 9252
+    "sha256": "64a401724c3fab501b21d5f019f5703715600f2c7bf7aa97adb9dc0a974b774f",
+    "bytes": 10439,
+    "blob": "f8367bac26452242f64ee1d83939068b7302642a"
   },
   "qa/test-default-calendars.mjs": {
     "blob": "8f7aee56a092e4912169c904cc8bbdbc2df8f4ba",
@@ -275,19 +275,19 @@
     "bytes": 1965
   },
   "global-directory-picker.mjs": {
-    "blob": "e3374c15dcf3ecaf0d65840feef2763e4905baeb",
-    "sha256": "9f8bd9e96d1c116b11a281ab1e48f995fc4499c68cb0285299be1f4ef8bcf60a",
-    "bytes": 6206
+    "sha256": "07b9487c2dcbb1c553e9eca20276d52f038ab77abecea1050af998eef41fb63c",
+    "bytes": 6210,
+    "blob": "1dccff704900bb05539f419cc97f535178c7988a"
   },
   "qa/test-world-directory.mjs": {
-    "blob": "9a41e55de41c4ed64cc44a733ecf86cde3b838c3",
-    "sha256": "fb058c118a9850f220a9e3c39a8ce3205a4640663fc9a449e804834b00bd54a6",
-    "bytes": 4090
+    "sha256": "55629aff13a10b3d332f740516ead3543c18e415000cd0a7614260256a5ec9c0",
+    "bytes": 5667,
+    "blob": "3b70743f2aa8b2759b29b6cd580bf40abdb5c031"
   },
   "docs/WORLD-DIRECTORY.md": {
-    "blob": "9bd311995b9ea1bc93d320b861325f1158c26fe0",
-    "sha256": "bbee6dc0fe9d14d79c470279c2c0d1d282df3f8c37dc44bdbe805c83283743a5",
-    "bytes": 2529
+    "sha256": "be00f310f7f77c4e4f4b03fd58054d59cdd62bbdafdc36e962a06ce8607bd126",
+    "bytes": 2716,
+    "blob": "24f61e4f531e28ff4322709fe85f6e9e50eb1ded"
   },
   "geo/regions/AD.json": {
     "blob": "ef3ae92193c02063c79496464283bded72776631",
