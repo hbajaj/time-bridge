@@ -60,9 +60,9 @@
     "bytes": 265
   },
   "index.html": {
-    "blob": "afb0e912ce0bd495a19b5345fdc58f5d33ffc357",
-    "sha256": "a7538f6ee1f13c7d14232a96dc964fff424e86cb39b9ce7fc586584951a5cd97",
-    "bytes": 13961
+    "blob": "1e5d106e1f50236edcc5de0986c68dfaa99d242e",
+    "sha256": "3f2ebb37726d25f263d576a4639a8b145e0e6cb6a3941f67a09ec8f64dd57346",
+    "bytes": 14081
   },
   "lib/default-calendars.mjs": {
     "blob": "7da82bfddec4bc55edad0f41607da7aabad9592e",
@@ -90,9 +90,9 @@
     "bytes": 1114
   },
   "linked-clocks.mjs": {
-    "blob": "469e7925a6ce9464419baee579177b532af11f81",
-    "sha256": "0fbab3b27087ba606256d15580986bb15a5b1ad305670e6a13e69df41e22123f",
-    "bytes": 6383
+    "blob": "a7bbd37cf0a98a96ff4bde7262f8c88473cddf79",
+    "sha256": "8024136c0aa755284152816003d173a783dd16159bc6969ab12839783a54c384",
+    "bytes": 8617
   },
   "manifest.webmanifest": {
     "blob": "8a8f2e442f952c2c65022d203702ad0553638c5e",
@@ -100,9 +100,9 @@
     "bytes": 343
   },
   "package.json": {
-    "blob": "be165685d18efc9bc882ea5dc1544c281e4dd228",
-    "sha256": "5267e73fcbba72a0bed7fee408881c06926c4ddd40750f890cd26f1230e200b0",
-    "bytes": 735
+    "blob": "05240c79c27585f660ddd3d1dcc2fd77df31fef5",
+    "sha256": "1039ccbf4da970397e583a6eb5db4a7bdd5381c3588e59a8e76be3fd07075b41",
+    "bytes": 761
   },
   "planner-v25.mjs": {
     "blob": "cf9d3f6aab067f319802c7527ca04bda3d7e0462",
@@ -110,9 +110,9 @@
     "bytes": 6099
   },
   "qa/browser_harness.py": {
-    "blob": "84fdf16258c59b763c0ca9338170a2c3d8e75444",
-    "sha256": "9d28629dbd58e4eeb9b111ae1da589947f740b07d74ba37d8b53c2c043001d57",
-    "bytes": 4431
+    "blob": "3b3d58d329359822bd6f0f39fd73f23263043bd5",
+    "sha256": "f6185eb7b3e32d66bc24a5fdd69ea18c278a042112e7d8ccfd266d8d93f5306e",
+    "bytes": 5357
   },
   "qa/performance-budget.mjs": {
     "blob": "0242fa200eb291c9fe458fa8c119e5f045920bf6",
@@ -150,9 +150,9 @@
     "bytes": 5701
   },
   "qa/test_v30.py": {
-    "blob": "5a82845afa219d3f27059b0fc4207cb214f12ac9",
-    "sha256": "8c2beb518bd1fda30b5c58fc5edaa451e44f2af5eb6961b97e1dbdf98a804c22",
-    "bytes": 5735
+    "blob": "159def950229c46caf4ec1585cbf6c9383c849f3",
+    "sha256": "4008ea5f6f6084b7e696302f03310096bd0fc00db12ee9ff58a132c52bacabc5",
+    "bytes": 6553
   },
   "qa/test-default-calendars.mjs": {
     "blob": "8f7aee56a092e4912169c904cc8bbdbc2df8f4ba",
@@ -233,5 +233,25 @@
     "blob": "3368aa0bf6ffef3b3d163eb22df7ab930b49c57a",
     "sha256": "4499a87f16f4277d42b70219716f0fc6d3ee4dd2deabf7f8ceb399d95c68dd95",
     "bytes": 13231
+  },
+  "lib/city-search.mjs": {
+    "blob": "d58b223718391d49286406fba46f96c0be79f6db",
+    "sha256": "dbba737c62caed4371a24f2a974b5a38d5839c40b754c8872f9da7ad1600f174",
+    "bytes": 2084
+  },
+  "api/cities.mjs": {
+    "blob": "2520adb5cd2e7f843b82d9bd069496e0699cf15b",
+    "sha256": "9cc150149a9a3e40106585b0ef9bd4ef555eb1c7e946659a5779044abe4411a0",
+    "bytes": 1913
+  },
+  "qa/test-global-cities.mjs": {
+    "blob": "a9a04851e5edd79eb6abdd0054278781dc1a9120",
+    "sha256": "09f578cdd33c146f6a67d86337933bef465d9b8892bbbd52a52b93aa59a03965",
+    "bytes": 3196
+  },
+  "docs/GLOBAL-CITY-SEARCH.md": {
+    "blob": "b99f073101f345293db9a52684a2a01f522bf25a",
+    "sha256": "9772f6cc9c377210f58d350f80096f5b8623243113b034464ffc7d4c2ef2d44f",
+    "bytes": 2718
   }
 }
