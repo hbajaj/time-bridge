@@ -259,3 +259,4 @@ body{font-family:Inter,'Segoe UI',system-ui,-apple-system,sans-serif;font-weight
 .tb-tour h2{font-size:21px;margin:7px 0}.tb-tour p{font-size:14px;margin:0 0 15px}
 .tb-tour-actions button{min-width:90px}.tb-tour-highlight{position:relative;outline:4px solid var(--focus)!important;outline-offset:3px;z-index:25;background:var(--surface)}
 @media(max-width:640px){.tb-help-feature-grid{grid-template-columns:1fr}.tb-help-paper{padding:16px;max-height:94dvh}.tb-help-top{align-items:flex-start}.header-actions .button{font-size:12px;padding:8px}.tb-tour{padding:14px}.tb-tour h2{font-size:18px}}
+@media(max-width:520px){.header{flex-wrap:wrap}.header-actions{margin-left:auto}}
