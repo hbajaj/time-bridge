@@ -4,6 +4,7 @@
  */
 import { identifyDeviceZone } from './time-core.mjs';
 import { COUNTRY_FROM_ZONE } from './country-map.mjs';
+import { MAJOR_CITIES } from './city-directory.mjs';
 
 export const CLOCK_LIMIT = 6;
 export const CLOCK_STORAGE_KEY = 'timebridge-extra-clocks-v1';
@@ -69,7 +70,7 @@ function choices() {
   try { zones = Intl.supportedValuesOf?.('timeZone') || []; } catch {}
   const listed = new Set([...zones, ...Object.keys(COUNTRY_FROM_ZONE), 'Etc/UTC']);
   const generic = [...listed].filter(safeCanonical).map(zone => ({name: zone.split('/').at(-1).replaceAll('_', ' '), zone, keywords: zone.replaceAll('_',' '), group:'Time zone'}));
-  cachedChoices = [...featured, ...generic];
+  cachedChoices = [...featured, ...MAJOR_CITIES, ...generic];
   return cachedChoices;
 }
 const searchText = s => String(s).normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[_/]+/g,' ').toLowerCase().trim();
@@ -78,13 +79,18 @@ export function searchClockZones(query, stored=[], deviceZone='', limit=8) {
   const found = [];
   const used = new Set();
   for (const [index, candidate] of choices().entries()) {
-    const key = zoneKey(candidate.zone);
-    if (!key || used.has(key) || clockUnavailable(candidate.zone, stored, deviceZone)) continue;
-    const name = searchText(candidate.name), timezone=searchText(candidate.zone), tags=searchText(candidate.keywords);
-    if (term && ![name,timezone,tags].some(s=>s.includes(term))) continue;
-    const score = !term ? (candidate.group==='City'?1000-index:0) : (name===term?100 : name.startsWith(term)?90 : timezone.startsWith(term)?80 : name.includes(term)?70 : tags.includes(term)?60 : 50)+(candidate.group==='City'?25:0);
+    const key = candidate.group==='Major city' ? `${candidate.country}/${candidate.region}/${candidate.name}` : zoneKey(candidate.zone);
+    const unavailable=clockUnavailable(candidate.zone,stored,deviceZone);
+    if (!key || used.has(key) || (unavailable && candidate.group!=='Major city')) continue;
+    const name = searchText(candidate.name), timezone=searchText(candidate.zone),
+      region=searchText(candidate.region||''),country=searchText(candidate.countryName||''),tags=searchText(candidate.keywords);
+    if (term && ![name,timezone,region,country,tags].some(s=>s.includes(term))) continue;
+    const score = !term ? (candidate.group==='City'?1000-index:0) :
+      (name===term?200 : name.startsWith(term)?180 : region===term?160 :
+       country===term?140 : name.includes(term)?120 : timezone.startsWith(term)?90 :
+       region.startsWith(term)?80 : tags.includes(term)?60 : 40)+(candidate.group==='Major city'?20:candidate.group==='City'?10:0);
     used.add(key);
-    found.push({...candidate, score});
+    found.push({...candidate, unavailable, score});
   }
   found.sort((a,b)=>b.score-a.score || a.name.localeCompare(b.name));
   return found.slice(0, Math.max(0, Math.min(Number(limit)||8, 20)));
