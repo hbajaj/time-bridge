@@ -70,7 +70,7 @@ window.fetch=async (url)=>{
     }
     return {ok:true,status:200,json:async()=>[...many,...known]};
   }
-  if(u.pathname==='/api/directory'){
+  if(u.pathname==='/api/directory'||u.pathname.startsWith('/geo/regions/')){
     const sets={
       US:[{code:'IA',name:'Iowa',cities:[{name:'Des Moines',latitude:41.58,longitude:-93.62},{name:'Cedar Rapids',latitude:41.9779,longitude:-91.6656}]},
           {code:'CA',name:'California',cities:[{name:'Los Angeles',latitude:34.052,longitude:-118.24}]}],
@@ -79,7 +79,7 @@ window.fetch=async (url)=>{
       NG:[{code:'LA',name:'Lagos',cities:[{name:'Ikeja',latitude:6.6059,longitude:3.3495}]}],
       TN:[{code:'11',name:'Tunis Governorate',cities:[{name:'Tunis',latitude:36.8065,longitude:10.1815}]}]
     };
-    const countryCode=u.searchParams.get('country'),regions=sets[countryCode]||[];
+    const countryCode=u.searchParams.get('country')||u.pathname.split('/').at(-1).replace('.json',''),regions=sets[countryCode]||[];
     return {ok:true,status:200,json:async()=>({country:countryCode,name:{US:'United States',ID:'Indonesia',IN:'India',NG:'Nigeria',TN:'Tunisia'}[countryCode],regions,regionCount:regions.length,cityCount:regions.reduce((sum,r)=>sum+r.cities.length,0)})};
   }
   if(u.pathname==='/api/resolve-timezone'){
