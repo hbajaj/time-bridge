@@ -62,8 +62,13 @@ window.fetch=async (url)=>{
     return {ok:true,status:200,json:async()=>({results:city?[{name:city.name,region:city.admin1,country:city.country_code,countryName:city.country,zone:city.timezone,population:city.population,id:city.id}]:[]})};
   }
   if(u.pathname==='/geo/countries.json'){
-    const many=Array.from({length:250},(_,i)=>({code:String.fromCharCode(65+Math.floor(i/26),65+i%26),name:'Country '+i}));
-    return {ok:true,status:200,json:async()=>[...many,{code:'US',name:'United States'},{code:'IN',name:'India'},{code:'NG',name:'Nigeria'},{code:'ID',name:'Indonesia'},{code:'TN',name:'Tunisia'}]};
+    const known=[{code:'US',name:'United States'},{code:'IN',name:'India'},{code:'NG',name:'Nigeria'},{code:'ID',name:'Indonesia'},{code:'TN',name:'Tunisia'}];
+    const used=new Set(known.map(c=>c.code)),many=[];
+    for(let i=0;many.length<245;i++){
+      const code=String.fromCharCode(65+Math.floor(i/26),65+i%26);
+      if(!used.has(code))many.push({code,name:'Country '+i});
+    }
+    return {ok:true,status:200,json:async()=>[...many,...known]};
   }
   if(u.pathname==='/api/directory'){
     const sets={
