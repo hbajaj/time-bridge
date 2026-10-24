@@ -237,3 +237,25 @@ body{font-family:Inter,'Segoe UI',system-ui,-apple-system,sans-serif;font-weight
 .clock-order-controls button:not(:disabled):hover{border-color:var(--focus)}
 .clock-dragging{opacity:.55;outline:2px dashed var(--focus)}
 @media(max-width:700px){.clock-order-controls{margin-top:6px;justify-content:flex-end}.clock-card:not(.local-clock){grid-template-areas:'meta value' 'meta zone' 'buttons buttons'}.clock-order-controls{grid-area:buttons}}
+
+/* In-app help: one-page guide + opt-in guided walkthrough. */
+.header-actions{display:flex;gap:7px;align-items:center}
+.tb-help-layer[hidden],.tb-tour[hidden]{display:none!important}
+.tb-help-layer{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:12px}
+.tb-help-backdrop{position:absolute;inset:0;background:rgba(14,14,14,.68)}
+.tb-help-paper{position:relative;width:min(760px,100%);max-height:min(92dvh,900px);overflow-y:auto;overscroll-behavior:contain;background:var(--surface);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:24px;box-shadow:0 20px 65px #0004}
+.tb-help-top,.tb-help-actions,.tb-tour-top,.tb-tour-actions{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.tb-help-top h2{font-size:clamp(23px,4vw,31px);line-height:1.2;letter-spacing:-.7px;margin:7px 0}
+.tb-help-top .eyebrow{margin:0}
+.tb-help-intro{font-size:15px;max-width:650px;margin:8px 0 20px}
+.tb-help-feature-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}
+.tb-help-feature-grid section{border:1px solid var(--border);border-radius:6px;padding:14px}
+.tb-help-feature-grid h3,.tb-help-how h3{font-size:15px;margin:0 0 6px}
+.tb-help-feature-grid p{font-size:13px;line-height:1.5;margin:0}
+.tb-help-how{padding:14px 0}.tb-help-how ol{margin:6px 0 0;padding-left:20px;font-size:13px}
+.tb-help-note,.tb-help-hint{font-size:12px;color:var(--muted)}
+.tb-help-actions{border-top:1px solid var(--border);padding-top:15px;flex-wrap:wrap}
+.tb-tour{position:fixed;z-index:110;bottom:max(12px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);width:min(470px,calc(100% - 24px));background:var(--surface);color:var(--text);border:2px solid var(--focus);border-radius:9px;padding:18px 20px;box-shadow:0 12px 50px #0005}
+.tb-tour h2{font-size:21px;margin:7px 0}.tb-tour p{font-size:14px;margin:0 0 15px}
+.tb-tour-actions button{min-width:90px}.tb-tour-highlight{position:relative;outline:4px solid var(--focus)!important;outline-offset:3px;z-index:25;background:var(--surface)}
+@media(max-width:640px){.tb-help-feature-grid{grid-template-columns:1fr}.tb-help-paper{padding:16px;max-height:94dvh}.tb-help-top{align-items:flex-start}.header-actions .button{font-size:12px;padding:8px}.tb-tour{padding:14px}.tb-tour h2{font-size:18px}}
