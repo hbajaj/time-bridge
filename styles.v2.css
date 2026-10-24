@@ -227,3 +227,13 @@ body{font-family:Inter,'Segoe UI',system-ui,-apple-system,sans-serif;font-weight
 .geo-directory-divider{font-size:12px;font-weight:700;color:var(--muted);margin:17px 0 12px;letter-spacing:.4px}
 .geo-directory #geo-city-more{margin-top:11px;white-space:normal}
 @media(max-width:640px){.geo-directory-fields,.geo-city-results{grid-template-columns:1fr}.geo-directory{padding:12px}}
+
+/* Accessible world-clock sorting. Local device clock is permanently first. */
+.clocks>.extra-clocks[hidden]{display:none!important}
+.clock-card:not(.local-clock){position:relative}
+.clock-order-controls{display:flex;align-items:center;justify-content:flex-end;gap:5px;margin-top:11px;grid-column:1/-1}
+.clock-order-controls button{font-size:18px;font-weight:700;border:1px solid var(--border);background:var(--surface-soft);color:var(--text);width:40px;height:40px;min-width:40px;border-radius:5px;cursor:pointer}
+.clock-order-controls button:disabled{opacity:.34;cursor:not-allowed}
+.clock-order-controls button:not(:disabled):hover{border-color:var(--focus)}
+.clock-dragging{opacity:.55;outline:2px dashed var(--focus)}
+@media(max-width:700px){.clock-order-controls{margin-top:6px;justify-content:flex-end}.clock-card:not(.local-clock){grid-template-areas:'meta value' 'meta zone' 'buttons buttons'}.clock-order-controls{grid-area:buttons}}
