@@ -12,6 +12,36 @@ export function mountLinkedClocks({getInstant,deviceZone,getParticipants,addLoca
     query=$('clock-search'),results=$('clock-results'),grid=$('extra-clocks'),
     count=$('extra-clock-count'),status=$('clock-add-status'),limitNote=$('clock-add-limit');
   let cards=[];const formatterCache=new Map();
+  let globalMatches=[],globalQuery='',globalStatus='',globalRevision=0,globalTimer=null,globalAbort=null;
+  function resetSearch(){
+    globalRevision++;if(globalTimer!==null)clearTimeout(globalTimer);globalTimer=null;
+    globalAbort?.abort();globalAbort=null;globalMatches=[];globalQuery='';globalStatus='';
+  }
+  function requestWorldwide(){
+    const name=query.value.trim(),revision=++globalRevision;
+    if(globalTimer!==null)clearTimeout(globalTimer);
+    globalAbort?.abort();globalAbort=null;globalMatches=[];globalQuery=name;
+    globalStatus=name.length>=2?'Searching worldwide…':'';
+    renderResults();
+    if(name.length<2)return;
+    globalTimer=setTimeout(async()=>{
+      const abort=new AbortController();globalAbort=abort;
+      try{
+        const response=await fetch('/api/cities?name='+encodeURIComponent(name),{signal:abort.signal});
+        if(!response.ok)throw Error('Global provider unavailable');
+        const payload=await response.json();
+        if(revision!==globalRevision||panel.hidden)return;
+        if(!payload||!Array.isArray(payload.results))throw Error('Invalid city search response');
+        globalMatches=payload.results.filter(city=>city&&typeof city.name==='string'&&
+          /^[A-Z]{2}$/.test(city.country||'')&&canonicalZone(city.zone))
+          .slice(0,40).map(city=>({...city,group:'Worldwide city'}));
+        globalStatus=globalMatches.length?'':'No additional worldwide matches. Try the city name followed by a full state or country name.';
+      }catch(error){
+        if(revision!==globalRevision||error?.name==='AbortError'||panel.hidden)return;
+        globalStatus='Worldwide search temporarily unavailable; built-in cities and time zones are still searchable.';
+      }finally{if(revision===globalRevision){globalAbort=null;renderResults()}}
+    },260);
+  }
   function paint(ms){for(const {fmt,time,date,abbr} of cards){const v=fmt(ms);time.textContent=v.time;date.textContent=v.date;abbr.textContent=v.abbreviation}}
   function render(){
     cards=[];grid.replaceChildren();
@@ -50,9 +80,11 @@ export function mountLinkedClocks({getInstant,deviceZone,getParticipants,addLoca
       .filter(choice=>choice.group==='Major city'||!stored.some(p=>p.zone===canonicalZone(choice.zone)))
       .map(({zone,name,region,country,countryName,group,unavailable})=>({zone,name,region,country:country||inferCountry(zone),countryName,group,unavailable}));
     const seen=new Set();const options=[];
-    for(const choice of [...defaults,...usual]){
+    const worldwide=globalQuery===query.value.trim()?globalMatches:[];
+    for(const choice of [...defaults,...worldwide,...usual]){
       const zone=canonicalZone(choice.zone);
-      const key=choice.group==='Major city'? `${choice.country}/${choice.region}/${choice.name}`:zone;
+      const key=(choice.group==='Major city'||choice.group==='Worldwide city') ?
+        `${choice.country}/${choice.region}/${choice.name}`:zone;
       if(!zone||seen.has(key))continue;
       seen.add(key);options.push({...choice,zone,unavailable:choice.unavailable||stored.some(p=>canonicalZone(p.zone)===zone)});
       if(options.length>=20)break;
@@ -76,11 +108,13 @@ export function mountLinkedClocks({getInstant,deviceZone,getParticipants,addLoca
         query.value='';setOpen(false);
       });li.append(button);results.append(li);
     }
-    if(!results.children.length){const li=document.createElement('li');li.className='clock-no-results';li.textContent='No matching available time zones.';results.append(li)}
+    if(globalStatus&&query.value.trim().length>=2){const li=document.createElement('li');li.className='clock-no-results';li.textContent=globalStatus;li.setAttribute('role','status');results.append(li);}
+    if(!results.children.length){const li=document.createElement('li');li.className='clock-no-results';li.textContent='No matching city or time zone. Try a city name followed by its full state or country name.';results.append(li)}
   }
-  function setOpen(open){if(toggle.disabled)open=false;panel.hidden=!open;toggle.setAttribute('aria-expanded',String(open));if(open){renderResults();query.focus()}else if(!toggle.disabled)toggle.focus()}
+  function setOpen(open){if(toggle.disabled)open=false;panel.hidden=!open;toggle.setAttribute('aria-expanded',String(open));
+    if(open){renderResults();query.focus()}else{resetSearch();if(!toggle.disabled)toggle.focus()}}
   toggle.addEventListener('click',()=>setOpen(panel.hidden));
-  query.addEventListener('input',renderResults);
+  query.addEventListener('input',requestWorldwide);
   query.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();setOpen(false)}});
   render();return {paint,render};
 }
