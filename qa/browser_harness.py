@@ -61,6 +61,28 @@ window.fetch=async (url)=>{
     window.__qaCalls.push('city:'+name);
     return {ok:true,status:200,json:async()=>({results:city?[{name:city.name,region:city.admin1,country:city.country_code,countryName:city.country,zone:city.timezone,population:city.population,id:city.id}]:[]})};
   }
+  if(u.pathname==='/geo/countries.json'){
+    const many=Array.from({length:250},(_,i)=>({code:String.fromCharCode(65+Math.floor(i/26),65+i%26),name:'Country '+i}));
+    return {ok:true,status:200,json:async()=>[...many,{code:'US',name:'United States'},{code:'IN',name:'India'},{code:'NG',name:'Nigeria'},{code:'ID',name:'Indonesia'},{code:'TN',name:'Tunisia'}]};
+  }
+  if(u.pathname==='/api/directory'){
+    const sets={
+      US:[{code:'IA',name:'Iowa',cities:[{name:'Des Moines',latitude:41.58,longitude:-93.62},{name:'Cedar Rapids',latitude:41.9779,longitude:-91.6656}]},
+          {code:'CA',name:'California',cities:[{name:'Los Angeles',latitude:34.052,longitude:-118.24}]}],
+      ID:[{code:'JB',name:'West Java',cities:[{name:'Bandung',latitude:-6.9175,longitude:107.6191}]}],
+      IN:[{code:'KA',name:'Karnataka',cities:[{name:'Bengaluru',latitude:12.9716,longitude:77.5946}]}],
+      NG:[{code:'LA',name:'Lagos',cities:[{name:'Ikeja',latitude:6.6059,longitude:3.3495}]}],
+      TN:[{code:'11',name:'Tunis Governorate',cities:[{name:'Tunis',latitude:36.8065,longitude:10.1815}]}]
+    };
+    const countryCode=u.searchParams.get('country'),regions=sets[countryCode]||[];
+    return {ok:true,status:200,json:async()=>({country:countryCode,name:{US:'United States',ID:'Indonesia',IN:'India',NG:'Nigeria',TN:'Tunisia'}[countryCode],regions,regionCount:regions.length,cityCount:regions.reduce((sum,r)=>sum+r.cities.length,0)})};
+  }
+  if(u.pathname==='/api/resolve-timezone'){
+    if(window.__qaTimezoneFailure)return {ok:false,status:503,json:async()=>({error:'Unavailable'})};
+    const lat=Number(u.searchParams.get('lat'));
+    const zone=lat>40&&lat<43?'America/Chicago':lat>30&&lat<37?'America/Los_Angeles':lat<-1?'Asia/Jakarta':lat>11?'Asia/Kolkata':lat>8?'Africa/Tunis':'Africa/Lagos';
+    return {ok:true,status:200,json:async()=>({zone})};
+  }
   window.__qaCalls.push(country+'-'+year);
   if(country===window.__qaFailureCode)return {ok:false,status:502,json:async()=>({error:'Simulated gateway outage'})};
   if(window.__qaSlow)return new Promise(resolve=>setTimeout(()=>resolve({ok:true,status:200,json:async()=>[]} ),400));
