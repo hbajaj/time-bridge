@@ -83,4 +83,18 @@ class TestV30(unittest.TestCase):
    self.assertIn('Within hours',p.locator('#best').inner_text())
    self.assertTrue(p.get_by_role('button',name='Add to calendar').first.is_visible())
    self.assertLessEqual(p.evaluate('document.documentElement.scrollWidth'),width)
+ def test_cedar_rapids_iowa_city_picker_updates_meeting_locations(self):
+  p=self.start('America/New_York',390)
+  p.locator('#tab-clocks').click()
+  p.locator('#clock-add-toggle').click()
+  p.locator('#clock-search').fill('Iowa')
+  self.assertIn('Cedar Rapids, Iowa',p.locator('#clock-results').inner_text())
+  p.locator('#clock-search').fill('Cedar Rapids')
+  p.get_by_role('button',name='Add Cedar Rapids, Iowa, United States clock and meeting location').click()
+  self.assertIn('Cedar Rapids',p.locator('#extra-clocks').inner_text())
+  p.locator('#tab-meetings').click()
+  self.assertIn('Cedar Rapids',p.locator('#participant-list').inner_text())
+  self.assertIn('America/Chicago',p.evaluate("localStorage.getItem('timebridge-participants-v25')") or '')
+  self.assertEqual(p.evaluate('window.__qaErrors'),[])
+
 if __name__=='__main__':unittest.main()
