@@ -29,6 +29,19 @@
     <div class="clock-add-action"><button id="clock-add-toggle" class="button button-quiet" type="button" aria-controls="clock-add-panel" aria-expanded="false" aria-describedby="clock-add-limit">+ Add Clock</button><p id="clock-add-limit" class="clock-limit-note" role="status" hidden>Maximum 8 meeting locations reached. Remove one to add another.</p></div>
   </div>
   <div id="clock-add-panel" class="clock-add-panel" hidden>
+    <section class="geo-directory" id="geo-directory-controls" aria-label="Browse world locations">
+      <h4>Browse worldwide locations</h4>
+      <p class="fineprint">250 countries and territories · full state/province and city directory · select a city to add a clock and meeting location.</p>
+      <div class="geo-directory-fields">
+        <div class="field"><label for="geo-country">Country</label><select id="geo-country"><option value="">Loading countries…</option></select></div>
+        <div class="field"><label for="geo-region">State / province / region</label><select id="geo-region" disabled><option value="">Choose country first</option></select></div>
+        <div class="field"><label for="geo-city-query">Filter cities in selected region</label><input id="geo-city-query" type="search" disabled placeholder="Type city name, or scroll the full list…" autocomplete="off"></div>
+      </div>
+      <p id="geo-directory-status" class="fineprint" role="status" aria-live="polite">Choose a country to browse its regions and cities.</p>
+      <ul id="geo-city-results" class="clock-results geo-city-results" aria-label="Cities in selected state or province"></ul>
+      <button type="button" class="button button-quiet" id="geo-city-more" hidden>Show more cities</button>
+    </section>
+    <div class="geo-directory-divider">Or search by city / IANA time zone</div>
     <label for="clock-search">Find a city or time zone</label>
     <input id="clock-search" type="search" inputmode="search" autocomplete="off" placeholder="Search cities worldwide: Bandung, Cedar Rapids, Lagos…" aria-controls="clock-results" aria-describedby="clock-search-hint">
     <p id="clock-search-hint" class="fineprint">Search a city worldwide, optionally followed by its full state/province or country (e.g., Bandung, West Java). Locations sharing one time zone cannot be added twice. Worldwide results: Open-Meteo / GeoNames (CC BY 4.0).</p>
