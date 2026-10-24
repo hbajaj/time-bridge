@@ -1,0 +1,39 @@
+name: Import complete world city directory
+on:
+  push:
+    branches:
+      - feature/worldwide-country-state-city-directory
+    paths:
+      - scripts/import-world-directory.py
+      - .github/workflows/import-world-directory.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: timebridge-world-data-import
+  cancel-in-progress: false
+jobs:
+  import:
+    if: github.ref == 'refs/heads/feature/worldwide-country-state-city-directory'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Fetch full pinned 250-country region and city snapshot
+        run: python scripts/import-world-directory.py
+      - name: Commit reproducible geographic records and release hashes
+        run: |
+          git config user.name 'timebridge-geo-import[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add geo/regions/ geo/catalog-stats.json qa/release-manifest.json qa/source-integrity.json
+          if git diff --cached --quiet; then
+            echo 'No changes to geographic data snapshot.'
+            exit 0
+          fi
+          git commit -m 'data(world): import full pinned worldwide region and city catalog'
+          git push origin HEAD:feature/worldwide-country-state-city-directory
