@@ -114,7 +114,7 @@ class TestV30(unittest.TestCase):
   p=self.start('America/New_York',390)
   p.locator('#tab-clocks').click()
   p.locator('#clock-add-toggle').click()
-  p.locator('#geo-country option[value="US"]').wait_for(timeout=10000)
+  p.locator('#geo-country option[value="US"]').wait_for(state='attached',timeout=10000)
   p.locator('#geo-country').select_option('US')
   p.locator('#geo-region option').filter(has_text='Iowa').wait_for(timeout=10000)
   p.locator('#geo-region').select_option(label='Iowa (2)')
@@ -129,7 +129,7 @@ class TestV30(unittest.TestCase):
  def test_country_state_city_selection_outside_original_countries(self):
   p=self.start('America/New_York',390)
   p.locator('#tab-clocks').click();p.locator('#clock-add-toggle').click()
-  p.locator('#geo-country option[value="ID"]').wait_for(timeout=10000)
+  p.locator('#geo-country option[value="ID"]').wait_for(state='attached',timeout=10000)
   p.locator('#geo-country').select_option('ID')
   p.locator('#geo-region option').filter(has_text='West Java').wait_for(timeout=10000)
   p.locator('#geo-region').select_option(label='West Java (1)')
@@ -142,7 +142,7 @@ class TestV30(unittest.TestCase):
  def test_country_directory_fails_closed_when_timezone_cannot_be_verified(self):
   p=self.start('America/New_York',390)
   p.locator('#tab-clocks').click();p.locator('#clock-add-toggle').click()
-  p.locator('#geo-country option[value="ID"]').wait_for(timeout=10000)
+  p.locator('#geo-country option[value="ID"]').wait_for(state='attached',timeout=10000)
   p.locator('#geo-country').select_option('ID')
   p.locator('#geo-region option').filter(has_text='West Java').wait_for(timeout=10000)
   p.locator('#geo-region').select_option(label='West Java (1)')
