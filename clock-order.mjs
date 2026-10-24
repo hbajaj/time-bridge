@@ -112,5 +112,6 @@ export function mountClockOrder({getParticipants,deviceZone,ZONES,canonicalZone,
     extra.hidden=true;
     local.draggable=false;
   }
-  return {render,getOrder:()=>current.slice()};
+  function reset(){saved=[];current=[];try{storage.removeItem(CLOCK_ORDER_STORAGE_KEY)}catch{}}
+  return {render,reset,getOrder:()=>current.slice()};
 }
