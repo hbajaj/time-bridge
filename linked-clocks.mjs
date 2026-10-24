@@ -46,13 +46,16 @@ export function mountLinkedClocks({getInstant,deviceZone,getParticipants,addLoca
     const stored=getParticipants();const lower=query.value.trim().toLowerCase();
     const defaults=DEFAULT_CHOICES.filter(d=>!stored.some(p=>canonicalZone(p.zone)===canonicalZone(d.zone)))
       .filter(d=>!lower||d.name.toLowerCase().includes(lower)||d.zone.toLowerCase().includes(lower));
-    const usual=searchClockZones(query.value,[],deviceZone,18)
-      .filter(choice=>!stored.some(p=>p.zone===canonicalZone(choice.zone)))
-      .map(({zone,name})=>({zone,name,country:inferCountry(zone)}));
+    const usual=searchClockZones(query.value,[],deviceZone,20)
+      .filter(choice=>choice.group==='Major city'||!stored.some(p=>p.zone===canonicalZone(choice.zone)))
+      .map(({zone,name,region,country,countryName,group,unavailable})=>({zone,name,region,country:country||inferCountry(zone),countryName,group,unavailable}));
     const seen=new Set();const options=[];
     for(const choice of [...defaults,...usual]){
-      const zone=canonicalZone(choice.zone);if(!zone||seen.has(zone))continue;
-      seen.add(zone);options.push({...choice,zone});if(options.length>=10)break;
+      const zone=canonicalZone(choice.zone);
+      const key=choice.group==='Major city'? `${choice.country}/${choice.region}/${choice.name}`:zone;
+      if(!zone||seen.has(key))continue;
+      seen.add(key);options.push({...choice,zone,unavailable:choice.unavailable||stored.some(p=>canonicalZone(p.zone)===zone)});
+      if(options.length>=20)break;
     }
     return options;
   }
@@ -61,7 +64,10 @@ export function mountLinkedClocks({getInstant,deviceZone,getParticipants,addLoca
     if(getParticipants().length>=maxLocations){const li=document.createElement('li');li.className='clock-no-results';li.textContent=`Maximum ${maxLocations} meeting locations reached. Remove one to add another.`;results.append(li);return}
     for(const choice of resultsList()){
       const li=document.createElement('li'),button=document.createElement('button');button.type='button';button.className='clock-result';
-      button.textContent=`${choice.name} · ${choice.zone}`;button.setAttribute('aria-label',`Add ${choice.name} clock and meeting location`);
+      const cityLabel=choice.region?`${choice.name}, ${choice.region}, ${choice.countryName||choice.country}`:choice.name;
+      button.textContent=`${cityLabel} · ${choice.zone}${choice.unavailable?' · Time zone already shown':''}`;
+      button.setAttribute('aria-label',`Add ${cityLabel} clock and meeting location`);
+      if(choice.unavailable){button.disabled=true;button.title='This time zone is already represented by an existing meeting location';}
       button.addEventListener('click',()=>{
         if(!choice.country){status.textContent=`Choose ${choice.name} in Meetings to confirm its holiday country first.`;return}
         const message=addLocation(choice.zone,choice.name,choice.country);
