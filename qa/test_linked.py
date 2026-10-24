@@ -16,7 +16,8 @@ class T(unittest.TestCase):
   return page
  def locs(self,p):return p.locator('.participant-item strong').all_text_contents()
  def clock_order(self,p):
-  return p.evaluate("Array.from(document.querySelectorAll('#clocks > .clock-card')).filter(el=>!el.hidden).map(el=>el.dataset.clockZone || 'local')")
+  zones=p.evaluate("Array.from(document.querySelectorAll('#clocks > .clock-card')).filter(el=>!el.hidden).map(el=>el.dataset.clockZone || 'local')")
+  return ['Asia/Kolkata' if zone=='Asia/Calcutta' else zone for zone in zones]
 
  def test_reorder_fixed_clocks_local_first_and_saved_after_reload(self):
   p=self.open('America/New_York')
