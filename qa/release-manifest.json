@@ -307,5 +307,7 @@
   "geo/regions/ZA.json": "c82bb3509a8737514c4ab3308a1b860dee4b0f2622409c266a4711d458730a28",
   "geo/regions/ZM.json": "21899f93edc0b5a52c8ace66a369b58f8efe94c72123fc9c69fa624c08895bbc",
   "geo/regions/ZW.json": "5ac4b32c61d997f24f173f2c1f68f12f74ee8a878ee29075158d12fc41505670",
-  "geo/catalog-stats.json": "55a73debbce28da20ea350d9baea449880e88eab6cbade66531b8efd62402cfb"
+  "geo/catalog-stats.json": "55a73debbce28da20ea350d9baea449880e88eab6cbade66531b8efd62402cfb",
+  "scripts/import-world-directory.py": "cdf92b63e3b0832bc433fbc0d537eef04ad5b367a925158fb6d6b3d21c012bde",
+  ".github/workflows/import-world-directory.yml": "ed9d304c55ab4c4aab0bfd6c5ee3e3ccb011d437e471ca595252cd1d3fd9b56e"
 }
