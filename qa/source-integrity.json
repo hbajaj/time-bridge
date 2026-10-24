@@ -288,5 +288,1260 @@
     "blob": "9bd311995b9ea1bc93d320b861325f1158c26fe0",
     "sha256": "bbee6dc0fe9d14d79c470279c2c0d1d282df3f8c37dc44bdbe805c83283743a5",
     "bytes": 2529
+  },
+  "geo/regions/AD.json": {
+    "blob": "ef3ae92193c02063c79496464283bded72776631",
+    "sha256": "0ec008defd3e4af527507dd5e5265e278c691589f7fb1dafcc501c2f8ac883e9",
+    "bytes": 1093
+  },
+  "geo/regions/AE.json": {
+    "blob": "9b33f26e09a6aabcaafd414bcdf9e77a299c18bb",
+    "sha256": "0651f9eb74cb3095f7c0194da9943e10d6d00ba10f45e9298a32d680d146e3fe",
+    "bytes": 2331
+  },
+  "geo/regions/AF.json": {
+    "blob": "aed793e6fd505684de02f14bce4ff3239695647c",
+    "sha256": "bc61cde90d92c5e24878bcf01e384c4fe7d27edeb01093715a6a48726f75861c",
+    "bytes": 7797
+  },
+  "geo/regions/AG.json": {
+    "blob": "9e75bb48292c0334122ed0dc8b49ed892d5258e5",
+    "sha256": "8e6dd4784266241f78afef6c6e0b32e08610644153091dd94385a0e5b2db3522",
+    "bytes": 1076
+  },
+  "geo/regions/AI.json": {
+    "blob": "ade769ea6c500c6019a7733fffdefdc971a3f3af",
+    "sha256": "84c4dc139d32e9c85869ce01152f259547e2f6674482442a2a2599b8471754ed",
+    "bytes": 796
+  },
+  "geo/regions/AL.json": {
+    "blob": "e17e7a33a90b02d0a4e0080cbfe65045ee81f83a",
+    "sha256": "3bea0af90b723b384922b6c23faca8a7341cc856a3d4e5e3a7acd3fda8d2bc7d",
+    "bytes": 9731
+  },
+  "geo/regions/AM.json": {
+    "blob": "61c0cf8519dcc2f38c5995297aef7194a362fac1",
+    "sha256": "fcce0d96bb32e7f1c3b7b016763ec51a4ab729b2dc28896ba9d3640d68adfde8",
+    "bytes": 19391
+  },
+  "geo/regions/AO.json": {
+    "blob": "8dee4c6685f5120ef92f4cc9381de7eb95b2b2c1",
+    "sha256": "22d54bca542724909b5fff1a4c8d74cdd42df22030a61e7447bb235e6cf58642",
+    "bytes": 5216
+  },
+  "geo/regions/AQ.json": {
+    "blob": "d847cd6f42fca22902debfbc8e8e5aebe757480d",
+    "sha256": "a62d426f5a4205c2397089edb9bf72168a2dfdbd1d1d109d6c7c789f32e7e1a4",
+    "bytes": 140
+  },
+  "geo/regions/AR.json": {
+    "blob": "0b4d8e2d89e29d8bec2c999395ea2aa18947a1cc",
+    "sha256": "d0f1966e96e16d16dfe29f588a92116bfb048b3cdaabe788b7b4de45cfb30013",
+    "bytes": 79869
+  },
+  "geo/regions/AS.json": {
+    "blob": "85a7abd31e02f4bd582f44182feb12cbc113a50a",
+    "sha256": "aceaabfe84d21e1e0f5b312af96c0120a970f3132b1375e3a1298ddff0fdc958",
+    "bytes": 1287
+  },
+  "geo/regions/AT.json": {
+    "blob": "c2ec936e606c49738d2e9d40a34e52aba149e67a",
+    "sha256": "c00ffaef32095e37fbcc5f211bd31214315cee950c80f62e617327bebbe6b8a2",
+    "bytes": 152645
+  },
+  "geo/regions/AU.json": {
+    "blob": "123d38151cbb34af743fac0cc4d7436e50576f6a",
+    "sha256": "abf6879c091793459b9da6dd1dd3f68ba1f1c3e199eb449c58fe252bbea5dc6a",
+    "bytes": 268069
+  },
+  "geo/regions/AW.json": {
+    "blob": "bcb76b3df93185e31b56748c7269416793c83f1a",
+    "sha256": "18303d49a86bf739267823a3036ff7a3540f42c12d491823ca76f61b42ace717",
+    "bytes": 1322
+  },
+  "geo/regions/AX.json": {
+    "blob": "7950a44a8bd9736a1eb8bca3eb4f3e4832fd87fb",
+    "sha256": "56dd2aff8f2a1fae3b04cd33efefe3ea0689b88fe6f3cbbac3e131f89496d693",
+    "bytes": 1541
+  },
+  "geo/regions/AZ.json": {
+    "blob": "1858eed7859657c241c3d613da62f038361bac98",
+    "sha256": "0471f19eeccf0e37fb8a7a97875c4d543ee4fccd4102304bb2c6d7ee4b0e6d25",
+    "bytes": 14526
+  },
+  "geo/regions/BA.json": {
+    "blob": "d8dd689497c32cfe18687b5081a115acb05ba0af",
+    "sha256": "85bdf78975f5e3b96064158aae6586b10267e29cd529a0f6eb37b4a96bcf85fc",
+    "bytes": 14587
+  },
+  "geo/regions/BB.json": {
+    "blob": "3e866100a9b75553c8deadc39a67483b2cddf460",
+    "sha256": "6e1e9150a9d98c9dac133a5c17441ceb60cb7402a4a04f5b59cfafca1bae9fc4",
+    "bytes": 1093
+  },
+  "geo/regions/BD.json": {
+    "blob": "ba5d4f87b773c071a6e521555af8ac1f0211816b",
+    "sha256": "e7a79d12215b5de9fbc9297cbe376121f95150e1557a081d7fb3fa2f4dbc424a",
+    "bytes": 7370
+  },
+  "geo/regions/BE.json": {
+    "blob": "0b861236b67dfb587ef500c508e42bdf278a99d0",
+    "sha256": "f140e36cc46400054f23c2adbb8d810433e08e5bcd24bf9a176cca17214da190",
+    "bytes": 33910
+  },
+  "geo/regions/BF.json": {
+    "blob": "f377b9c5d46469c145d7b7346b0594b570c04f6b",
+    "sha256": "c648ce38228ae32d79c1ac77d10e39a529ece3a533a0ad7c553eccffbb27a5f3",
+    "bytes": 8578
+  },
+  "geo/regions/BG.json": {
+    "blob": "32c801e936a8740242a619a031b6c7735c9fc729",
+    "sha256": "2cb549fc7d97eda84b638309b31c9e5e2f58d86f2cb9661ed369570f99d58281",
+    "bytes": 33403
+  },
+  "geo/regions/BH.json": {
+    "blob": "fedf6561cd4a89f9857d0fff5cdfb9eff3bce0de",
+    "sha256": "26ac687325cf7eb4fed2be9f0e37346d0528fe3b69e60d61a21796deffd4124c",
+    "bytes": 878
+  },
+  "geo/regions/BI.json": {
+    "blob": "5db8eebd344c0645f89509e2482eeac793d896a3",
+    "sha256": "7f73b7ebc7d4d77c4742d8d1d930d07315dec6b9f51bdb4604d4374484ae5c72",
+    "bytes": 1895
+  },
+  "geo/regions/BJ.json": {
+    "blob": "c38dff85ea24ea3ce09b6421d0ae3d27382dc23a",
+    "sha256": "e225024fa01179aa0763524dabf285d777cb69d3c448be841e70ed346696be70",
+    "bytes": 2763
+  },
+  "geo/regions/BL.json": {
+    "blob": "313d8e2344ce505fac0f12528fa8afdf60662ca8",
+    "sha256": "59fb8102c73ec5ba78c648743069686b7b46f6620bdff0101ab7a07891bbbf8c",
+    "bytes": 265
+  },
+  "geo/regions/BM.json": {
+    "blob": "d46785c305283c2fcaae9ab0a88123b9bedfdaab",
+    "sha256": "b07c18714b56b4fbd73149e7ba8834359e2a76a4879b452771a5f9fb16ff3492",
+    "bytes": 1068
+  },
+  "geo/regions/BN.json": {
+    "blob": "11ad7b99051308b56cd4094ffde22bd74a0ee898",
+    "sha256": "13fc00dc9772995538ccf6267cbaae83f1fea1967b7c8138a7d3786147561c43",
+    "bytes": 859
+  },
+  "geo/regions/BO.json": {
+    "blob": "e28db546995f76c5a34f4f91228a16004c52d1de",
+    "sha256": "1868d815da05be97e89be18710d87c9b6aee673d59bba4b86a15f1dfac173a47",
+    "bytes": 15734
+  },
+  "geo/regions/BQ.json": {
+    "blob": "e5b00e89c18f5641b2f69b1a841c4d308589e526",
+    "sha256": "01530c17fa34725cea859366edd62556e2ab6f7d783fcaea5eadb0b0c72a5ba0",
+    "bytes": 827
+  },
+  "geo/regions/BR.json": {
+    "blob": "3f10c7da35bd8484227098858b19be04b0b25ae1",
+    "sha256": "e09b8d83e8eee3903596758b064271f47838a8bb174df340e603f229bdacc389",
+    "bytes": 376058
+  },
+  "geo/regions/BS.json": {
+    "blob": "115e14631d8f5c2af337312d574d07cdd4ce980a",
+    "sha256": "d790f1b59751431be3f3f27cd8f5f21f51a54d120a0f9cd8e0b5d151a0edb9e7",
+    "bytes": 3011
+  },
+  "geo/regions/BT.json": {
+    "blob": "c70ffdaa50a98952f150b952b25b5812f5c78fb6",
+    "sha256": "e8902c4655e3009545a5893b4f93f0ef8202c514ee175b391bdb49d5a19d3ba2",
+    "bytes": 4345
+  },
+  "geo/regions/BV.json": {
+    "blob": "647bc7bf9eddc1847d865d1b88bee6b6f15d6598",
+    "sha256": "d31f8c3d649e7595127535c5b1a7e5a484109738543f28745e973abe6cac2354",
+    "bytes": 143
+  },
+  "geo/regions/BW.json": {
+    "blob": "5dde48f900d158aee82f4ea7f2a39d76ff80ce46",
+    "sha256": "82a4badfe97cd1122c5648a154fc055c3fe8411e0bdbb096fe98cf191d9088df",
+    "bytes": 5383
+  },
+  "geo/regions/BY.json": {
+    "blob": "14d7dca2f8dd757c18c5cf9f3fde234c2caf7d93",
+    "sha256": "dad6c5acc0c0d071cf1b90b129a1928a5b5f58bcbb3e9441466be90698919e81",
+    "bytes": 20708
+  },
+  "geo/regions/BZ.json": {
+    "blob": "4f24e2df3953f4f6f5dda3c41e3ac4ea4203f633",
+    "sha256": "e68fa01cef3187716f0809fcfb3f5cf3e73affd719fda4b51ccadda3b926f74a",
+    "bytes": 1217
+  },
+  "geo/regions/CA.json": {
+    "blob": "60d43be186aa2c4cb02ebef462bac20149ccdbd9",
+    "sha256": "f6d5641bf655fc30531444cf9c8c87982f09afe96ac6c8fc5cc46029b72655ba",
+    "bytes": 70580
+  },
+  "geo/regions/CC.json": {
+    "blob": "e5baa3e15fef8acd95c539f6a7990f5592ea69cc",
+    "sha256": "5e7902affb65ec36e6a1b3d83ff980b1eecadc91d7bb282a752105252b613263",
+    "bytes": 153
+  },
+  "geo/regions/CD.json": {
+    "blob": "adf5ac25a9edae04ebb6c6fb930cb9f4fa608c13",
+    "sha256": "33959277299a4e8619ab49979bf544e563e0cc389905089befacb0a717fe0e41",
+    "bytes": 5269
+  },
+  "geo/regions/CF.json": {
+    "blob": "9a3ad33109ae234fcaf2fedb6639ad299bd8599b",
+    "sha256": "cecfe9b32214e38fc543c367c6c437e5421b1293c1558b42239d3f083294e07f",
+    "bytes": 3381
+  },
+  "geo/regions/CG.json": {
+    "blob": "c0017c7e0b1fed74373c2205dee8be9764030036",
+    "sha256": "d1f86f5d4f813fdc9e27c9a1a71dda4440aeef8bc5e9ee4b257e50d115255355",
+    "bytes": 1669
+  },
+  "geo/regions/CH.json": {
+    "blob": "abf54afea5a8edafa13a8367e3c15aaa278055c9",
+    "sha256": "d119dcc1e4f70c2e7ff4a8a095abcaee83ee61a3c1b65be6f6e109a07b40752c",
+    "bytes": 96854
+  },
+  "geo/regions/CI.json": {
+    "blob": "06bb97368147cbd78ad7ab31527732ca6a9e872a",
+    "sha256": "67b410036ad77127b8720322c6181fe5ad3f606c73efad0c5dc7e0ee075132ae",
+    "bytes": 6413
+  },
+  "geo/regions/CK.json": {
+    "blob": "5c1f325e819355197367560f82e0c19c50698db5",
+    "sha256": "876b500551d5702def4696bef62edbda18b231adb995acd88b7128e992ee63f7",
+    "bytes": 142
+  },
+  "geo/regions/CL.json": {
+    "blob": "b9f7b54ad1c99af0538cbbb881e2cd0b55a41cb5",
+    "sha256": "6d3bf317314d9a3274efa6b596e771842837973bce1f3bfdeb137627591e1875",
+    "bytes": 20298
+  },
+  "geo/regions/CM.json": {
+    "blob": "408c136dfb1846109e1dca63852a7f4a03d6c737",
+    "sha256": "2216406c1988e636250a0ca74fd365978758285acd1371a9f003119a666c8ac8",
+    "bytes": 8548
+  },
+  "geo/regions/CN.json": {
+    "blob": "c9bc4cb010ecdec92317f5d685c98bfd7572c032",
+    "sha256": "dd4e96da13ce4526b44896549c028cdff779afad2ad8bbcc72bf7a336088a080",
+    "bytes": 264666
+  },
+  "geo/regions/CO.json": {
+    "blob": "34f3b1211441bbdcc0eeeba33d9a9dcf1199a785",
+    "sha256": "e5cb731721b71cad048ddb4889b84af8d67dbf6410ebd77ac2f26b3487b2eb4d",
+    "bytes": 71535
+  },
+  "geo/regions/CR.json": {
+    "blob": "b0a5f6d395e674da60a4d7fc9572f239a4b0a181",
+    "sha256": "8848f5e29f227ab6f0b768a15bc7719bffdde100938e1c63d18fa1b3143e77e1",
+    "bytes": 10069
+  },
+  "geo/regions/CU.json": {
+    "blob": "4b510b2ce3dae80d1dcc5fcb24f2f222190770e7",
+    "sha256": "2daa7a5bb11b2e844d582f965e4d10a6e5ca8ee8d952fba79da7b520578a75f9",
+    "bytes": 13230
+  },
+  "geo/regions/CV.json": {
+    "blob": "e95fa076292622ed819f4ca36228c8fac56d1e0e",
+    "sha256": "a285aa848a942b5d78d78196da98c709b7d7780c786461eaa87d20197e06c594",
+    "bytes": 3066
+  },
+  "geo/regions/CW.json": {
+    "blob": "2bd7d736e7f32c6638eab7fb02138ceed10549ba",
+    "sha256": "d16ef463a23331feb62d2bcb019ef3a3a0345891d2bd63212542ee393fe0a2c6",
+    "bytes": 138
+  },
+  "geo/regions/CX.json": {
+    "blob": "ce579891ccdef0fe9a9063e7c57acf2464cd01e9",
+    "sha256": "28f2cce4792b1b0bd01d9acbb11e2a1b357123eb5d772318edf5b40ce90eaafa",
+    "bytes": 146
+  },
+  "geo/regions/CY.json": {
+    "blob": "ef571d18b1b62c341094b6f686395bdc33be3f02",
+    "sha256": "52719bfa83bf64338e0541490e50e8637a00ba6a5e18702b26a2d7fb5ab56761",
+    "bytes": 6352
+  },
+  "geo/regions/CZ.json": {
+    "blob": "85240e2a1c04bb8ff4867aef421ea662a8dfe2c4",
+    "sha256": "667ccfbcade956d5c105c54b264bbf636acf6ae416797ab242eb13ef69172a08",
+    "bytes": 90369
+  },
+  "geo/regions/DE.json": {
+    "blob": "3e0b88f22e393a060266ab4688b0757f1d42ee75",
+    "sha256": "9b368990bcf925848994dd1a3c33497b07da45d712f966a7a23e85858c22b672",
+    "bytes": 439677
+  },
+  "geo/regions/DJ.json": {
+    "blob": "f3a1456ae26680765c44ec4c6f2bd4622d6281db",
+    "sha256": "4ef7890eef5c47d27f77ebd72a006075875ed8ef4eeec6a301f84a938da460ad",
+    "bytes": 1123
+  },
+  "geo/regions/DK.json": {
+    "blob": "6fa2a09e1ca05fa91e84b867a9fd227863f22f89",
+    "sha256": "37b5374db90c201739353972bbcdc91ddc709bcdbdfa035d8b9428beabbfd3bd",
+    "bytes": 27100
+  },
+  "geo/regions/DM.json": {
+    "blob": "a58783d60d918f88deab6399b4241d9a07555c77",
+    "sha256": "ad5d1535c04714e3f9b690b7648180b80edf77a81a13b0091e6024bd74213fe5",
+    "bytes": 1667
+  },
+  "geo/regions/DO.json": {
+    "blob": "dad6a25a07b022892e7315176c9c59b3c7c0de03",
+    "sha256": "4f46fec67dc4203139e8d194f86d1af8bfe355ec7366d66d9ccca20b6f283582",
+    "bytes": 15478
+  },
+  "geo/regions/DZ.json": {
+    "blob": "70d45b22276500b085d9e5c0064e85ac5fd3a414",
+    "sha256": "6fef5cb9cda7e84e9787703deef39c6d07d1d931a5ef37f9430d8395006fe9a6",
+    "bytes": 20793
+  },
+  "geo/regions/EC.json": {
+    "blob": "1d6ffdd8d2c26c114faed67e3d6e39cf4b41a9e0",
+    "sha256": "75501739cb9abf107618a664ac1c131b93f17d6c27cbf51a2e87b4a4b9c961ee",
+    "bytes": 8413
+  },
+  "geo/regions/EE.json": {
+    "blob": "b1db2975059f8270f53a8c138a474c38725035f5",
+    "sha256": "c0ebb74941a711cb1ec6f46a140bcaca7e7e020536252131bb4e916132d50827",
+    "bytes": 14140
+  },
+  "geo/regions/EG.json": {
+    "blob": "eb0a0b3c5915b0dec35f99b1ac8ef69b7421aeab",
+    "sha256": "c30932c44e464066a713cfdad258a3ea09efc8f1a89c844781c6d3b2adbfc4bc",
+    "bytes": 11577
+  },
+  "geo/regions/EH.json": {
+    "blob": "755993484f71dad4ebd24278accaba1040c4cd66",
+    "sha256": "a07f50285a8eca8bb81623f13f7e2cdd0a2c098d1b523ee23961b08fb16ce8d0",
+    "bytes": 144
+  },
+  "geo/regions/ER.json": {
+    "blob": "5228d62499468d6ae0a0109b48cb5048f49dc6a6",
+    "sha256": "dc8f0a45c06266e2afc6798694ff394f9dfe79116352f69b5c5ba3354187d757",
+    "bytes": 1060
+  },
+  "geo/regions/ES.json": {
+    "blob": "bc1894ca1197fd3fc207fe8fc9049430f2092b8c",
+    "sha256": "c886d01f87419196163c54443aab28c474e9e7818fe51575d39914b0d7436cd9",
+    "bytes": 557913
+  },
+  "geo/regions/ET.json": {
+    "blob": "d7bb8dadbcfa5cdcd09e37bb640d1e35ca110c29",
+    "sha256": "a194cd568a722002a10746335811d06bd42a49b08a85dd8ed4b06c8c89d27d00",
+    "bytes": 9316
+  },
+  "geo/regions/FI.json": {
+    "blob": "8201193fd2aaf4f6e83a5e5ac6ed6655cd133e83",
+    "sha256": "7129eb748d0e8cd3458b31a8389e222042b9e85d8cb7387384f9208dc63395d2",
+    "bytes": 27303
+  },
+  "geo/regions/FJ.json": {
+    "blob": "42043abe6c55d1bd13c071f75443c5b29c43ad2a",
+    "sha256": "7a4e72bba0d73178cec60ef711b477a3ad8799f1ecc60e8a5f22060b69ed2a10",
+    "bytes": 2134
+  },
+  "geo/regions/FK.json": {
+    "blob": "924071d55fb558790ab8ea91a2c7ef1198a71e5e",
+    "sha256": "7dd1f81cd14056f8d522fd0e10668e50c2c80143ad5c21ee3e35fc8fff0cfa45",
+    "bytes": 146
+  },
+  "geo/regions/FM.json": {
+    "blob": "5b2bc0b6a5edd5c90addff862ee62f109df07298",
+    "sha256": "834e21900c38a32a911932dcdf2e0c451f4de3be5cb87992de5aaba1ba519bae",
+    "bytes": 4935
+  },
+  "geo/regions/FO.json": {
+    "blob": "7689588df544b3c5740a7d59f1ddc2e3ff535343",
+    "sha256": "bd0272e5c7a43de8954b4a45cd6d6aea3d022d011a843e1216bd4d3c8fd04810",
+    "bytes": 2000
+  },
+  "geo/regions/FR.json": {
+    "blob": "0057f6c4087b4cf0e8a7a1dc80519d0b99e00547",
+    "sha256": "c0c2ceb184051fe176bc763fd4fc965bfb88235a376522e4580ee7661770598d",
+    "bytes": 685505
+  },
+  "geo/regions/GA.json": {
+    "blob": "e760dfeb7c88a5626d54db23b8bad049b89291e5",
+    "sha256": "8ce8a0bbc3a2b55df29f6c73e463a262e673bd5dbda710ce8f3f84542f15b1b9",
+    "bytes": 2207
+  },
+  "geo/regions/GB.json": {
+    "blob": "97b4b0f5446e91e3bf4eca7805ecdf3e16874d6f",
+    "sha256": "4d0a59f96a76abab3d03d1cd66c129fc046638820d826578f2992570d8e75adb",
+    "bytes": 250896
+  },
+  "geo/regions/GD.json": {
+    "blob": "266cedec2e6d6f4075c6fdf04851b6b34b6426ff",
+    "sha256": "23cf0e9e68a6f59ee964f0664852708ee3df3132ca809a5f836346ee356e393c",
+    "bytes": 909
+  },
+  "geo/regions/GE.json": {
+    "blob": "473a5f431c4d1062756dee89bae574e4f270c403",
+    "sha256": "e40a433ea5e92636ffc08583377cfa87712cf26ea9c448b00842a5727faafb99",
+    "bytes": 7789
+  },
+  "geo/regions/GF.json": {
+    "blob": "159b2b7556c312010d6fc86d2b39bca6a403980b",
+    "sha256": "faccf1fcaf3e195364d440e379f77aca6a0e96d6545a5e9c05f9c638171387f7",
+    "bytes": 1678
+  },
+  "geo/regions/GG.json": {
+    "blob": "33b8d1cce1ed7abd45d4dd26845eebdc5bba593a",
+    "sha256": "e2b3f8823cb8d60448fb1d070eb30598ddf9ec7a9ab4a865971b2c36d6f390dd",
+    "bytes": 1013
+  },
+  "geo/regions/GH.json": {
+    "blob": "d4553f79c9f5fb8ce700852fbbaf0af4945e09d4",
+    "sha256": "d53d131e9f2ea7885fc468947c8e532572648fa7661232ab5b55841694ea379c",
+    "bytes": 8335
+  },
+  "geo/regions/GI.json": {
+    "blob": "55faecdfe7e05df2f5ca39f1f259b9eed2127e09",
+    "sha256": "fd60289194b4dca907b3a276bedd1fe1f47182862f13aeb777c56796911254de",
+    "bytes": 139
+  },
+  "geo/regions/GL.json": {
+    "blob": "02f17c97fbae094c5ca0b0551e017ac243bf065e",
+    "sha256": "3573017f97b059e5f8bc877b2e24e00fa8a53a612788e2f748fce68adbc09d69",
+    "bytes": 1562
+  },
+  "geo/regions/GM.json": {
+    "blob": "2297461d0eab91b235edab381bc994c62f6c2a60",
+    "sha256": "0e54bd57eead011e4a80b68fae9eb1d02b62872e98be2ff5d6177eb0b99963d2",
+    "bytes": 6756
+  },
+  "geo/regions/GN.json": {
+    "blob": "2422990088ba5f38bb53768073faae918e958e5b",
+    "sha256": "b47d3e19fa3e13e48c2ef8f310d1eb42a99f5269a5ee84da8523f48b59d9bcc7",
+    "bytes": 5258
+  },
+  "geo/regions/GP.json": {
+    "blob": "b5bd2f4104148d367e23265856067eedb1c90697",
+    "sha256": "e22092a5c093f45915c435e66d24560c69f6dbac0fd8bae51822644a149daea9",
+    "bytes": 2466
+  },
+  "geo/regions/GQ.json": {
+    "blob": "b4b9b4a3515a2abc3ff93369f0a684ad83ed3c4e",
+    "sha256": "2dacba3ea7811ba64e05cac3c7f8e6986c6bbb69d8d83e9dd0001ec41c394c68",
+    "bytes": 2124
+  },
+  "geo/regions/GR.json": {
+    "blob": "8dbefb6120f6c49bb679a3c8da05468d402dd17f",
+    "sha256": "ff1e16464889ce45402ac4f25ba5da5afb261b5d2d87132bb374d23c4d135af9",
+    "bytes": 69892
+  },
+  "geo/regions/GS.json": {
+    "blob": "367fa63785b64f0c3e4e44e143c1700cbca9e241",
+    "sha256": "78fdd624d5cf240fff655c85cec244e3c4c4df108c34f5ab878a269df67778f5",
+    "bytes": 143
+  },
+  "geo/regions/GT.json": {
+    "blob": "f0eba702cb3bb721bf75772604010fbf6737d996",
+    "sha256": "80fd743e85fae57e6eda86e5bcbb3955e0449769be288e082493e9884c41ee2e",
+    "bytes": 27451
+  },
+  "geo/regions/GU.json": {
+    "blob": "82c399ed1175f321753ffce643a966460d4a37f6",
+    "sha256": "cc4031904c06534108d8abe5081ee5983a10147f5cca045f979b6ee7da9daef9",
+    "bytes": 2739
+  },
+  "geo/regions/GW.json": {
+    "blob": "a6f7f5d49427c2025659e0efe9f17246f58bf6c4",
+    "sha256": "4461ee63a05978e6d7b9eafcbafdaf4d6560d9e08093852abb73be4d1e0c96b6",
+    "bytes": 1538
+  },
+  "geo/regions/GY.json": {
+    "blob": "848cd388109be2872d24b6568f2c8b936df212f0",
+    "sha256": "09783d2b943d5650dd53401f26df083cf264e5e5189944c58076a2c371b353f5",
+    "bytes": 1543
+  },
+  "geo/regions/HK.json": {
+    "blob": "1d5dc7589191a94c656bff37fb70bee00292386e",
+    "sha256": "1ecc62ef3be759cfbc8fa1c471a6e3fcebd339ed12158fba994ec0fb945bafad",
+    "bytes": 2572
+  },
+  "geo/regions/HM.json": {
+    "blob": "50c2d76572e0fa46ddd768039a59323e008f4fde",
+    "sha256": "40066a9f2e15f5cdf52d19f3afae0b821296516fc025ea0cf40af54651ea4d50",
+    "bytes": 163
+  },
+  "geo/regions/HN.json": {
+    "blob": "b80ad89c3005b198b78301f265936e754780b700",
+    "sha256": "ee1f2d7583a7e3659f7ecdd6cfdec7a7e3a7b0453bd9b0a82540218d087b2085",
+    "bytes": 35274
+  },
+  "geo/regions/HR.json": {
+    "blob": "5d64cc2a3a0a194a0a2162f4ba1fb3a5f9c53c41",
+    "sha256": "ee4b03c620f85b717caf4c1021019e32f57bc42893767db48f787e9bd4970f05",
+    "bytes": 41982
+  },
+  "geo/regions/HT.json": {
+    "blob": "074949a7aaa24f03e009bdc64f12e5dbd85de93b",
+    "sha256": "b18100c54ee85ecb7ae17a10b041557c0ddd2f77798493b1c157dcd90962984a",
+    "bytes": 8749
+  },
+  "geo/regions/HU.json": {
+    "blob": "0eb7770b491d3fe870e4a7739c92bbcd0ef4b79b",
+    "sha256": "35120b05818cde1d7481b434af409dd39de256868b0178fa35495b09a6d495c2",
+    "bytes": 70417
+  },
+  "geo/regions/ID.json": {
+    "blob": "b51f3f4f532f8ac86b6be7b5ef78b29721b18156",
+    "sha256": "09738deedcb5a57b322c9db811b192aa46fd3b47e29c306a0b646221b5e0b1c7",
+    "bytes": 52227
+  },
+  "geo/regions/IE.json": {
+    "blob": "80aedcc56d90aa98c9f206ab9655686af4271061",
+    "sha256": "41bfe9b6d7cceaf4fe95e1807e4d3a215faa2aec4156e13c1e41cbb0120c0ebc",
+    "bytes": 24025
+  },
+  "geo/regions/IL.json": {
+    "blob": "ce7e6f79de7b3e9f2beffa68bbf061ab2f58af5e",
+    "sha256": "fbc52ae169d8ab62399642eef3169f20642935b7e67103a9f0fd5f41dcd0f0bb",
+    "bytes": 9755
+  },
+  "geo/regions/IM.json": {
+    "blob": "4373f84e9719adf75edaf1af32804b3bc18168f8",
+    "sha256": "6654e46befd7af25aa75c24818f18f2b88d38038944d25e263d1d4fd09debbf0",
+    "bytes": 1400
+  },
+  "geo/regions/IN.json": {
+    "blob": "8c7fa594a5fc217b1558d479610832aaa899e625",
+    "sha256": "2b01bf6cb38fb32c6ab5d538f8af739a4a06c5883e53c3c45634dd3918999651",
+    "bytes": 255897
+  },
+  "geo/regions/IO.json": {
+    "blob": "71478895b76019c9419d217c281f0ebc98dd1ea7",
+    "sha256": "0922e65dc21d6a297fa627240f5182862acb549958d53ef2c256351cd5e337ab",
+    "bytes": 160
+  },
+  "geo/regions/IQ.json": {
+    "blob": "b478d3a41d1152818cf394f96544876a59edd34a",
+    "sha256": "adb664e0990cfd1a0054f7de65457cb9ccbbe05975368bf09bf43ab4e9dbed95",
+    "bytes": 9586
+  },
+  "geo/regions/IR.json": {
+    "blob": "7f7b5f2183eb071342fa552e0fe6118ebd960d2b",
+    "sha256": "968ffc143005215644a1063c50bf7fd7e5355183dbf8a5538fa0e4a7bd1458f9",
+    "bytes": 119675
+  },
+  "geo/regions/IS.json": {
+    "blob": "5e1acfb864a4d1ab3d60767704798f747bb73599",
+    "sha256": "8cdaf9c85b7876d78242017e2a65cbe28e5123ec5bcce4faf6f51c5e7916d3e9",
+    "bytes": 8633
+  },
+  "geo/regions/IT.json": {
+    "blob": "5943a19a7511b3c881df4cf4c9d99f7a3044a7f7",
+    "sha256": "bb3936dbab61b80d390ca2d1ed2bb2e4e330419eddbbd8136c491fe1e930b41b",
+    "bytes": 631047
+  },
+  "geo/regions/JE.json": {
+    "blob": "579326eaf5f5491a252ba5419edb34aab9637978",
+    "sha256": "8f84dfa5b1b7d0bfd0df534bd49f70fc4eda905b15c70cc49f30faf8826c19cb",
+    "bytes": 4719
+  },
+  "geo/regions/JM.json": {
+    "blob": "787a30831b7dc1f7408e6ad8d1e4f6b8e33c9b64",
+    "sha256": "6be579acc8a46adeb951c89c4cc6513d710af7a83bdbe4d1acb6778f4ae4e795",
+    "bytes": 54488
+  },
+  "geo/regions/JO.json": {
+    "blob": "6eda4d5f3f2f11fc0bfb113a264b7bffbe298d9f",
+    "sha256": "30fd4d5eded59459f39aa4b7d8cb9badfc83912eb980e867fe32d6be40bb237c",
+    "bytes": 5701
+  },
+  "geo/regions/JP.json": {
+    "blob": "acc2f9e0fa31c44229888ca9820b6857aab1af60",
+    "sha256": "cd872506c7434eec7d5b7733077437d8a7e760a803a150a004fcd5480b081117",
+    "bytes": 106008
+  },
+  "geo/regions/KE.json": {
+    "blob": "6454ffdc41d2aeb8919b3cf3a0a2c501d46b8a20",
+    "sha256": "4608a4883e57409b3659c1065b456cb2b8369d52138bd00f514a5eedee7d6eeb",
+    "bytes": 10563
+  },
+  "geo/regions/KG.json": {
+    "blob": "b71b36ed1601d5a1768cd4f08eee94a6593818bb",
+    "sha256": "890ac9410b5b21c7177e2f4769d075a5886d54c4c76aea770d98c643b958a20f",
+    "bytes": 3738
+  },
+  "geo/regions/KH.json": {
+    "blob": "3152407b4974cdb4acb570d037e2555c21662e63",
+    "sha256": "ff33f4469c7017b994cde82d21e173bf363757dd19d46e335efec22a20515a31",
+    "bytes": 8380
+  },
+  "geo/regions/KI.json": {
+    "blob": "a3db61632926a6baee081c46fe1e86e640187ca9",
+    "sha256": "653c7615a28b31b6aebde342b7a45802e0b9e199e1fb71d6b2fdb693a31d5489",
+    "bytes": 2596
+  },
+  "geo/regions/KM.json": {
+    "blob": "60219549b299f52ab8eb27c489bebf70fe14fa60",
+    "sha256": "b2613f9d20dfe2a481bff2fe6d10807c2d003c7164e8ce3891f9dcf81c3ee89e",
+    "bytes": 5677
+  },
+  "geo/regions/KN.json": {
+    "blob": "0fd7ceff8c7da509308d6845d75b9eae314c9a72",
+    "sha256": "2d6cab74d46871112bfb83094a89a4359d1ef4c848e19810fec6097933923eab",
+    "bytes": 1868
+  },
+  "geo/regions/KP.json": {
+    "blob": "0c1c46a73a4c5413dad7e92e88148f586f831d22",
+    "sha256": "d8e3db86a13e6a38b917e7f4efdab44b74a4c17724936d789ec5851558decbdf",
+    "bytes": 5789
+  },
+  "geo/regions/KR.json": {
+    "blob": "909435e65d7c2292af42bdd4205f3f7bec29797e",
+    "sha256": "5816103daf5e059caed600ae170a0d72796e46401c680d9bc07c71efa9fbb846",
+    "bytes": 20130
+  },
+  "geo/regions/KW.json": {
+    "blob": "adcdc7e6a517c55100895093dbdb6305f35bc79b",
+    "sha256": "44ebf8273a31d5475a48aee0feb87f9040321255e3fab72d8bd573c4d5dc38ab",
+    "bytes": 2013
+  },
+  "geo/regions/KY.json": {
+    "blob": "b43b23d5007afd5fb0e83b2d4d051526ffd15991",
+    "sha256": "11a9424818a835f9c25265d6b398d74c54824f982863a3fe8db8d9fb026ecdf9",
+    "bytes": 761
+  },
+  "geo/regions/KZ.json": {
+    "blob": "6a882016e349e47a6517b9a9d94eae8483d7ab53",
+    "sha256": "7e70c9e87f21aab45413cd2ce0673a31e2611cff3bd1fe00401f12dc7adfd7a3",
+    "bytes": 16785
+  },
+  "geo/regions/LA.json": {
+    "blob": "80c4f66f4983f5fca078f3d37b37dd95400d9e70",
+    "sha256": "5452e5048c5e7971b724e9476a54c52f1850e75213fee7832f66b39774862e8b",
+    "bytes": 5969
+  },
+  "geo/regions/LB.json": {
+    "blob": "348811dd8b0a7aec14516a43fc2ed240f3b6cd28",
+    "sha256": "aa22e2df55ad6ff7c9b3e58615a4421358dde11c5327c3086167c36a42078848",
+    "bytes": 2111
+  },
+  "geo/regions/LC.json": {
+    "blob": "530c6f2d6abc8b73f2180332d22faca492dc363c",
+    "sha256": "b665356a7962e4e43e5036755ca8efb71b0158dd2392debc2aa2b9ff0d2c0ac0",
+    "bytes": 32088
+  },
+  "geo/regions/LI.json": {
+    "blob": "6bbd7394d91730e9bfa4b60e656c3115605bccad",
+    "sha256": "748b2c3f5dae4ce55578bed438645cf3bf1238ad17279a9e071dc89531de0afc",
+    "bytes": 1261
+  },
+  "geo/regions/LK.json": {
+    "blob": "8cee37c25959041c69bd6a8e93c011cd1735b275",
+    "sha256": "5a7a268063f3245cbf99c188165d01f21288e69510fd67bd8467ec9d261904b1",
+    "bytes": 10881
+  },
+  "geo/regions/LR.json": {
+    "blob": "5069048a569fc8e06771d434114f492e823720f9",
+    "sha256": "ce97d023eb9c76a56f299775885e276b97cc5c9154c2a4d6c7830300206f46be",
+    "bytes": 1878
+  },
+  "geo/regions/LS.json": {
+    "blob": "dc9c0d83b142c5dee0f3eb25e655e850df5e977d",
+    "sha256": "98fce49e61894e3d8903fc9927c85e504ad2507ab3952afdcbe0cdbdb07880b6",
+    "bytes": 1323
+  },
+  "geo/regions/LT.json": {
+    "blob": "062ab6a0dea5366444b571e01a4dd8a15d4725f8",
+    "sha256": "60f96b63a2c3436d1c81f557dbdaf571ca5ec70b6c6f2ddc1b8bf1cadbf2edc1",
+    "bytes": 11197
+  },
+  "geo/regions/LU.json": {
+    "blob": "9af6b325f532a8cf48a250cfa24342dce961b1e4",
+    "sha256": "3380147f79c546d5690c3be07488df604522f0dbd284207f31cc691a2df82b6e",
+    "bytes": 9403
+  },
+  "geo/regions/LV.json": {
+    "blob": "6c68492bb791a9f92168653ae65cde984b6733ee",
+    "sha256": "aa093dcfb8fb1f9f923e1b93dbc911c3cd7a846a07aa0764e67d208197e369db",
+    "bytes": 9555
+  },
+  "geo/regions/LY.json": {
+    "blob": "0ecd3c788e8e4ac7777424be8eab83ce38381213",
+    "sha256": "0171f2bfd4cb3d2dfe2fdb7956032f0ca2909372064037553ba01403e8d2f6ad",
+    "bytes": 4342
+  },
+  "geo/regions/MA.json": {
+    "blob": "952a9df36daf691edf82d39106d0c1fdc14c3b65",
+    "sha256": "6c825f9b38160769355bc4975893d86f34843f6803c129ccba5a74db48c8cbf2",
+    "bytes": 17884
+  },
+  "geo/regions/MC.json": {
+    "blob": "1c95a00e018bfa1d35cd0edd713201b78ee54a97",
+    "sha256": "9fd8bb5d1203ac8f704a1d688da3a71aab3eb7fb849aeba329dd5b336faa3cf5",
+    "bytes": 1998
+  },
+  "geo/regions/MD.json": {
+    "blob": "55d90c4b4b2b889b74cddc3d037430f0c79dda49",
+    "sha256": "528b26ae0368ae950c1ee7e8372e429fcce47af3901e33ac318c3c0c5b9d37fa",
+    "bytes": 6172
+  },
+  "geo/regions/ME.json": {
+    "blob": "ec0ec61635d05e33e5e66effe59bce283f65bfd6",
+    "sha256": "9853ffbca45fc831a584a5aaffd8a7f458f1dd05196cce67b5048de172153c78",
+    "bytes": 3608
+  },
+  "geo/regions/MF.json": {
+    "blob": "c6932b56899625404ea0237cf4289fb338df0871",
+    "sha256": "ffff2022101a08a8d9bdb131859a3db0a24738192b3c8548ad9c21a7e5c54bc3",
+    "bytes": 261
+  },
+  "geo/regions/MG.json": {
+    "blob": "506b6627039f05be80221825ec4bfa8d0ab816e5",
+    "sha256": "e4aa637cc3013e1f6b8f5e0b526224fecd81d30357b67b9fcd5a9b0315ea471d",
+    "bytes": 973
+  },
+  "geo/regions/MH.json": {
+    "blob": "4209a8d3d5a1a5e6b76787571ced478688762462",
+    "sha256": "7245c64b124f7c5372dfac7dd0c10bc5a259d7da87e267ac5e97849efab074c4",
+    "bytes": 2822
+  },
+  "geo/regions/MK.json": {
+    "blob": "97b3419d82e00f8b2e60fec285b9ded93547e5ea",
+    "sha256": "772d5cda397a8e5171b24ef4953b3ec37d8f8242eaac3692d68ab46576e4afe1",
+    "bytes": 15638
+  },
+  "geo/regions/ML.json": {
+    "blob": "48edb706f5f0c97946b6bca3b7bdb90e26e4e433",
+    "sha256": "782506ac12c989af51f2d4cef281def2735592c063e07e520b1a31de7c622932",
+    "bytes": 3438
+  },
+  "geo/regions/MM.json": {
+    "blob": "838194e2caa328e7e112d3a4ec63b687c0f37da0",
+    "sha256": "003832c4317faeacb0a459f25020b02d59f2eaaf29fcfd0ffaaada287b85d1cb",
+    "bytes": 5224
+  },
+  "geo/regions/MN.json": {
+    "blob": "31d970b5cf4453ed0e16ebe979260ebdf59a1a52",
+    "sha256": "5df1c54e3604acd88ecaf85e4d7fd937ca2eae14946720dae8174b7131a3d26d",
+    "bytes": 3592
+  },
+  "geo/regions/MO.json": {
+    "blob": "c044f4b962c68acba0fb484331ff5bec78695052",
+    "sha256": "7bb2b554dae96f5258adfc18cf64e229032cddbb8c347e0f5e45bb9f5d8311c6",
+    "bytes": 142
+  },
+  "geo/regions/MP.json": {
+    "blob": "8bb8830de69ad8e959384512966c7c20b23ba3ee",
+    "sha256": "613f3ad1e04521daf7d5df2b100f2857c67da1be7baac39841d0808ebf27b837",
+    "bytes": 154
+  },
+  "geo/regions/MQ.json": {
+    "blob": "1f731d39bef35afa598d4f832fe3d50e8b59beef",
+    "sha256": "2ba750624453e5ce119bcb1c57743891cdc8394ef7ea670030f2492274818a9f",
+    "bytes": 2695
+  },
+  "geo/regions/MR.json": {
+    "blob": "8125d7d88d19cf85a1a65b31ce10116e8437ca75",
+    "sha256": "5bf81adb2911e795cc065973d8eda662ada899648b7bf5b693c40bd321275599",
+    "bytes": 3484
+  },
+  "geo/regions/MS.json": {
+    "blob": "930a0f083fe2524a510ba3a14938e5c6e2cfa228",
+    "sha256": "5c208a0fb958b5510f869228aa55c8d07084905b82ea0cdcac931cbae582ed01",
+    "bytes": 284
+  },
+  "geo/regions/MT.json": {
+    "blob": "d4f882cc7d8794ba2d7216cfc0999892e091e338",
+    "sha256": "fc8f802544c3b6f5fc1a3c50f81dd0c1401b4a28650eadab31ab32eb54afdcb6",
+    "bytes": 8347
+  },
+  "geo/regions/MU.json": {
+    "blob": "a7e5e1c61cbdbd3c57f9f8c0e4a792e9d8ce07da",
+    "sha256": "ab9d475f62febd86e1ddece835bd2584aae1966ad504c43608fd43f0f6d5b1dc",
+    "bytes": 11872
+  },
+  "geo/regions/MV.json": {
+    "blob": "d652c3eb57b1636bef2fe7c8b3cf0fb6dd683719",
+    "sha256": "0ecc5b869abdbcf52763ed764528943874e5c59c64667303480796e6c2ca56c0",
+    "bytes": 2287
+  },
+  "geo/regions/MW.json": {
+    "blob": "6d98b25b5c11345415134b624eedf013ea1a6e67",
+    "sha256": "2aa1a981eca1f68cdadaa3f72bf75dac9ebd5f9039c7253c8d40385fe4af03b8",
+    "bytes": 5379
+  },
+  "geo/regions/MX.json": {
+    "blob": "5010de9d47175a518a3f053225d67121a1371c34",
+    "sha256": "25b002e966d01d6b0410ed5290592f6fcd42ffdf05f57ed53527e19ee2057b21",
+    "bytes": 646563
+  },
+  "geo/regions/MY.json": {
+    "blob": "15b66b29f0e7325a3a899b4c75115944e0f93c80",
+    "sha256": "186c685290bf4bde476258a82cd2131d337fd537110e3c99e51097647fcc6ba0",
+    "bytes": 14516
+  },
+  "geo/regions/MZ.json": {
+    "blob": "684d174a729df43f817fe5b176e7fe23db91c449",
+    "sha256": "bc9420b9325e206feda7b7d0d48890cd8f85c16f934408bf2f1826b15845a79a",
+    "bytes": 2927
+  },
+  "geo/regions/NA.json": {
+    "blob": "508b897807b38b422a9997a594e1f915d074884e",
+    "sha256": "846cecbd53c3fb62a062f1861e763321def69756c8ca2eb0077e53127c15b833",
+    "bytes": 3723
+  },
+  "geo/regions/NC.json": {
+    "blob": "c2aedcaf5ff35d9ef3790a7a2c9c57e133f61a40",
+    "sha256": "a7f75958c82ca439d74c599e64c780f2e245f584865e52e2f4a4a9b8607a74d8",
+    "bytes": 897
+  },
+  "geo/regions/NE.json": {
+    "blob": "cabf6b30b0bf6ab69813d7d25c358d00c2c519d2",
+    "sha256": "c62502484247ce09141ee126e7263fc7fb31e0f1c3aeaa81d504e0a62571cb76",
+    "bytes": 5004
+  },
+  "geo/regions/NF.json": {
+    "blob": "1569b97a2689d1da1d53cae6576aac9cd15b0386",
+    "sha256": "4b3337b9b1255a52a6ac6655b7c4e5bf0828755648264b52c2c2026214209ccc",
+    "bytes": 144
+  },
+  "geo/regions/NG.json": {
+    "blob": "89c00524548ebc441f2ee88671d94c842906f661",
+    "sha256": "4757f61abda033b27d9f93d84cabb4059d95eea044e2655aa093a125d6b2d9b4",
+    "bytes": 30065
+  },
+  "geo/regions/NI.json": {
+    "blob": "711ae114be40edcbdd420f65f86dd3f6d09c5b8a",
+    "sha256": "1ea5ac0dc707e2c53b067e40ba26c8afb81732cb53911c38f547948f9496082a",
+    "bytes": 11112
+  },
+  "geo/regions/NL.json": {
+    "blob": "722a4f2787dae6ab9e4603730a59a97997bd2a04",
+    "sha256": "c0d6ec834ccc40be45781928c1aafe8980d24f032c87e82b0c1b5393a727f8d8",
+    "bytes": 99882
+  },
+  "geo/regions/NO.json": {
+    "blob": "69e9ae56e4d67dfce768e6328e7bf5d797f46b7a",
+    "sha256": "1bd0f753cfa5ea2758a5b5dae13390b13a0e37826517e4c2847b87b458fad55f",
+    "bytes": 40626
+  },
+  "geo/regions/NP.json": {
+    "blob": "a81fd3c22612b53c95502bed34e08c55f7f58c18",
+    "sha256": "27387c786fcac0dc97940a7d3bcdb6e2199ba78ddd767d11438ca2caefa66cb8",
+    "bytes": 5409
+  },
+  "geo/regions/NR.json": {
+    "blob": "24a065042112784992490c6ca08fa291da138624",
+    "sha256": "a3d305accf55242ac07698aece0ca6a414b69e37b818af2be8f8db2d34e6386c",
+    "bytes": 1119
+  },
+  "geo/regions/NU.json": {
+    "blob": "2436ff51a255b765f492f0538beba9341f270663",
+    "sha256": "0786b1f9a24b97804ebadff0a18ebaa48152a05937d9d9be397de89d33a034bf",
+    "bytes": 738
+  },
+  "geo/regions/NZ.json": {
+    "blob": "0a094eafbebdd0bc8c8fa78410e9eb77b94ec9bc",
+    "sha256": "f5e80b576aecfe27edecf89148bbfc35c21bf2c7d032ea13c80294a65d393298",
+    "bytes": 10660
+  },
+  "geo/regions/OM.json": {
+    "blob": "37c812b35e1f24db0c7c738f14b9b447a6c9cd2f",
+    "sha256": "3847958d8bd2a2412868c34132c08e1727233fe3f5e842b04d0a2e6885c36c3c",
+    "bytes": 2383
+  },
+  "geo/regions/PA.json": {
+    "blob": "35f3000b91771c0e074c64f1412c65e04a5f35ce",
+    "sha256": "0b8c1ca4f9ef354d055153bc1b371c128357d73fc2dc0ec9941bb2b831ac1533",
+    "bytes": 36186
+  },
+  "geo/regions/PE.json": {
+    "blob": "138cb0f4799e162cb1ce8b61cf1077c4fddc4721",
+    "sha256": "8e45beeb892c2f928fd25611b74b06eca6a4992b51353710194dffc98b433ead",
+    "bytes": 33299
+  },
+  "geo/regions/PF.json": {
+    "blob": "59caed3939416758b67b8361f0da4dbd1c012cdc",
+    "sha256": "2b411ce553c8e5757a7d3fc08b899df31082c4321d2ae4448167c55585f7cb51",
+    "bytes": 3617
+  },
+  "geo/regions/PG.json": {
+    "blob": "a07f045cffd0ce213325e331c07182fb05e5a001",
+    "sha256": "d5996de4bddc9227f6d2b000ac7c57bbe34ef5edc3c95f9e658ee821ac401557",
+    "bytes": 7279
+  },
+  "geo/regions/PH.json": {
+    "blob": "cf353bd9c90f7ee41bfb08ae1e0adb77b15f721b",
+    "sha256": "a85c25fb298cad745fd3ecf5a0e0d784e2523909e5f22b3988f203665e18bf23",
+    "bytes": 342030
+  },
+  "geo/regions/PK.json": {
+    "blob": "86a912a3a19a849c0e845b2d5388e1f3c927e0f9",
+    "sha256": "cb5e257140870b7e9e0f92484959d8fe46960e553c62870df4bcee44613ec2ce",
+    "bytes": 28763
+  },
+  "geo/regions/PL.json": {
+    "blob": "57f431b45d0fbb03f14c474769e51dc43dde331a",
+    "sha256": "136ff88331817f4e50c0a49c4dc17184c95f4832881f2d0ff3142eb8852cc69c",
+    "bytes": 176103
+  },
+  "geo/regions/PM.json": {
+    "blob": "490ce928fa736fdeca9e09eef2dd71eabc31d21d",
+    "sha256": "8cfd31d0a9279325e645af59c5da8f59f7b7a8ae31d73e28d4ea98287fd5b07c",
+    "bytes": 359
+  },
+  "geo/regions/PN.json": {
+    "blob": "42b9aa6e003458f148b67721cf83234134c89885",
+    "sha256": "396cfd24cc377d67a91eb6d64b766052bbb43a280cf33b2cc261b78be57cc3aa",
+    "bytes": 145
+  },
+  "geo/regions/PR.json": {
+    "blob": "9c64f7816c25696b616834025033abc13fce1147",
+    "sha256": "df947389aa52b704347306305a81292c9d8c112215ba10e45f9e4dedb3729845",
+    "bytes": 8681
+  },
+  "geo/regions/PS.json": {
+    "blob": "6793743197cf4442f17457c64ce2ecfa9d870bc9",
+    "sha256": "3e11aa768304131811b464ec4dba6d8c9b63ba31e0fea73c12cee0118095a296",
+    "bytes": 9523
+  },
+  "geo/regions/PT.json": {
+    "blob": "3183a3fdc179cbbe97582d6b7b68bdabe613cecf",
+    "sha256": "94f8f7fa7854c6d6b00f05ceb2eb97fd8fe8252701a8e96255e121ddffb8defa",
+    "bytes": 85555
+  },
+  "geo/regions/PW.json": {
+    "blob": "4a2f593eb19b057c6bf953187e0c7e9983611af3",
+    "sha256": "c39139986100cf56d2a5777a4e79077d34c521d3ed59d23159bdb740d2b0eea1",
+    "bytes": 1791
+  },
+  "geo/regions/PY.json": {
+    "blob": "5a777944de6f1f7319591ed2cacd9b7e7dcb498b",
+    "sha256": "75cf2207f99005af4a3d27bf6c5e593a9148319cdc9e11a9add2ca36e699049e",
+    "bytes": 11155
+  },
+  "geo/regions/QA.json": {
+    "blob": "6080910db1b98491ac88de6f412a5df58f046842",
+    "sha256": "3bfbc9d8401146094b59bc6565a919ad70a693b2d428ef9fdb37240355c6f2f8",
+    "bytes": 1461
+  },
+  "geo/regions/RE.json": {
+    "blob": "7f97e940df4bee9e1ccdee3af196442dfea43273",
+    "sha256": "8cdcb4cbf65c111bbe759aa690cad8d3d26ba81d1ff1342365bc1033fbb6c825",
+    "bytes": 1991
+  },
+  "geo/regions/RO.json": {
+    "blob": "f25ff8881e168d3398b128fa62fa3017f4330b9f",
+    "sha256": "04191b4688a77f36db7deb52fd5e9ec8254b3f52af54da9a06426e64fec02ca9",
+    "bytes": 511684
+  },
+  "geo/regions/RS.json": {
+    "blob": "9e9fa0b0d51b1ea632c0351e25ad03bc3ef23c36",
+    "sha256": "934dfe832b0ef03678f81414a7448a5e8dc73e53db53c3f72d52ba0a9486637f",
+    "bytes": 25071
+  },
+  "geo/regions/RU.json": {
+    "blob": "fb898d9f46472fee9a287691449c6f1f1106390d",
+    "sha256": "88073245b83509f5589bf1992c0315606627c576851464a3307a8cb33ba0cea4",
+    "bytes": 352422
+  },
+  "geo/regions/RW.json": {
+    "blob": "a35ae55766c19e3c8ed23a3e71a4e117dd3c994d",
+    "sha256": "e58ae67a1471594ccfbe531cddf3ce01b76fed1af4aeb7990cce28c7a714aa59",
+    "bytes": 1077
+  },
+  "geo/regions/SA.json": {
+    "blob": "2ef8ba70a4a5770e5b18df4a108008bda2f7eecb",
+    "sha256": "294a0be1587ec18eeaa5d797b0dd19f36ceaa528707414b6c34edb680017f407",
+    "bytes": 24866
+  },
+  "geo/regions/SB.json": {
+    "blob": "a917975d1dc25fc7ac375b9f865b4b46db3f0c3b",
+    "sha256": "e85fe2ab887d11a1fce0334962e7df4d9f44a520b797c94019bc10c11410ba49",
+    "bytes": 1001
+  },
+  "geo/regions/SC.json": {
+    "blob": "99f5e8446149bc6a9b0b7ea59280d73b6a0958da",
+    "sha256": "53cc174b3f26d10aec9011be704a8755fb3d0552cb327871a296ee1b2fc9febd",
+    "bytes": 1975
+  },
+  "geo/regions/SD.json": {
+    "blob": "f156163320b73d658cd78d1e30f6bf0ff94f4bb7",
+    "sha256": "a6fe80dec32384af8bc4e35d5408182ced7cf54aedc37eb935bd06102a6579b2",
+    "bytes": 5225
+  },
+  "geo/regions/SE.json": {
+    "blob": "ffde5c44b1ddb478ddd95f9e0d684448f67bde6b",
+    "sha256": "b6fcb37be0c988d0c67bfedadfd50d5d559b58e6721d94811b9866fd38a0eb71",
+    "bytes": 49391
+  },
+  "geo/regions/SG.json": {
+    "blob": "743dd9694cd92b8190abb7de44c5145e8116b7b5",
+    "sha256": "3c95ef0489760cf4dc77a2596a52b3184a5dd5ee4d3b57659cc0dd99ccaf54de",
+    "bytes": 1929
+  },
+  "geo/regions/SH.json": {
+    "blob": "69923276990acc4776df326d34b1b2a7c88ee516",
+    "sha256": "39a0698e169694df074df1fa25e1818c5f4e6b0b5c3eb7d95bfc46bb1a71b58a",
+    "bytes": 513
+  },
+  "geo/regions/SI.json": {
+    "blob": "4bf43edaae72efc1a4b8f33f8283fd3d6b996149",
+    "sha256": "1e4572f76637fee23d62a1bbefa75b89d98983bc0c23f44f6f566755f7396527",
+    "bytes": 29428
+  },
+  "geo/regions/SJ.json": {
+    "blob": "ab1a3eb9587a9f7abee37ab0775c721791797435",
+    "sha256": "1fc47987293c2e274653738a704b9fd90b9ea4abb653532ed068046d01a37022",
+    "bytes": 160
+  },
+  "geo/regions/SK.json": {
+    "blob": "11cb4b822054b069d53a55ba7263c3e652675a25",
+    "sha256": "5e4c3fecbc78294177e35103fa53111e60fbe1f54e1b02f96e30ffa4926676c3",
+    "bytes": 15505
+  },
+  "geo/regions/SL.json": {
+    "blob": "454747c7bb32fec22444280e1348156b58c861e7",
+    "sha256": "c529cbd462c5ef8d6de32147d205111f991f28961126c7287d178e415ce3220d",
+    "bytes": 5801
+  },
+  "geo/regions/SM.json": {
+    "blob": "ae1df0628aa19e9f1f942a80be0fdb5339735893",
+    "sha256": "89a368da2175422319a7cf139ca729c24a3c45362efe57d8d56fd5cf930bacf8",
+    "bytes": 1127
+  },
+  "geo/regions/SN.json": {
+    "blob": "26db2265751ee917fd80f067932e17420e0ebd8c",
+    "sha256": "66a117c2726ec25484c50e45eaf81c0987663eeca7e817f270b1e8b3b9a4aec3",
+    "bytes": 5345
+  },
+  "geo/regions/SO.json": {
+    "blob": "b0268ffec9e751beb67869f2109ef97dd8ea938f",
+    "sha256": "08b5dd47b1f9aa5b2e45c564b469ca7e8cc92b1577b76ebf4a11e0b85602fb79",
+    "bytes": 3933
+  },
+  "geo/regions/SR.json": {
+    "blob": "0571102563775d6f5afac41501a83c3d7c1d5e47",
+    "sha256": "d4d145832ad869220f0737c40f7018dbaf3a64cee178b30e72f6ade9398d6be5",
+    "bytes": 1378
+  },
+  "geo/regions/SS.json": {
+    "blob": "66d51c56e117219434443f0ec4db9d936f3e57c7",
+    "sha256": "069a4d7c4227defa58069ae3c857cd4d0d3f718818fa7500a96775132ab437ad",
+    "bytes": 691
+  },
+  "geo/regions/ST.json": {
+    "blob": "bbd37829007e736bb2be66ae910ae8be8bba065e",
+    "sha256": "12785310ebcfe9bb6d586d30678bcf18af4444b524fd52027ca199a7dd5c83b6",
+    "bytes": 880
+  },
+  "geo/regions/SV.json": {
+    "blob": "e6d84870b8e373cb1ddb1d73b250624000fdab11",
+    "sha256": "869459c0a4f8ff677f26eb953c7e2f316d61309fd0b9ebd7e7ff95ae20b51cfb",
+    "bytes": 7178
+  },
+  "geo/regions/SX.json": {
+    "blob": "2a0bd24a638f8bc568ca1e8370ff11254a345328",
+    "sha256": "76685fbb46412e3b70167cf5ca124a85b4f7bcb3847ebd10a71d03cef5607d4a",
+    "bytes": 155
+  },
+  "geo/regions/SY.json": {
+    "blob": "0f3d44d41d9dd85f7802ed5b646bed45ea6e99c8",
+    "sha256": "27ce1ff2369d2083a019c0443f53f24f93bb3ccdff9bb2ab6ac76a7c04524d45",
+    "bytes": 9620
+  },
+  "geo/regions/SZ.json": {
+    "blob": "9ea2184eccfe069060a5625c79c1c2f4218e13de",
+    "sha256": "3b9cc274c02d72b2505fdc531f9939c32681a49d39a5ac3152a42ad0eb8b4e7a",
+    "bytes": 2426
+  },
+  "geo/regions/TC.json": {
+    "blob": "a337f78a950bfc1d7d3bc15b0374fd4f7f38e436",
+    "sha256": "f0436202b74302eeb29db137791e08ec32627f9b444b7af173800fb1cd5697a1",
+    "bytes": 438
+  },
+  "geo/regions/TD.json": {
+    "blob": "d80104aa866fd09a8137e85b8e4218b61c407788",
+    "sha256": "fb912daad9f3d863b3aefdff9f43c013a8874e37593f7fea8320ae8b094236fb",
+    "bytes": 4042
+  },
+  "geo/regions/TF.json": {
+    "blob": "bcf58a213df3f7dce77a1bbfa245cf03b9a380da",
+    "sha256": "6f80cc8ac63aad31e4badbe0933026f63c98e23ef0c2d9eccbf32f0e630aa967",
+    "bytes": 793
+  },
+  "geo/regions/TG.json": {
+    "blob": "858d0bc1ba462eb935511651fe3b4128d5a337e7",
+    "sha256": "28c61a131b0bf926e7f83aeaaaef20b1b31b4f80ecc07c72dba85974b01aa550",
+    "bytes": 1604
+  },
+  "geo/regions/TH.json": {
+    "blob": "1f76dd2a73a4da14038b0dd2592a281d26d5effe",
+    "sha256": "dfee17816abfa82f257487188a343a3e9a2ebbb8d8a89a3dd35cbc4313448cc9",
+    "bytes": 83608
+  },
+  "geo/regions/TJ.json": {
+    "blob": "7800d8a4d8ff391f0a3060cbea369c550c122af0",
+    "sha256": "750145bebe8ce5fe2b938e51e32a594d42fb918aa7b4839757088215878f8fa9",
+    "bytes": 4731
+  },
+  "geo/regions/TK.json": {
+    "blob": "bfe6a7b5ca75001b220e9a3d2d3e82485914b47d",
+    "sha256": "4e7151ae58090cfd0932cdd6415cadd7feea2004794704937db968a7c2cb1d72",
+    "bytes": 137
+  },
+  "geo/regions/TL.json": {
+    "blob": "3cd152b6ca252c5c06f8a06b89d19c49482f3804",
+    "sha256": "d9b4184dd3b6e66771b6b0bc97948ac68507e9b5ac974d98837f1fc27ef5eade",
+    "bytes": 4023
+  },
+  "geo/regions/TM.json": {
+    "blob": "12e37b60ed4eed047bd9d1d4de690a545cca71bf",
+    "sha256": "3da6f7a6ef07d3ab93717a6bb892d088877063c2c851815820f807b52c4cdd7c",
+    "bytes": 2185
+  },
+  "geo/regions/TN.json": {
+    "blob": "bc3db7668eb524e05c68b9a9b030c828d556ece9",
+    "sha256": "b62a44cf404cdfc2374e9067f11b6f19553c1241f589b003b0ff74b95136d8ec",
+    "bytes": 11203
+  },
+  "geo/regions/TO.json": {
+    "blob": "996186b2d10ce6d2d25fc48ee6de2822d12d765f",
+    "sha256": "3c8f9c70c69c835092adfffc38b04f211d91e5bf6a3c819ca59010bbb02a7f37",
+    "bytes": 846
+  },
+  "geo/regions/TR.json": {
+    "blob": "ddf9c81e134bf4a443b3df476028affd66e756e3",
+    "sha256": "27b16d4099f74be87db0bac3c54c3a2bda4ce1cdf60e5ca976c9f1b4cf47c39d",
+    "bytes": 62940
+  },
+  "geo/regions/TT.json": {
+    "blob": "8a6f526b9958e00f81bf48713bf968017007b69d",
+    "sha256": "84056af97842c50c99a2e725bd4f84478f085ba5c73a8e8e003dbc4589c36d8c",
+    "bytes": 2562
+  },
+  "geo/regions/TV.json": {
+    "blob": "73ca33d83fe3681a5edb2945566b9d22bd5652b5",
+    "sha256": "ecf875fc4e4c733e4fcf55992b2515ac7ffded7bbec634cf523e0405bd26b4c9",
+    "bytes": 1093
+  },
+  "geo/regions/TW.json": {
+    "blob": "c46811fd9e2018ec9d54241dd996b64d07b1c4b5",
+    "sha256": "f161ac113469b8791e6adc1105ea19b8c7086fe1b3bdfc15f9fe642f0a5a1067",
+    "bytes": 3521
+  },
+  "geo/regions/TZ.json": {
+    "blob": "dd6b113b1ac4813f283da4f8c36f3492c9130403",
+    "sha256": "6b317aa5b1e6014078a08770c8718c9dcc14d2cac01e5b0222379f8ea763885f",
+    "bytes": 19134
+  },
+  "geo/regions/UA.json": {
+    "blob": "6521ab22c9307196cc1a180df63e127cf2a80238",
+    "sha256": "6b12b25006a55efdfbef7ac32964d9be5324df20a6466b7b62958e340135f985",
+    "bytes": 116942
+  },
+  "geo/regions/UG.json": {
+    "blob": "8f984424b6b0561cf0f58b98ed05edcd44ad96f4",
+    "sha256": "641f4bcbda0b332868199a7e3ab4334fc86b87a1e98f11177c2627775781c217",
+    "bytes": 11573
+  },
+  "geo/regions/UM.json": {
+    "blob": "e21824c84c28c93aeeede5cf7b68c1c417505f52",
+    "sha256": "2da32afdc8732e44230adc7e11f9f8e6a01435fc8ea1304a02966e543ed1178f",
+    "bytes": 606
+  },
+  "geo/regions/US.json": {
+    "blob": "b8b86b0bb29e87cae57d5d18f3744c3bde17a769",
+    "sha256": "4a4e7279cbf324cdc9fab023b728514953f8055b5fd18c30811dd8968897fe42",
+    "bytes": 1262280
+  },
+  "geo/regions/UY.json": {
+    "blob": "c481e081178d9f7ed3f4528ecdbe4afd8de2a473",
+    "sha256": "9df6159e05f9bf8a61b360058b06c0d25da0dbe4d7b097bc52185bef07878932",
+    "bytes": 149076
+  },
+  "geo/regions/UZ.json": {
+    "blob": "5cf06e76dc53fe2851942d4108cf9c9f758cb8ee",
+    "sha256": "fc2c2a6be59dcbdd28aa70edc22df80d8d0293b3ab8eb38009ef997aa579d830",
+    "bytes": 9037
+  },
+  "geo/regions/VA.json": {
+    "blob": "c7d61fb394fb24c619ff8d2ab60129b50e4dec5f",
+    "sha256": "1f6a2e29eb83f3c2f92e5fdd8ac84185e68b27799a425c49164476090c36f8c1",
+    "bytes": 159
+  },
+  "geo/regions/VC.json": {
+    "blob": "96478e719aa480c4e2c58891dadb1fa8a18bf3d8",
+    "sha256": "1d659494246b39cbf6271f7bc335cbc5ef69a51ad1ebdddf6a2433fb65dd8631",
+    "bytes": 1017
+  },
+  "geo/regions/VE.json": {
+    "blob": "33657c03758dc921c1f30367e753772cdb56fe7b",
+    "sha256": "16a02e9e93ec04ba56c8942e0219a8b172f667699b6e691c4cf110053cce22a6",
+    "bytes": 10039
+  },
+  "geo/regions/VG.json": {
+    "blob": "8b8a9064ae67ab68d41189a6827aa01621ba3c8b",
+    "sha256": "20e4c924a6f72217b614ebd5fe31717932e6417871d289012d5858803fd1a830",
+    "bytes": 154
+  },
+  "geo/regions/VI.json": {
+    "blob": "d0729860f10bb894d79e9d9b4b1c5b7e12540bb7",
+    "sha256": "a8a0e286ee81c36bf337d755358be8b0e364759d0adbf1715be99c725270a8e0",
+    "bytes": 1637
+  },
+  "geo/regions/VN.json": {
+    "blob": "da326f661f45616beabc0f5eb88a621e4b671427",
+    "sha256": "1e6a572681c2cee67cb95a696af3258365c8b93b8fa227501b4556064731b082",
+    "bytes": 36088
+  },
+  "geo/regions/VU.json": {
+    "blob": "a9d1e68be65e0eee15e2fde2ef8b98fa7df39ce5",
+    "sha256": "c11264c0a77d14452209c0af8a0dce6cc85bd76a595f771e495b1d36e3675a0f",
+    "bytes": 824
+  },
+  "geo/regions/WF.json": {
+    "blob": "1c330e346bbb92293973b713112924b0f0f222f7",
+    "sha256": "ab6d564de2c5444dd82fbea0cf44fce0389a9e79cd892e6fd87c1bf1daf7d5fd",
+    "bytes": 461
+  },
+  "geo/regions/WS.json": {
+    "blob": "b58ae0cb22b2d95c0e220089b906a874b562cfc2",
+    "sha256": "63f280558f65d151f538cefc49fae09338eaf0bbf79f4d4ea12098a06776332d",
+    "bytes": 1897
+  },
+  "geo/regions/XK.json": {
+    "blob": "934e898b0c30914af94a36691160baecadf6267f",
+    "sha256": "90d9e018205ce8407fced47e9f3f0d7b2a23bd8d8b3f0cfd86066908253a4ddb",
+    "bytes": 4008
+  },
+  "geo/regions/YE.json": {
+    "blob": "eea589701d91e50e57f99b916be07f4c55731be6",
+    "sha256": "0dee4309c715d4a51e41c19474767ad43d5274a6b5fb482956f000325d746a52",
+    "bytes": 21597
+  },
+  "geo/regions/YT.json": {
+    "blob": "0cbfb9bf26f34fc3fe7db9c8324f05d9f89f5201",
+    "sha256": "4bcd84e52fe08dd7660628ceb9409a1b659f1556843e7b7438b326b04f350209",
+    "bytes": 4431
+  },
+  "geo/regions/ZA.json": {
+    "blob": "874f2770b7484c06216b2c6304e946f92029dc4f",
+    "sha256": "c82bb3509a8737514c4ab3308a1b860dee4b0f2622409c266a4711d458730a28",
+    "bytes": 20443
+  },
+  "geo/regions/ZM.json": {
+    "blob": "a5a822f1de3146b6595f931044cba71567a13fb3",
+    "sha256": "21899f93edc0b5a52c8ace66a369b58f8efe94c72123fc9c69fa624c08895bbc",
+    "bytes": 4900
+  },
+  "geo/regions/ZW.json": {
+    "blob": "a7955f9345082dcb3d831caa16461e8d4e6b9574",
+    "sha256": "5ac4b32c61d997f24f173f2c1f68f12f74ee8a878ee29075158d12fc41505670",
+    "bytes": 7422
+  },
+  "geo/catalog-stats.json": {
+    "blob": "9fe7ec5203cf7b473ce94f4542f67e40a0061b92",
+    "sha256": "55a73debbce28da20ea350d9baea449880e88eab6cbade66531b8efd62402cfb",
+    "bytes": 8163
   }
 }
