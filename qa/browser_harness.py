@@ -8,10 +8,11 @@ SRC=Path(__file__).resolve().parents[1]
 DEPS={
  'time-core.mjs':[],
  'country-map.mjs':[],
+ 'city-directory.mjs':[],
  'holidays.mjs':['time-core.mjs'],
  'visitor-time.mjs':[],
  'tabs.mjs':[],
- 'custom-clocks.mjs':['time-core.mjs','country-map.mjs'],
+ 'custom-clocks.mjs':['time-core.mjs','country-map.mjs','city-directory.mjs'],
  'planner-v25.mjs':['holidays.mjs'],
  'teams-v3.mjs':['planner-v25.mjs'],
  'linked-clocks.mjs':['time-core.mjs','custom-clocks.mjs','country-map.mjs'],
