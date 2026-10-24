@@ -8,7 +8,7 @@ const DEFAULT_CHOICES=[{zone:ZONES.et,name:NAMES.et,country:'US'},
   {zone:ZONES.ng,name:NAMES.ng,country:'NG'},
   {zone:ZONES.in,name:NAMES.in,country:'IN'}];
 const sharedName=(zone)=>zone.split('/').at(-1).replaceAll('_',' ');
-export function mountLinkedClocks({getInstant,deviceZone,getParticipants,addLocation,removeLocation,maxLocations=8}){
+export function mountLinkedClocks({getInstant,deviceZone,getParticipants,addLocation,removeLocation,maxLocations=8,onRendered=()=>{}}){
   const $=id=>document.getElementById(id),toggle=$('clock-add-toggle'),panel=$('clock-add-panel'),
     query=$('clock-search'),results=$('clock-results'),grid=$('extra-clocks'),
     count=$('extra-clock-count'),status=$('clock-add-status'),limitNote=$('clock-add-limit');
@@ -45,6 +45,8 @@ export function mountLinkedClocks({getInstant,deviceZone,getParticipants,addLoca
   }
   function paint(ms){for(const {fmt,time,date,abbr} of cards){const v=fmt(ms);time.textContent=v.time;date.textContent=v.date;abbr.textContent=v.abbreviation}}
   function render(){
+    // Old extra cards may have been moved to the main grid for mixed-location ordering.
+    for(const card of document.querySelectorAll('#clocks > .extra-clock-card'))card.remove();
     cards=[];grid.replaceChildren();
     const extras=getParticipants().filter(p=>!Object.values(ZONES).some(z=>canonicalZone(z)===canonicalZone(p.zone)) && canonicalZone(p.zone)!==canonicalZone(deviceZone));
     const total=getParticipants().length;
@@ -56,7 +58,7 @@ export function mountLinkedClocks({getInstant,deviceZone,getParticipants,addLoca
     if(!isFull && status.textContent.startsWith('Maximum '))status.textContent='';
     grid.hidden=extras.length===0;
     for(const p of extras){
-      const article=document.createElement('article');article.className='clock-card extra-clock-card';
+      const article=document.createElement('article');article.className='clock-card extra-clock-card';article.dataset.clockZone=canonicalZone(p.zone);
       const meta=document.createElement('div');meta.className='clock-meta';
       const heading=document.createElement('div');heading.className='extra-clock-head';
       const name=document.createElement('span');name.className='location';name.textContent=`🌐 ${p.name}`;
@@ -71,7 +73,7 @@ export function mountLinkedClocks({getInstant,deviceZone,getParticipants,addLoca
       if(!formatterCache.has(p.zone))formatterCache.set(p.zone,makeClockFormatter(p.zone));
       cards.push({fmt:formatterCache.get(p.zone),time,date:day,abbr});
     }
-    paint(getInstant());renderResults();
+    paint(getInstant());onRendered();renderResults();
   }
   function resultsList(){
     const stored=getParticipants();const lower=query.value.trim().toLowerCase();
