@@ -110,9 +110,9 @@
     "bytes": 6099
   },
   "qa/browser_harness.py": {
+    "blob": "a42ebda7f05e084bf051b03a7b3067bdabaceddc",
     "sha256": "a1ac134ff3c0099a3a016f3de1c6c43f4e014d72480a7e7e3fd3a1c4e818eb27",
-    "bytes": 7669,
-    "blob": "a42ebda7f05e084bf051b03a7b3067bdabaceddc"
+    "bytes": 7669
   },
   "qa/performance-budget.mjs": {
     "blob": "0242fa200eb291c9fe458fa8c119e5f045920bf6",
@@ -150,9 +150,9 @@
     "bytes": 5701
   },
   "qa/test_v30.py": {
+    "blob": "f8367bac26452242f64ee1d83939068b7302642a",
     "sha256": "64a401724c3fab501b21d5f019f5703715600f2c7bf7aa97adb9dc0a974b774f",
-    "bytes": 10439,
-    "blob": "f8367bac26452242f64ee1d83939068b7302642a"
+    "bytes": 10439
   },
   "qa/test-default-calendars.mjs": {
     "blob": "8f7aee56a092e4912169c904cc8bbdbc2df8f4ba",
@@ -275,19 +275,19 @@
     "bytes": 1965
   },
   "global-directory-picker.mjs": {
+    "blob": "1dccff704900bb05539f419cc97f535178c7988a",
     "sha256": "07b9487c2dcbb1c553e9eca20276d52f038ab77abecea1050af998eef41fb63c",
-    "bytes": 6210,
-    "blob": "1dccff704900bb05539f419cc97f535178c7988a"
+    "bytes": 6210
   },
   "qa/test-world-directory.mjs": {
+    "blob": "3b70743f2aa8b2759b29b6cd580bf40abdb5c031",
     "sha256": "55629aff13a10b3d332f740516ead3543c18e415000cd0a7614260256a5ec9c0",
-    "bytes": 5667,
-    "blob": "3b70743f2aa8b2759b29b6cd580bf40abdb5c031"
+    "bytes": 5667
   },
   "docs/WORLD-DIRECTORY.md": {
+    "blob": "24f61e4f531e28ff4322709fe85f6e9e50eb1ded",
     "sha256": "be00f310f7f77c4e4f4b03fd58054d59cdd62bbdafdc36e962a06ce8607bd126",
-    "bytes": 2716,
-    "blob": "24f61e4f531e28ff4322709fe85f6e9e50eb1ded"
+    "bytes": 2716
   },
   "geo/regions/AD.json": {
     "blob": "ef3ae92193c02063c79496464283bded72776631",
@@ -1543,5 +1543,15 @@
     "blob": "9fe7ec5203cf7b473ce94f4542f67e40a0061b92",
     "sha256": "55a73debbce28da20ea350d9baea449880e88eab6cbade66531b8efd62402cfb",
     "bytes": 8163
+  },
+  "scripts/import-world-directory.py": {
+    "blob": "dc9d9676b1d37074ea876c2a5cbc3e5a83dbd380",
+    "sha256": "cdf92b63e3b0832bc433fbc0d537eef04ad5b367a925158fb6d6b3d21c012bde",
+    "bytes": 5588
+  },
+  ".github/workflows/import-world-directory.yml": {
+    "blob": "0b81dfd7f44682c12502cc850262893e661935d0",
+    "sha256": "ed9d304c55ab4c4aab0bfd6c5ee3e3ccb011d437e471ca595252cd1d3fd9b56e",
+    "bytes": 1733
   }
 }
