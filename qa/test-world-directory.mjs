@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {readFileSync} from 'node:fs';
+import {readFileSync,readdirSync} from 'node:fs';
 import {WORLD_DIRECTORY_REV,normalizeCountryDirectory,validCoordinates} from '../lib/geo-directory.mjs';
 import {selectCities} from '../global-directory-picker.mjs';
 import directoryHandler from '../api/directory.mjs';
@@ -60,4 +60,35 @@ test('coordinate resolver verifies IANA zone and fails closed when upstream is d
   const failed=response();await zoneHandler({method:'GET',query:{lat:'-6.9175',lon:'107.6191'}},failed);
   assert.equal(failed.statusCode,503);assert.ok(!('zone' in failed.body));
  }finally{globalThis.fetch=original}
+});
+
+test('all pinned country JSON files are checked in and their region/city totals reconcile',()=>{
+ const stats=JSON.parse(readFileSync(new URL('../geo/catalog-stats.json',import.meta.url),'utf8'));
+ assert.equal(stats.countries,250);
+ assert.equal(stats.regions,5308);
+ assert.equal(stats.cities,156025);
+ const countryDir=new URL('../geo/regions/',import.meta.url);
+ const names=readdirSync(countryDir).filter(name=>name.endsWith('.json'));
+ assert.equal(names.length,250);
+ const found=new Set(),regionTotals=[],cityTotals=[];
+ for(const filename of names){
+  const entry=JSON.parse(readFileSync(new URL(filename,countryDir),'utf8'));
+  const code=filename.slice(0,2);found.add(code);
+  assert.equal(entry.country,code);
+  assert.equal(entry.regions.length,entry.regionCount);
+  assert.equal(entry.cityCount,entry.regions.reduce((sum,r)=>sum+r.cities.length,0));
+  assert.equal(entry.regionCount,stats.countsByCountry[code].regions);
+  assert.equal(entry.cityCount,stats.countsByCountry[code].cities);
+  regionTotals.push(entry.regionCount);cityTotals.push(entry.cityCount);
+ }
+ assert.equal(regionTotals.reduce((a,b)=>a+b,0),stats.regions);
+ assert.equal(cityTotals.reduce((a,b)=>a+b,0),stats.cities);
+ assert.equal(found.size,250);
+ const usa=JSON.parse(readFileSync(new URL('US.json',countryDir),'utf8'));
+ const iowa=usa.regions.find(r=>r.name==='Iowa');
+ assert.ok(iowa);
+ const cedar=iowa.cities.find(c=>c.name==='Cedar Rapids');
+ assert.ok(cedar);
+ assert.ok(cedar.latitude>41&&cedar.latitude<43);
+ assert.ok(cedar.longitude<-90&&cedar.longitude>-93);
 });
