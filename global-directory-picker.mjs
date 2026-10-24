@@ -25,7 +25,7 @@ export function mountGlobalDirectory({addLocation,onAdded,maxLocations,getPartic
   list.replaceChildren();
   const selected=current?.regions.find((r,i)=>String(i)===region.value);
   if(!selected){more.hidden=true;return}
-  const {total,items}=selectCities(selected,cityQuery.value,step,offset);
+  const {total,items}=selectCities(selected,cityQuery.value,offset+step,0);
   for(const city of items){
    const li=document.createElement('li'),button=document.createElement('button');
    button.type='button';button.className='clock-result';button.textContent=city.name;
@@ -34,7 +34,7 @@ export function mountGlobalDirectory({addLocation,onAdded,maxLocations,getPartic
    button.addEventListener('click',()=>chooseCity(city,selected));
    li.append(button);list.append(li);
   }
-  const shown=offset+items.length;
+  const shown=items.length;
   more.hidden=shown>=total;
   more.textContent=`Show more cities (${shown} of ${total})`;
   message(total?`${total.toLocaleString()} cities found in ${selected.name}; select a city to verify its time zone.`:
@@ -101,7 +101,7 @@ export function mountGlobalDirectory({addLocation,onAdded,maxLocations,getPartic
   }finally{if(stamp===revision)active=null}
  }
  country.addEventListener('change',loadCountry);
- region.addEventListener('change',()=>{clearCities();cityQuery.disabled=!region.value;renderCities()});
+ region.addEventListener('change',()=>{revision++;clearCities();cityQuery.disabled=!region.value;renderCities()});
  cityQuery.addEventListener('input',()=>{offset=0;renderCities()});
  more.addEventListener('click',()=>{offset+=step;renderCities()});
  return {onOpen:ensureCountries};
