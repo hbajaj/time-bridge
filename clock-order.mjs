@@ -35,7 +35,7 @@ export function mountClockOrder({getParticipants,deviceZone,ZONES,canonicalZone,
   try{const value=JSON.parse(storage.getItem(CLOCK_ORDER_STORAGE_KEY)||'[]');saved=Array.isArray(value)?value:[]}catch{}
   let current=[],dragging=null;
   const announce=(message)=>{const status=document.getElementById('clock-order-status');if(status)status.textContent=message};
-  function save(){try{storage.setItem(CLOCK_ORDER_STORAGE_KEY,JSON.stringify(current))}catch{}}
+  function save(){saved=current.slice();try{storage.setItem(CLOCK_ORDER_STORAGE_KEY,JSON.stringify(current))}catch{}}
   function move(zone,amount,label){
     const next=shiftClock(current,zone,amount);
     if(next.join('|')===current.join('|'))return;
