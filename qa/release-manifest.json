@@ -39,7 +39,7 @@
   "scripts/local-benchmark.mjs": "937f6d976f3e2bc749956d6d55358cc640d69e819b1d0e46a6145ffb139e2b25",
   "scripts/smoke.mjs": "067683c478c327aa32a8dfea21da7f9c1c6e0ff8ae628a4da3ca31cf1c9be24c",
   "scripts/verify-release.mjs": "487dc86156db1e3a0d81dce94e1fd8041d3a656c5bd82dbb0222da87d9fb8be2",
-  "styles.v2.css": "12e3c8027f0bf02971382c782778a1dd76895414b6b5d219c0c627773d428d7f",
+  "styles.v2.css": "e0a5d2423ac1b79cef03c4eccac6e5e7d2a7460b9ecc8bd006a631333c91f1f4",
   "tabs.mjs": "d9eef7d9e21fb8fd6a8aa7668ff84fd437476b81436ae06d8d93f23ab2237576",
   "teams-v3.mjs": "4f87d840e640c0d3ea2751d0ebd15ac9f91972beb9e46769a633fd410666cc11",
   "time-core.mjs": "0cc7ad32c8fbaf7c198285614341240e901a07791a551df9e8342cc60fcdee07",
