@@ -93,7 +93,7 @@ def record(path, data):
     absolute.parent.mkdir(parents=True, exist_ok=True)
     absolute.write_bytes(data)
     digest = hashlib.sha256(data).hexdigest()
-    blob = hashlib.sha1(f"blob {len(data)}\\0".encode("utf-8") + data).hexdigest()
+    blob = hashlib.sha1(f"blob {len(data)}\0".encode("utf-8") + data).hexdigest()
     manifest[path] = digest
     integrity[path] = {"blob": blob, "sha256": digest, "bytes": len(data)}
 
