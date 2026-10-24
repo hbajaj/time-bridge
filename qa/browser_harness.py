@@ -16,8 +16,9 @@ DEPS={
  'planner-v25.mjs':['holidays.mjs'],
  'teams-v3.mjs':['planner-v25.mjs'],
  'global-directory-picker.mjs':[],
+ 'clock-order.mjs':[],
  'linked-clocks.mjs':['time-core.mjs','custom-clocks.mjs','country-map.mjs','global-directory-picker.mjs'],
- 'app.v2.mjs':['time-core.mjs','country-map.mjs','holidays.mjs','visitor-time.mjs','tabs.mjs','custom-clocks.mjs','planner-v25.mjs','linked-clocks.mjs','teams-v3.mjs']
+ 'app.v2.mjs':['time-core.mjs','country-map.mjs','holidays.mjs','visitor-time.mjs','tabs.mjs','custom-clocks.mjs','planner-v25.mjs','linked-clocks.mjs','teams-v3.mjs','clock-order.mjs']
 }
 EXPORT_RE=re.compile(r'^export\s+(?:async\s+)?(?:const|let|function|class)\s+([A-Za-z_$][\w$]*)', re.M)
 IMPORT_RE=re.compile(r"^import\s*\{([^}]*)\}\s*from\s*['\"]\./([^'\"]+)['\"];?", re.M)
