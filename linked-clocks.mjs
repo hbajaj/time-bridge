@@ -70,7 +70,7 @@ export function mountLinkedClocks({getInstant,deviceZone,getParticipants,addLoca
       if(choice.unavailable){button.disabled=true;button.title='This time zone is already represented by an existing meeting location';}
       button.addEventListener('click',()=>{
         if(!choice.country){status.textContent=`Choose ${choice.name} in Meetings to confirm its holiday country first.`;return}
-        const message=addLocation(choice.zone,choice.name,choice.country);
+        const message=addLocation(choice.zone,choice.region?`${choice.name}, ${choice.region}`:choice.name,choice.country);
         if(message){status.textContent=message;return}
         status.textContent=`${choice.name} added to clocks and meetings.`;
         query.value='';setOpen(false);
