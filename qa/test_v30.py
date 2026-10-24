@@ -152,4 +152,22 @@ class TestV30(unittest.TestCase):
   p.locator('#tab-meetings').click()
   self.assertNotIn('Bandung',p.locator('#participant-list').inner_text())
 
+ def test_country_city_pagination_preserves_previous_results(self):
+  p=self.start('America/New_York',390)
+  p.locator('#tab-clocks').click();p.locator('#clock-add-toggle').click()
+  p.locator('#geo-country option[value="US"]').wait_for(timeout=10000)
+  p.locator('#geo-country').select_option('US')
+  p.locator('#geo-region option').filter(has_text='California').wait_for(timeout=10000)
+  p.locator('#geo-region').select_option(label='California (126)')
+  self.assertEqual(p.locator('#geo-city-results button').count(),60)
+  self.assertTrue(p.get_by_role('button',name='Show more cities',exact=False).is_visible())
+  self.assertIn('Los Angeles',p.locator('#geo-city-results').inner_text())
+  p.get_by_role('button',name='Show more cities',exact=False).click()
+  self.assertEqual(p.locator('#geo-city-results button').count(),120)
+  self.assertIn('Los Angeles',p.locator('#geo-city-results').inner_text())
+  p.get_by_role('button',name='Show more cities',exact=False).click()
+  self.assertEqual(p.locator('#geo-city-results button').count(),126)
+  self.assertFalse(p.locator('#geo-city-more').is_visible())
+  self.assertLessEqual(p.evaluate('document.documentElement.scrollWidth'),390)
+
 if __name__=='__main__':unittest.main()
