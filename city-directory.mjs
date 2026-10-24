@@ -155,4 +155,4 @@ AU|Western Australia|Australia/Perth|Perth;Fremantle;Bunbury;Geraldton;Albany;Ka
 AU|South Australia|Australia/Adelaide|Adelaide;Mount Gambier;Whyalla;Port Augusta
 AU|Tasmania|Australia/Hobart|Hobart;Launceston;Devonport;Burnie
 AU|Northern Territory|Australia/Darwin|Darwin;Alice Springs;Katherine
-AU|Australian Capital Territory|Australia/Sydney|Canberra`.trim().split('\\n').flatMap(row=>{const [country,region,zone,names]=row.split('|');return names.split(';').map(name=>({name,region,country,zone,countryName:({US:'United States',IN:'India',NG:'Nigeria',CA:'Canada',AU:'Australia'})[country]||country,keywords:`${region} ${country} ${name}`,group:'Major city'}))}));
+AU|Australian Capital Territory|Australia/Sydney|Canberra`.trim().split(String.fromCharCode(10)).flatMap(row=>{const [country,region,zone,names]=row.split('|');return names.split(';').map(name=>({name,region,country,zone,countryName:({US:'United States',IN:'India',NG:'Nigeria',CA:'Canada',AU:'Australia'})[country]||country,keywords:`${region} ${country} ${name}`,group:'Major city'}))}));
