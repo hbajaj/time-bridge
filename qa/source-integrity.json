@@ -150,9 +150,9 @@
     "bytes": 5701
   },
   "qa/test_v30.py": {
-    "sha256": "9f5e4651121e74fb6f6395a5deb8a7f80a26085c44d7b5c0e883e841b86cff3d",
-    "blob": "0506590910f82bb4682c144c89be12faf53610b3",
-    "bytes": 4922
+    "blob": "5a82845afa219d3f27059b0fc4207cb214f12ac9",
+    "sha256": "8c2beb518bd1fda30b5c58fc5edaa451e44f2af5eb6961b97e1dbdf98a804c22",
+    "bytes": 5735
   },
   "qa/test-default-calendars.mjs": {
     "blob": "8f7aee56a092e4912169c904cc8bbdbc2df8f4ba",
