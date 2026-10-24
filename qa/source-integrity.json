@@ -60,9 +60,9 @@
     "bytes": 265
   },
   "index.html": {
-    "blob": "1e5d106e1f50236edcc5de0986c68dfaa99d242e",
-    "sha256": "3f2ebb37726d25f263d576a4639a8b145e0e6cb6a3941f67a09ec8f64dd57346",
-    "bytes": 14081
+    "blob": "da49c077363ef6a49b779c2e79bb4fa6718f6fa7",
+    "sha256": "0a00dce4551d7a035f9fb93b839160411e2786889f4cfeb3f4d9326bbf9ecc98",
+    "bytes": 15613
   },
   "lib/default-calendars.mjs": {
     "blob": "7da82bfddec4bc55edad0f41607da7aabad9592e",
@@ -90,9 +90,9 @@
     "bytes": 1114
   },
   "linked-clocks.mjs": {
-    "blob": "a7bbd37cf0a98a96ff4bde7262f8c88473cddf79",
-    "sha256": "8024136c0aa755284152816003d173a783dd16159bc6969ab12839783a54c384",
-    "bytes": 8617
+    "blob": "a432ead6ad0096dbf678157e9a23e28abe63e10e",
+    "sha256": "db43fa76753d1026439100f1cd4d62f70ee02583d1a7e546be9ba0a589637e7e",
+    "bytes": 8804
   },
   "manifest.webmanifest": {
     "blob": "8a8f2e442f952c2c65022d203702ad0553638c5e",
@@ -100,9 +100,9 @@
     "bytes": 343
   },
   "package.json": {
-    "blob": "05240c79c27585f660ddd3d1dcc2fd77df31fef5",
-    "sha256": "1039ccbf4da970397e583a6eb5db4a7bdd5381c3588e59a8e76be3fd07075b41",
-    "bytes": 761
+    "blob": "b026bbf5b10900ee72a91d449ee91e0e901aa95a",
+    "sha256": "ede99c19ca65ac8509ee6c8338bddc35492cde19a822db72fc9b15676f4ce5ba",
+    "bytes": 789
   },
   "planner-v25.mjs": {
     "blob": "cf9d3f6aab067f319802c7527ca04bda3d7e0462",
@@ -110,9 +110,9 @@
     "bytes": 6099
   },
   "qa/browser_harness.py": {
-    "blob": "3b3d58d329359822bd6f0f39fd73f23263043bd5",
-    "sha256": "f6185eb7b3e32d66bc24a5fdd69ea18c278a042112e7d8ccfd266d8d93f5306e",
-    "bytes": 5357
+    "blob": "46b24476c062fbde9c68eb47e590c6261582e20e",
+    "sha256": "9e12482ce8911814757221c56e07ef77ebd079ffa8b3b4ed2abc62f47a37998b",
+    "bytes": 7281
   },
   "qa/performance-budget.mjs": {
     "blob": "0242fa200eb291c9fe458fa8c119e5f045920bf6",
@@ -150,9 +150,9 @@
     "bytes": 5701
   },
   "qa/test_v30.py": {
-    "blob": "159def950229c46caf4ec1585cbf6c9383c849f3",
-    "sha256": "4008ea5f6f6084b7e696302f03310096bd0fc00db12ee9ff58a132c52bacabc5",
-    "bytes": 6553
+    "blob": "b50f5224796d16fe2894763f0102a94624a7e5a1",
+    "sha256": "b4d7e45a5c15467c6b177141866418d78ef8d24748c0b26b208727f8594f2cab",
+    "bytes": 9150
   },
   "qa/test-default-calendars.mjs": {
     "blob": "8f7aee56a092e4912169c904cc8bbdbc2df8f4ba",
@@ -200,9 +200,9 @@
     "bytes": 826
   },
   "styles.v2.css": {
-    "sha256": "ded6e0a67a4359108d36e977bac7420adaeb87f2496ce9593a7ce4f38d11bec8",
-    "blob": "747fe2916da6ac6b70c17e28ae272ddeccc1c9eb",
-    "bytes": 30478
+    "blob": "f1495dd6862c8d7a287fa2387ed29353d20f5efc",
+    "sha256": "44aa27df13060c323d4ad59e768f3b185c2753977bb67301b4dfb7058ae99718",
+    "bytes": 31651
   },
   "tabs.mjs": {
     "blob": "4ab430606854838db996ac16809082a8e1490da4",
@@ -253,5 +253,40 @@
     "blob": "b99f073101f345293db9a52684a2a01f522bf25a",
     "sha256": "9772f6cc9c377210f58d350f80096f5b8623243113b034464ffc7d4c2ef2d44f",
     "bytes": 2718
+  },
+  "geo/countries.json": {
+    "blob": "ba743c382037aded5b09067ff1035b33a984ad67",
+    "sha256": "ca6246ad26d2d1cf67f0e37520e15c8e48da2cab63af9097bff088737afa9571",
+    "bytes": 8549
+  },
+  "lib/geo-directory.mjs": {
+    "blob": "6e8d867328ac8fd056221c4acbb84a8f28a0f4b6",
+    "sha256": "c64df6b17da57ac684f57882d5d4a60ee2c24d310dc9999990fb17c6bca9f875",
+    "bytes": 1668
+  },
+  "api/directory.mjs": {
+    "blob": "37240b6b929d8c301ce13891576086d452651ddd",
+    "sha256": "48120872e112231e3756508e8d2f282c6afd528d40b5a48f5e622b785603ccde",
+    "bytes": 1539
+  },
+  "api/resolve-timezone.mjs": {
+    "blob": "8ae0a11f6e8f0fea8f59aea4d05c55ddc325328b",
+    "sha256": "0780c5984a12627875d3ffa595c276bc8be53039da82bd9ffc25d956f34d5659",
+    "bytes": 1965
+  },
+  "global-directory-picker.mjs": {
+    "blob": "e3374c15dcf3ecaf0d65840feef2763e4905baeb",
+    "sha256": "9f8bd9e96d1c116b11a281ab1e48f995fc4499c68cb0285299be1f4ef8bcf60a",
+    "bytes": 6206
+  },
+  "qa/test-world-directory.mjs": {
+    "blob": "9a41e55de41c4ed64cc44a733ecf86cde3b838c3",
+    "sha256": "fb058c118a9850f220a9e3c39a8ce3205a4640663fc9a449e804834b00bd54a6",
+    "bytes": 4090
+  },
+  "docs/WORLD-DIRECTORY.md": {
+    "blob": "9bd311995b9ea1bc93d320b861325f1158c26fe0",
+    "sha256": "bbee6dc0fe9d14d79c470279c2c0d1d282df3f8c37dc44bdbe805c83283743a5",
+    "bytes": 2529
   }
 }
