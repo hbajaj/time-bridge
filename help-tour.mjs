@@ -67,7 +67,7 @@ export function mountHelpTour({tabs,doc=document,win=window,storage=null}={}){
  }
  function openTour(){
   returnTab=active();
-  tourReturn=doc.activeElement;
+  tourReturn=help.hidden?doc.activeElement:open;
   if(!help.hidden)closeHelp({restoreFocus:false});
   index=0;tour.hidden=false;displayStep();
  }
