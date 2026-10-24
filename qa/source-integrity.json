@@ -10,9 +10,9 @@
     "bytes": 3387
   },
   "app.v2.mjs": {
-    "blob": "fc4921b70a40bd737c9a31aac23c297f73ce004a",
-    "sha256": "d21e314809624ab559590ed4de408b9b2290908b3b09e43d23810884b251eb1f",
-    "bytes": 34111
+    "blob": "d737266045b90e25885480618924989d2867727c",
+    "sha256": "b28bb74b749f7b793ffb983e8d0f9b49bc7a61c07c05935a7188868bbdbed88f",
+    "bytes": 34236
   },
   "country-map.mjs": {
     "blob": "7e95ca0e7fb802e18a2e187e4470f22c7d5e8959",
@@ -60,9 +60,9 @@
     "bytes": 265
   },
   "index.html": {
-    "blob": "6526b4c88f2e7ee2ba9abd1c08975768b7bdcff7",
-    "sha256": "d251d6ae9b54151e45840cee51841462e628123b887b7a112d29a1dd1ba0003b",
-    "bytes": 15754
+    "blob": "961971f7505fc69c09d237181f2f97a71ae1ef71",
+    "sha256": "414b4121b59509beef3c1119f4cca5483a6ecf9585f7b8a328022a022d8130a7",
+    "bytes": 19128
   },
   "lib/default-calendars.mjs": {
     "blob": "7da82bfddec4bc55edad0f41607da7aabad9592e",
@@ -110,14 +110,14 @@
     "bytes": 6099
   },
   "qa/browser_harness.py": {
-    "blob": "42a29d207762366b456e17146f5ffa9c63afbf1e",
-    "sha256": "c63ae55da15b0381e8a4abae5943ef7689e4c36b0dc67fb1946b419981c692e8",
-    "bytes": 7710
+    "blob": "980ed29e85c026b05bb9c8317c6bf2ca8e3dd67b",
+    "sha256": "b388a9873633aa78d290d29ebfe1984e5c816923e182f55f5ea566a8cc5abad0",
+    "bytes": 7747
   },
   "qa/performance-budget.mjs": {
-    "blob": "0d942ac6404cc39fe51511ad3ba49b93bf978478",
-    "sha256": "9682d0aaf3af1f87156e31e2523bf24fd5c86d7dfb73fb6d33880d596ab0b697",
-    "bytes": 890
+    "blob": "3fd160fe16d4d4116a0f1a3a9a981dec56783846",
+    "sha256": "919c937f746f86df4eb730513aa174f2fe404b342f063b0324f5314069bd240d",
+    "bytes": 906
   },
   "qa/security-check.mjs": {
     "blob": "e861f66df23b3803532e2d59cdbbed799212ae91",
@@ -200,9 +200,9 @@
     "bytes": 826
   },
   "styles.v2.css": {
-    "blob": "926b15fda9669fbd97185c00ef6680ab9c2298f7",
-    "sha256": "8f8015d884c958fe7414be99b1ea68dda2e5851465d1a33f640477514def98e0",
-    "bytes": 32596
+    "blob": "e5da6ca24f007c21e215224ee5c8b67aec54abd1",
+    "sha256": "12e3c8027f0bf02971382c782778a1dd76895414b6b5d219c0c627773d428d7f",
+    "bytes": 34909
   },
   "tabs.mjs": {
     "blob": "4ab430606854838db996ac16809082a8e1490da4",
@@ -1563,5 +1563,15 @@
     "blob": "4671f3b0ccde789a8127e613a62477913effae82",
     "sha256": "5cf479b3d641d16b6de6b9b61ddf5c6cabef0ee2701e93a433cb2224be926a87",
     "bytes": 1941
+  },
+  "help-tour.mjs": {
+    "blob": "9c8bffd8a802d075405c3b0c0509867a0109858c",
+    "sha256": "e57127247818b82d835b3beae8eef1674c6f56b1e5f330cd4a1b214d9f3145bd",
+    "bytes": 5926
+  },
+  "qa/test_help_tour.py": {
+    "blob": "8f42a82662bc76db72087ec77c06386ca2eb2903",
+    "sha256": "1211d808b0900379d7eb4eb01b1467d9b6d635f3e60469f7bd9abbefebd09a9d",
+    "bytes": 4153
   }
 }
