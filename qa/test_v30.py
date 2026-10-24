@@ -91,7 +91,7 @@ class TestV30(unittest.TestCase):
   self.assertIn('Cedar Rapids, Iowa',p.locator('#clock-results').inner_text())
   p.locator('#clock-search').fill('Cedar Rapids')
   p.get_by_role('button',name='Add Cedar Rapids, Iowa, United States clock and meeting location').click()
-  self.assertIn('Cedar Rapids',p.locator('#extra-clocks').inner_text())
+  self.assertIn('Cedar Rapids',p.locator('#clocks .extra-clock-card').inner_text())
   p.locator('#tab-meetings').click()
   self.assertIn('Cedar Rapids',p.locator('#participant-list').inner_text())
   self.assertIn('America/Chicago',p.evaluate("localStorage.getItem('timebridge-participants-v25')") or '')
