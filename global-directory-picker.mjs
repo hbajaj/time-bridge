@@ -85,7 +85,7 @@ export function mountGlobalDirectory({addLocation,onAdded,maxLocations,getPartic
   message('Loading all regions and cities for the selected country…');
   const controller=new AbortController();active=controller;
   try{
-   const response=await fetch('/api/directory?country='+encodeURIComponent(code),{signal:controller.signal});
+   const response=await fetch('/geo/regions/'+encodeURIComponent(code)+'.json',{signal:controller.signal});
    if(!response.ok)throw Error('Directory temporarily unavailable');
    const data=await response.json();
    if(stamp!==revision)return;
