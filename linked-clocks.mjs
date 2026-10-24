@@ -3,6 +3,7 @@
 import { ZONES, NAMES } from './time-core.mjs';
 import { searchClockZones, makeClockFormatter, canonicalZone } from './custom-clocks.mjs';
 import { inferCountry } from './country-map.mjs';
+import { mountGlobalDirectory } from './global-directory-picker.mjs';
 const DEFAULT_CHOICES=[{zone:ZONES.et,name:NAMES.et,country:'US'},
   {zone:ZONES.ng,name:NAMES.ng,country:'NG'},
   {zone:ZONES.in,name:NAMES.in,country:'IN'}];
@@ -111,8 +112,9 @@ export function mountLinkedClocks({getInstant,deviceZone,getParticipants,addLoca
     if(globalStatus&&query.value.trim().length>=2){const li=document.createElement('li');li.className='clock-no-results';li.textContent=globalStatus;li.setAttribute('role','status');results.append(li);}
     if(!results.children.length){const li=document.createElement('li');li.className='clock-no-results';li.textContent='No matching city or time zone. Try a city name followed by its full state or country name.';results.append(li)}
   }
+  const directory=mountGlobalDirectory({addLocation,onAdded:()=>setOpen(false),maxLocations,getParticipants});
   function setOpen(open){if(toggle.disabled)open=false;panel.hidden=!open;toggle.setAttribute('aria-expanded',String(open));
-    if(open){renderResults();query.focus()}else{resetSearch();if(!toggle.disabled)toggle.focus()}}
+    if(open){renderResults();directory.onOpen();}else{resetSearch();if(!toggle.disabled)toggle.focus()}}
   toggle.addEventListener('click',()=>setOpen(panel.hidden));
   query.addEventListener('input',requestWorldwide);
   query.addEventListener('keydown',e=>{if(e.key==='Escape'){e.preventDefault();setOpen(false)}});
