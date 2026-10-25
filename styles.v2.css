@@ -35,7 +35,7 @@ h3,h4{font-weight:600;color:var(--heading)}
 .optional{font-size:12px;font-weight:500;margin-left:4px}
 .status{min-height:1em;color:var(--muted);font-size:14px}
 .empty{font-size:15px;padding:12px 0}
-.eyebrow{font-size:11px;letter-spacing:.18em;font-weight:600;color:var(--muted);text-transform:uppercase}
+.eyebrow{font-size:11px;letter-spacing:.18em;font-weight:600;color:var(--muted)}
 .hide{display:none!important}[hidden]{display:none!important}
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 
