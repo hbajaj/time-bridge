@@ -149,7 +149,7 @@ export function mountCustomClocks({getInstant, deviceZone='', storage=null}) {
       const article=document.createElement('article');article.className='clock-card extra-clock-card';
       const meta=document.createElement('div');meta.className='clock-meta';
       const head=document.createElement('div');head.className='extra-clock-head';
-      const city=document.createElement('span');city.className='location';city.textContent=`🌐 ${entry.name}`;
+      const city=document.createElement('span');city.className='location';city.textContent=`${entry.name}`;
       const remove=document.createElement('button');remove.type='button';remove.className='clock-remove';remove.textContent='Remove';
       remove.setAttribute('aria-label',`Remove ${entry.name} clock`);
       remove.addEventListener('click',()=>{

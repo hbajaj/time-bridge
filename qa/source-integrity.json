@@ -10,9 +10,9 @@
     "bytes": 3387
   },
   "app.v2.mjs": {
-    "blob": "d737266045b90e25885480618924989d2867727c",
-    "sha256": "b28bb74b749f7b793ffb983e8d0f9b49bc7a61c07c05935a7188868bbdbed88f",
-    "bytes": 34236
+    "blob": "8ef5b0ac730e9d9a4570e1b5fa37619a0096ce74",
+    "sha256": "eb2f2f7e37dfab0c2c3802a397853fd589b2ac3e37a95354897b2b5f0e6e237a",
+    "bytes": 34199
   },
   "country-map.mjs": {
     "blob": "7e95ca0e7fb802e18a2e187e4470f22c7d5e8959",
@@ -20,9 +20,9 @@
     "bytes": 14892
   },
   "custom-clocks.mjs": {
-    "blob": "2aad8818e9a909c3aba3ff3894c9de3a4b018fbd",
-    "sha256": "64f77da17d5b0d7be3799292a30b3ca7749114fc7ab545cc376b9ccea1f034ea",
-    "bytes": 11784
+    "blob": "287fd7580ec84feff464db0be129d44c20e63323",
+    "sha256": "ded8313b5bbd1d7146549d0c6705914cdf665b56a7a04caa8cd670ea3dc08194",
+    "bytes": 11779
   },
   "docs/ACCESSIBILITY.md": {
     "blob": "c3bfccf2fa2bb02c7af5a08453b0bd1fcf26e83a",
@@ -55,14 +55,14 @@
     "bytes": 4804
   },
   "icon.svg": {
-    "blob": "e1b2481eb527b790da97e8285fb3fd4b679c320a",
-    "sha256": "8e07b01b7297dfe93cb6af2d7cc6e38837da08963a78f36dd7e9e4f68592d507",
+    "blob": "54d82c3858f469eac6dac3a82d9174747188dbd4",
+    "sha256": "2b0ed6ec6c31e729f321191d5994112e07b1f6b74831c04ae2a11393b673ae73",
     "bytes": 265
   },
   "index.html": {
-    "blob": "961971f7505fc69c09d237181f2f97a71ae1ef71",
-    "sha256": "414b4121b59509beef3c1119f4cca5483a6ecf9585f7b8a328022a022d8130a7",
-    "bytes": 19128
+    "blob": "fb08b295d4cba354c2a117c4f5447241fe76ccc2",
+    "sha256": "e330155f1f19590deb33720b39a9a266fb87b9c2679799528ffafd3ae757dd7a",
+    "bytes": 19270
   },
   "lib/default-calendars.mjs": {
     "blob": "7da82bfddec4bc55edad0f41607da7aabad9592e",
@@ -90,13 +90,13 @@
     "bytes": 1114
   },
   "linked-clocks.mjs": {
-    "blob": "ddb71d7e7c5009062505f9372be4f0d9b21cee39",
-    "sha256": "15a75435720fef04c08a8fffe03e64a5491a4a916f13d99df23c42eac5de2e80",
-    "bytes": 9066
+    "blob": "b3adde540e236f271cf4b8701f327f01b29b2f72",
+    "sha256": "070f068432e88f928871c8a408669e6b48e7edbdec3c762a380fadeccee50995",
+    "bytes": 9061
   },
   "manifest.webmanifest": {
-    "blob": "8a8f2e442f952c2c65022d203702ad0553638c5e",
-    "sha256": "d00bf8943c1d8b067f593356a68d55e45a1785eb36cd1bdcf4838acbb5acfe98",
+    "blob": "47f4bf8d1d805a0dfd0daa2171fffb6b48c439cf",
+    "sha256": "39143d61923d4448b42932adbb36a94983658def9fda320cad5583da7de435f9",
     "bytes": 343
   },
   "package.json": {
@@ -200,9 +200,9 @@
     "bytes": 826
   },
   "styles.v2.css": {
-    "blob": "aa9c4b7df95d0d752e96c389f9650cb95d93c4c8",
-    "sha256": "e0a5d2423ac1b79cef03c4eccac6e5e7d2a7460b9ecc8bd006a631333c91f1f4",
-    "bytes": 34991
+    "blob": "4916c0ac71c68aba1bef7bc82e71fa8074689a4b",
+    "sha256": "9422906d7fc2720d5bbe8059471cbd5b4cb1df481b02972cbbaddc1ec9798381",
+    "bytes": 27539
   },
   "tabs.mjs": {
     "blob": "4ab430606854838db996ac16809082a8e1490da4",
@@ -220,9 +220,9 @@
     "bytes": 6421
   },
   "vercel.json": {
-    "blob": "290ac1bfdf19e8653210c6f2f078f2a59853bf85",
-    "sha256": "19c8233c0b54ef8eb7f18561e90e0406ccf90254853a6357e5a5927baea97877",
-    "bytes": 813
+    "blob": "142a7a24cf7f654cffd8e8995da658b6e300af62",
+    "sha256": "c3072f0252c098c253aa0f8667eb213fb26d1b6aa56fdb08696b91ad9b6790e1",
+    "bytes": 885
   },
   "visitor-time.mjs": {
     "blob": "618723af40a0b310cf56b123591424d7143400cb",

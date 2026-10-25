@@ -10,7 +10,7 @@ import { mountClockOrder } from './clock-order.mjs';
 import { DEFAULT_PARTICIPANTS, PARTICIPANT_KEY, MAX_PARTICIPANTS, cleanParticipants, rankMeetingDay, localParts, mins, participantHolidayConflicts, meetingText, encodeParticipantGroup, decodeParticipantGroup } from './planner-v25.mjs';
 import {SAVED_TEAMS_KEY, parseSavedTeams, upsertSavedTeam, removeSavedTeam, findSavedTeam} from './teams-v3.mjs';
 const $ = id => document.getElementById(id);
-const labels = { et:'🇺🇸 Eastern',ng:'🇳🇬 Nigeria',in:'🇮🇳 India' };
+const labels = { et:'Eastern',ng:'Nigeria',in:'India' };
 function el(tag,cls,txt){let node=document.createElement(tag);if(cls)node.className=cls;if(txt!==undefined)node.textContent=txt;return node}
 function zoneFromDevice(){try{return Intl.DateTimeFormat().resolvedOptions().timeZone||''}catch{return ''}}
 const deviceZone=zoneFromDevice(),timeHome=identifyDeviceZone(deviceZone);
@@ -207,7 +207,7 @@ function updateVisitor(){
 $('base').value=timeHome||'et';
 updateVisitor();
 let theme='light';try{theme=localStorage.getItem('timebridge-theme')||(window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}catch{theme=window.matchMedia?.('(prefers-color-scheme: dark)').matches?'dark':'light'}
-function showTheme(){document.documentElement.dataset.theme=theme;$('theme').textContent=theme==='dark'?'☀ Light':'☾ Dark';$('theme').setAttribute('aria-label',`Switch to ${theme==='dark'?'light':'dark'} mode`);document.querySelector('meta[name="theme-color"]').content=theme==='dark'?'#111315':'#f8f7f4'}
+function showTheme(){document.documentElement.dataset.theme=theme;$('theme').textContent=theme==='dark'?'Day':'Night';$('theme').setAttribute('aria-label',`Switch to ${theme==='dark'?'day':'night'} mode`);document.querySelector('meta[name="theme-color"]').content=theme==='dark'?'#0B0C0F':'#F4F4F4'}
 showTheme();$('theme').addEventListener('click',()=>{theme=theme==='dark'?'light':'dark';try{localStorage.setItem('timebridge-theme',theme)}catch{}showTheme()});
 let selected=null,selectedChoice=0,displayedSlots=[];
 let clockOrder=null;
