@@ -60,9 +60,9 @@
     "bytes": 265
   },
   "index.html": {
-    "blob": "fb08b295d4cba354c2a117c4f5447241fe76ccc2",
-    "sha256": "e330155f1f19590deb33720b39a9a266fb87b9c2679799528ffafd3ae757dd7a",
-    "bytes": 19270
+    "blob": "f64b9445632180d68cdebe4ee855452536c6f019",
+    "sha256": "e3c63d74da873f83c8e0dfa197a98beeb056c7b309a21485a59bceee95f59f7c",
+    "bytes": 19277
   },
   "lib/default-calendars.mjs": {
     "blob": "7da82bfddec4bc55edad0f41607da7aabad9592e",
